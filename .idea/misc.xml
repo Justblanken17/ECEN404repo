@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1905" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_2.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activity2expected.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activitycdc.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activitycdcexpected.xml" value="0.26875" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activitycm.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activitycm_expected.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activitylmcreal_expected.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activityncexpected.xml" value="0.26875" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activityocexpected.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activityumcexpected.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ct.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ctcactivity.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ctcactivityextended.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ctusing.xml" value="0.22" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ctusing_expected.xml" value="0.2" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ec.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ecexpected.xml" value="0.26875" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_imagebutton.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_lmc.xml" value="0.22" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_lmcreal.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mc.xml" value="0.22" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcexpec.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_nc.xml" value="0.22" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_oc.xml" value="0.18" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_umc.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_upc.xml" value="0.22" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_upcexpect.xml" value="0.5" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_vcactivity.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_vcactivityextended.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/content_activity_ct.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/content_activity_lmc.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

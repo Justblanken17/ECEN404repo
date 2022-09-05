@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+        <activity
+            android:name=".ctcactivityextended"
+            android:exported="false" />
+        <activity
+            android:name=".vcactivityextended"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUPCexpect"
+            android:exported="false" />
+        <activity
+            android:name=".activityncexpected"
+            android:exported="false" />
+        <activity
+            android:name=".activityumcexpected"
+            android:exported="false" />
+        <activity
+            android:name=".activityocexpected"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityMCexpec"
+            android:exported="false" />
+        <activity
+            android:name=".activitylmcrealEXPECTED"
+            android:exported="false" />
+        <activity
+            android:name=".activityECexpected"
+            android:exported="false" />
+        <activity
+            android:name=".ctusingEXPECTED"
+            android:exported="false" />
+        <activity
+            android:name=".activitycmEXPECTED"
+            android:exported="false" />
+        <activity
+            android:name=".activitycdcexpected"
+            android:exported="false" />
+        <activity
+            android:name=".activity2expected"
+            android:exported="false" />
+        <activity
+            android:name=".Imagebutton"
+            android:exported="false" />
+        <activity
+            android:name=".CTCActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VCActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityNC"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUMC"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUPC"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityOC"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityMC"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityLMCReal"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityLMC"
+            android:exported="false"
+            android:label="@string/title_activity_lmc"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".ActivityEC"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityCTusing"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityCt"
+            android:exported="false"
+            android:label="@string/title_activity_ct"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".activitycm"
+            android:exported="false" />
+        <activity
+            android:name=".Activitycdc"
+            android:exported="false" />
+        <activity
+            android:name=".Activity2"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

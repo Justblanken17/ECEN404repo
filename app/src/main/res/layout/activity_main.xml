@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/NCbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="222dp"
+        android:layout_marginBottom="98dp"
+        android:backgroundTint="#800000"
+        android:text="Nitrogen Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/mcbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="222dp"
+        android:layout_marginBottom="144dp"
+        android:backgroundTint="#800000"
+        android:text="CH4 Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/ctbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="222dp"
+        android:layout_marginBottom="190dp"
+        android:backgroundTint="#800000"
+        android:text="Lower Plant Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/cmbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="236dp"
+        android:backgroundTint="#800000"
+        android:text="CO Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/lmcbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="190dp"
+        android:backgroundTint="#800000"
+        android:text="lower mixing chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/umcbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="144dp"
+        android:backgroundTint="#800000"
+        android:text="Upper Mixing Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/vcbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="98dp"
+        android:backgroundTint="#800000"
+        android:text="Vermiculture Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/cdctext"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="236dp"
+        android:backgroundTint="#800000"
+        android:text="CO2 Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/ecbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="190dp"
+        android:backgroundTint="#800000"
+        android:text="Ethylene Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/OCbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="144dp"
+        android:backgroundTint="#800000"
+        android:text="Oxygen Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/UPCbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="98dp"
+        android:backgroundTint="#800000"
+        android:text="Upper Plant Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/ctcbutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="52dp"
+        android:backgroundTint="#800000"
+        android:text="Compost Tea Chamber"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/imagebutton"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="222dp"
+        android:layout_marginBottom="51dp"
+        android:backgroundTint="#800000"
+        android:text="Imagesection"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/gotothing"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="222dp"
+        android:layout_marginBottom="236dp"
+        android:backgroundTint="#800000"
+        android:text="water level chamber"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="440dp"
+        android:text="Chamber Sensor Directory"
+        android:textColor="#070606"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="99dp"
+        android:layout_height="81dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="343dp"
+        app:srcCompat="@drawable/texasamlogojpg___copy" />
+
+</RelativeLayout>
