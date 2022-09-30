@@ -56,7 +56,7 @@ public class ActivityCt extends AppCompatActivity {
 
             String result ="";
 
-            String host = "http://10.230.160.179/android_connect/cm.php"; //10.216.2.136  10.236.39.36 10.236.46.44
+            String host = "http://10.231.226.125/android_connect/cm.php"; //10.216.2.136  10.236.39.36 10.236.46.44
             try{
                 URL url = new URL(host);
                 HttpClient androidclient = new DefaultHttpClient();

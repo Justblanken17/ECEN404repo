@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/NCbutton"
+        android:id="@+id/MCU5"
         android:layout_width="87dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -15,7 +15,7 @@
         android:layout_marginEnd="222dp"
         android:layout_marginBottom="98dp"
         android:backgroundTint="#800000"
-        android:text="Nitrogen Chamber"
+        android:text="MCU5"
         android:textSize="8sp" />
 
     <Button
@@ -79,7 +79,7 @@
         android:textSize="8sp" />
 
     <Button
-        android:id="@+id/vcbutton"
+        android:id="@+id/mcu3button"
         android:layout_width="87dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -87,7 +87,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="98dp"
         android:backgroundTint="#800000"
-        android:text="Vermiculture Chamber"
+        android:text="MCU3"
         android:textSize="8sp" />
 
     <Button
@@ -127,7 +127,7 @@
         android:textSize="8sp" />
 
     <Button
-        android:id="@+id/UPCbutton"
+        android:id="@+id/MCU4button"
         android:layout_width="87dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -135,11 +135,11 @@
         android:layout_marginEnd="127dp"
         android:layout_marginBottom="98dp"
         android:backgroundTint="#800000"
-        android:text="Upper Plant Chamber"
+        android:text="MCU4"
         android:textSize="8sp" />
 
     <Button
-        android:id="@+id/ctcbutton"
+        android:id="@+id/mcu2button"
         android:layout_width="87dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -147,7 +147,7 @@
         android:layout_marginEnd="127dp"
         android:layout_marginBottom="52dp"
         android:backgroundTint="#800000"
-        android:text="Compost Tea Chamber"
+        android:text="MCU2"
         android:textSize="8sp" />
 
     <Button
@@ -159,7 +159,19 @@
         android:layout_marginEnd="222dp"
         android:layout_marginBottom="51dp"
         android:backgroundTint="#800000"
-        android:text="Imagesection"
+        android:text="Pictures"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/firebasetest"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="#800000"
+        android:text="Firebase test"
         android:textSize="8sp" />
 
     <TextView

@@ -57,7 +57,7 @@ public class Activity2 extends AppCompatActivity {
             //where I do operations in the background
             String dataread =""; //creates string of intended result
 
-            String link = "http://10.230.160.179/android_connect/watersensorlevel.php"; //10.216.2.136  10.236.39.36 10.236.46.44 holds the link for the php file I want to connect to
+            String link = "http://10.231.114.238/android_connect/watersensorlevel.php"; //10.216.2.136  10.236.39.36 10.236.46.44 holds the link for the php file I want to connect to
             try{
                 URL url = new URL(link); // creates url, this code is throway, never used
                 HttpClient androidclient = new DefaultHttpClient(); // HTTP - Hypertext Transfer Protocol, used to connect browsers/clients and servers. HTTP client sends requests to access my resources/php file

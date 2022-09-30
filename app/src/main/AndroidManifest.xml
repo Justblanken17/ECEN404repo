@@ -13,6 +13,132 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".mcu1oxygengraph"
+            android:exported="false" />
+        <activity
+            android:name=".mcu5temphumid"
+            android:exported="false" />
+        <activity
+            android:name=".mcu5oxy"
+            android:exported="false" />
+        <activity
+            android:name=".mcu5meth"
+            android:exported="false" />
+        <activity
+            android:name=".mcu5flowv"
+            android:exported="false" />
+        <activity
+            android:name=".mcu5ethy"
+            android:exported="false" />
+        <activity
+            android:name=".mcu5co2"
+            android:exported="false" />
+        <activity
+            android:name=".mcu5co"
+            android:exported="false" />
+        <activity
+            android:name=".MCU5"
+            android:exported="false" />
+        <activity
+            android:name=".mcu4flowv"
+            android:exported="false" />
+        <activity
+            android:name=".mcu4temphumid"
+            android:exported="false" />
+        <activity
+            android:name=".mcu4oxy"
+            android:exported="false" />
+        <activity
+            android:name=".mcu4meth"
+            android:exported="false" />
+        <activity
+            android:name=".mcu4ethy"
+            android:exported="false" />
+        <activity
+            android:name=".mcu4co2"
+            android:exported="false" />
+        <activity
+            android:name=".mcu4co"
+            android:exported="false" />
+        <activity
+            android:name=".MCU4"
+            android:exported="false" />
+        <activity
+            android:name=".mcu3temp"
+            android:exported="false" />
+        <activity
+            android:name=".mcu3flowl"
+            android:exported="false" />
+        <activity
+            android:name=".mcu3oxy"
+            android:exported="false" />
+        <activity
+            android:name=".mcu3metha"
+            android:exported="false" />
+        <activity
+            android:name=".mcu3ethy"
+            android:exported="false" />
+        <activity
+            android:name=".mcu3co"
+            android:exported="false" />
+        <activity
+            android:name=".mcu3co2"
+            android:exported="false" />
+        <activity
+            android:name=".MCU3"
+            android:exported="false" />
+        <activity
+            android:name=".mcu2temphumid"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1temphum"
+            android:exported="false" />
+        <activity
+            android:name=".mcu2oxygen"
+            android:exported="false" />
+        <activity
+            android:name=".mcu2metha"
+            android:exported="false" />
+        <activity
+            android:name=".mcu2flowv"
+            android:exported="false" />
+        <activity
+            android:name=".mcu2ethy"
+            android:exported="false" />
+        <activity
+            android:name=".mcu2co2"
+            android:exported="false" />
+        <activity
+            android:name=".mcu2co"
+            android:exported="false" />
+        <activity
+            android:name=".MCU2"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1temphumid"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1flowv"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1oxygen"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1methane"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1ethy"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1co"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1co2"
+            android:exported="false" />
+        <activity
+            android:name=".Recycleviewtest"
+            android:exported="false" />
+        <activity
             android:name=".ctcactivityextended"
             android:exported="false" />
         <activity

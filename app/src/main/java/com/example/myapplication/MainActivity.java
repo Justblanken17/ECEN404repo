@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         //where I do operations in the background
             String dataread ="";
             //note: the code in this section isnt actually displayed, was just used during early stages of project to test out connect
-            String link = "http://10.230.160.179/android_connect/establishconnection.php"; //This string will be used as URI I will use to access the php file
+            String link = "http://10.228.233.66/android_connect/establishconnection.php"; //This string will be used as URI I will use to access the php file
             try{ //block of code 58-61 sets up connection to the internet via apache, 63-69 read the contents of the code
                 URL url = new URL(link);
                 HttpClient androidclient = new DefaultHttpClient(); // HTTP - Hypertext Transfer Protocol, used to connect browsers/clients and servers. HTTP client sends requests to access my resources/php file
@@ -107,11 +107,12 @@ public class MainActivity extends AppCompatActivity {
                       Button buttonmc = (Button) findViewById(R.id.mcbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
                       Button buttonoc = (Button) findViewById(R.id.OCbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
                       Button buttonumc = (Button) findViewById(R.id.umcbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonnc = (Button) findViewById(R.id.NCbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonupc = (Button) findViewById(R.id.UPCbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonvc = (Button) findViewById(R.id.vcbutton); //connects the button from the layout to a button variable by assoicating with its ID
-                      Button buttonctc = (Button) findViewById(R.id.ctcbutton);
+                      Button buttonmcu5 = (Button) findViewById(R.id.MCU5); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      Button buttonmcu4 = (Button) findViewById(R.id.MCU4button); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      Button buttonmcu3 = (Button) findViewById(R.id.mcu3button); //connects the button from the layout to a button variable by assoicating with its ID
+                      Button buttonmcu2 = (Button) findViewById(R.id.mcu2button);
                       Button buttonimage = (Button) findViewById(R.id.imagebutton);//connects the button from the layout to a button variable by assoicating with its ID
+                      Button recycle = (Button) findViewById(R.id.firebasetest);
                       button.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
                           @Override
                           public void onClick(View view) {
@@ -166,35 +167,41 @@ public class MainActivity extends AppCompatActivity {
                               openActivityumc();
                           }
                       });
-                      buttonnc.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+                      buttonmcu5.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
                           @Override
                           public void onClick(View view) {
-                              openActivitync();
+                              openActivitymcu5();
                           }
                       });
 
-                      buttonupc.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+                      buttonmcu4.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
                           @Override
                           public void onClick(View view) {
-                              openActivityupc();
+                              openActivitymcu4();
                           }
                       });
-                      buttonvc.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+                      buttonmcu3.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
                           @Override
                           public void onClick(View view) {
-                              openActivityvc();
+                              openActivitymcu3();
                           }
                       });
-                      buttonctc.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+                      buttonmcu2.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
                           @Override
                           public void onClick(View view) {
-                              openActivityctc();
+                              openActivitymcu2();
                           }
                       });
                       buttonimage.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
                           @Override
                           public void onClick(View view) {
                               openActivityimage();
+                          }
+                      });
+                      recycle.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+                          @Override
+                          public void onClick(View view) {
+                              openActivityrecycle();
                           }
                       });
 
@@ -243,24 +250,28 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ActivityUMC.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
-    public void openActivitync(){
-        Intent intent = new Intent(this, ActivityNC.class); //causes the subordinate activity file to be opened, redirects to new layout
+    public void openActivitymcu5(){
+        Intent intent = new Intent(this, MCU5.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
-    public void openActivityupc(){
-        Intent intent = new Intent(this, ActivityUPC.class); //causes the subordinate activity file to be opened, redirects to new layout
+    public void openActivitymcu4(){
+        Intent intent = new Intent(this, MCU4.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
-    public void openActivityvc(){
-        Intent intent = new Intent(this, VCActivity.class); //causes the subordinate activity file to be opened, redirects to new layout
+    public void openActivitymcu3(){
+        Intent intent = new Intent(this, MCU3.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
-    public void openActivityctc(){
-        Intent intent = new Intent(this, CTCActivity.class); //causes the subordinate activity file to be opened, redirects to new layout
+    public void openActivitymcu2(){
+        Intent intent = new Intent(this, MCU2.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
     public void openActivityimage(){
         Intent intent = new Intent(this, Imagebutton.class); //causes the subordinate activity file to be opened, redirects to new layout
+        startActivity(intent);
+    }
+    public void openActivityrecycle(){
+        Intent intent = new Intent(this, Recycleviewtest.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
 

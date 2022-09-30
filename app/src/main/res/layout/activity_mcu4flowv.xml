@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mcu4flowv">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".mcu3flowl"/>
+
+    <TextView
+        android:id="@+id/sens159"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="184dp"
+        android:background="#FBBABA"
+        android:text="Expected Range:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/range82"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="184dp"
+        android:background="#FBBABA"
+        android:text="NA"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens160"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="156dp"
+        android:background="#FBBABA"
+        android:text="Expected Range:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/range83"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="156dp"
+        android:background="#FBBABA"
+        android:text="NA"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backmcu1maxfl4"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="176dp"
+        android:backgroundTint="#800000"
+        android:text="Back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/refreshmcu1maxflu4"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="48dp"
+        android:backgroundTint="#800000"
+        android:text="Refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView76"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="480dp"
+        android:text="Water Flow/Level"
+        android:textColor="#800000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView51"
+        android:layout_width="99dp"
+        android:layout_height="81dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="416dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/texasamlogojpg___copy" />
+
+    <TextView
+        android:id="@+id/sens161"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="156dp"
+        android:background="#FBBABA"
+        android:text="Flow:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens162"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="184dp"
+        android:background="#FBBABA"
+        android:text="Level:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/flowv5"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="156dp"
+        android:background="#FBBABA"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/flowv6"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="184dp"
+        android:background="#FBBABA"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

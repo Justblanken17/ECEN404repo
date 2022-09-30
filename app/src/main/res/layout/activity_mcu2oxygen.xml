@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mcu2oxygen">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".mcu1oxygen">
+
+        <TextView
+            android:id="@+id/sens41"
+            android:layout_width="110dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="156dp"
+            android:background="#FBBABA"
+            android:text="Expected Range:"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/range16"
+            android:layout_width="70dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="251dp"
+            android:layout_marginTop="156dp"
+            android:background="#FBBABA"
+            android:text="NA"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sens42"
+            android:layout_width="110dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="184dp"
+            android:background="#FBBABA"
+            android:text="Expected Range:"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/range17"
+            android:layout_width="70dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="251dp"
+            android:layout_marginTop="184dp"
+            android:background="#FBBABA"
+            android:text="NA"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/range20"
+            android:layout_width="70dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="251dp"
+            android:layout_marginTop="212dp"
+            android:background="#FBBABA"
+            android:text="NA"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sens45"
+            android:layout_width="110dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="240dp"
+            android:background="#FBBABA"
+            android:text="Expected Range:"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="99dp"
+            android:layout_height="81dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="224dp"
+            android:layout_marginTop="416dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/texasamlogojpg___copy" />
+
+        <TextView
+            android:id="@+id/oxy9"
+            android:layout_width="70dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="156dp"
+            android:background="#FBBABA"
+            android:text="TextView"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/range37"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="156dp"
+        android:background="#FBBABA"
+        android:text="NA"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/range39"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="NA"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens75"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="Expected Range:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/range40"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="NA"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens76"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="Expected Range:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView31"
+        android:layout_width="99dp"
+        android:layout_height="81dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="416dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/texasamlogojpg___copy" />
+
+    <TextView
+        android:id="@+id/sens77"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="Expected Range:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/range41"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="NA"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backmcu2"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="176dp"
+        android:backgroundTint="#800000"
+        android:text="Back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/refreshmcu2"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="48dp"
+        android:backgroundTint="#800000"
+        android:text="Refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="480dp"
+        android:text="Oxygen Sensors"
+        android:textColor="#800000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="99dp"
+        android:layout_height="81dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="416dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/texasamlogojpg___copy" />
+
+    <TextView
+        android:id="@+id/sens78"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="156dp"
+        android:background="#FBBABA"
+        android:text="Sensor 1:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens79"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="184dp"
+        android:background="#FBBABA"
+        android:text="Sensor 2:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens80"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="Sensor 3:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens81"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="Sensor 4:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/oxy5"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="184dp"
+        android:background="#FBBABA"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/oxy6"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/oxy7"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

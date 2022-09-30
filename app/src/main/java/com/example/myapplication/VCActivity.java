@@ -56,7 +56,7 @@ public class VCActivity extends AppCompatActivity {
             //where I do operations in the background
             String dataread =""; //creates string of intended result
 
-            String link = "http://10.230.160.179/android_connect/vcnew.php"; //10.216.2.136  10.236.39.36 10.236.46.44 holds the link for the php file I want to connect to
+            String link = "http://10.231.226.125/android_connect/vcnew.php"; //10.216.2.136  10.236.39.36 10.236.46.44 holds the link for the php file I want to connect to
             try{
                 URL url = new URL(link);
                 HttpClient androidclient = new DefaultHttpClient();

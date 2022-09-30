@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "947798462768",
+    "firebase_url": "https://growable-space-habitat-default-rtdb.firebaseio.com",
+    "project_id": "growable-space-habitat",
+    "storage_bucket": "growable-space-habitat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947798462768:android:7f70f3993dd481687fb8f5",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947798462768-1ertv7c309tmr50qioler8oovbmsvhb8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4S923aPnv5oC_BDWRNRoxzpHinmuUdrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947798462768-1ertv7c309tmr50qioler8oovbmsvhb8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
