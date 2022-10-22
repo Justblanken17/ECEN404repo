@@ -14,6 +14,10 @@
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activityncexpected.xml" value="0.26875" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activityocexpected.xml" value="0.33" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_activityumcexpected.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_camera1.xml" value="0.253125" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_camera2.xml" value="0.25" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_camera3.xml" value="0.1265625" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_camera4.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ct.xml" value="0.25" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ctcactivity.xml" value="0.33" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ctcactivityextended.xml" value="0.33" />
@@ -21,7 +25,7 @@
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ctusing_expected.xml" value="0.2" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ec.xml" value="0.25" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_ecexpected.xml" value="0.26875" />
-        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_imagebutton.xml" value="0.5" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_imagebutton.xml" value="0.33" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_lmc.xml" value="0.22" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_lmcreal.xml" value="0.25" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -29,13 +33,25 @@
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcexpec.xml" value="0.33" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1co.xml" value="0.33" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1co2.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1co2graph.xml" value="0.17223796033994335" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1co2graphminutes.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1cograph.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1ethy.xml" value="0.5" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1ethygraph.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1ethygraphminutes.xml" value="0.11875" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1flowv.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1flowvgraph.xml" value="0.16" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1flowvgraphminutes.xml" value="0.26875" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1methane.xml" value="0.2635416666666667" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1methanegraph.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1methanegraphminutes.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1oxygen.xml" value="0.33" />
-        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1oxygengraph.xml" value="0.13854166666666667" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1oxygengraph.xml" value="0.16" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1oxygengraphminutes.xml" value="0.26875" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1temphum.xml" value="0.13072916666666667" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1temphumid.xml" value="0.33" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1temphumidgraph.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu1temphumidgraphminutes.xml" value="0.23020833333333332" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu2.xml" value="0.22" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu2co.xml" value="0.25" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu2co2.xml" value="0.33" />
@@ -68,9 +84,10 @@
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu5meth.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu5oxy.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcu5temphumid.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_mcucographminutes.xml" value="0.11875" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_nc.xml" value="0.22" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_oc.xml" value="0.18" />
-        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_recycleviewtest.xml" value="0.5" />
+        <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_recycleviewtest.xml" value="0.22" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_umc.xml" value="0.33" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_upc.xml" value="0.22" />
         <entry key="..\:/Users/jjbla/AndroidStudioProjects/MyApplication5/app/src/main/res/layout/activity_upcexpect.xml" value="0.5" />

@@ -27,7 +27,8 @@ public class mcu1flowv extends AppCompatActivity {
         //TextView flowv4 = findViewById(R.id.flowv4);
         Button buttonreferesh = (Button) findViewById(R.id.refreshmcu1maxflu);
         Button buttonback = (Button) findViewById(R.id.backmcu1maxfl);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Flow").child("Water Flow Sensor");
+        Button buttongraph = (Button) findViewById(R.id.graphmcuflowv1);
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Flow").child("Sensor 1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Level").child("Sensor 1");
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
@@ -41,12 +42,41 @@ public class mcu1flowv extends AppCompatActivity {
                 openActivityrefresh();
             }
         });
+        buttongraph.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+            @Override
+            public void onClick(View view) {
+                openActivitygraph();
+            }
+        });
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String data = snapshot.getValue().toString();
-                double z = Double.parseDouble(data);
-                flowv1.setText(String.valueOf(z));
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
+
+                double y;
+                int x;
+                x = -1;
+                int arraysize = 0;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[arraysize-1];
+                flowv1.setText(String.valueOf(c));
+                //String data = snapshot.getValue().toString();
+                //double z = Double.parseDouble(data);
+                //flowv1.setText(String.valueOf(z));
             }
 
             @Override
@@ -57,9 +87,29 @@ public class mcu1flowv extends AppCompatActivity {
         rootDatabaseref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String data = snapshot.getValue().toString();
-                double z = Double.parseDouble(data);
-                flowv2.setText(String.valueOf(z));
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
+
+                double y;
+                int arraysize = 0;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                int x;
+                x = -1;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[0];
+                flowv2.setText(String.valueOf(c));
             }
 
             @Override
@@ -76,6 +126,11 @@ public class mcu1flowv extends AppCompatActivity {
     }
     public void openActivitymain(){
         Intent intent = new Intent(this, Recycleviewtest.class); //causes the subordinate activity file to be opened, redirects to new layout
+        startActivity(intent);
+    }
+
+    public void openActivitygraph(){
+        Intent intent = new Intent(this, mcu1flowvgraph.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
 }

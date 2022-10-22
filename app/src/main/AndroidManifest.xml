@@ -13,6 +13,57 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Camera4"
+            android:exported="false" />
+        <activity
+            android:name=".Camera3"
+            android:exported="false" />
+        <activity
+            android:name=".Camera2"
+            android:exported="false" />
+        <activity
+            android:name=".Camera1"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1temphumidgraphminutes"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1flowvgraphminutes"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1oxygengraphminutes"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1methanegraphminutes"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1ethygraphminutes"
+            android:exported="false" />
+        <activity
+            android:name=".mcucographminutes"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1co2graphminutes"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1temphumidgraph"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1methanegraph"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1ethygraph"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1co2graph"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1cograph"
+            android:exported="false" />
+        <activity
+            android:name=".mcu1flowvgraph"
+            android:exported="false" />
+        <activity
             android:name=".mcu1oxygengraph"
             android:exported="false" />
         <activity

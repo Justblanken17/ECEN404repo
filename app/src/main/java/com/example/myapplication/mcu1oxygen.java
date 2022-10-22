@@ -57,10 +57,6 @@ public class mcu1oxygen extends AppCompatActivity {
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //LineGraphSeries<DataPoint> series;
-                //String data = snapshot.getValue().toString();
-                //Double z = Double.parseDouble(data);
-                //oxyg1.setText(String.valueOf(z));
                 int t = 0;
                 int iterator = 0;
                 double c = 0;
@@ -68,16 +64,21 @@ public class mcu1oxygen extends AppCompatActivity {
                 double y;
                 int x;
                 x = -1;
-                int[] time = new int[100];
-                double[] concentration = new double[100];
+                int arraysize = 0;
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                 time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                 concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
-                 iterator = iterator + 1;
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    iterator = iterator + 1;
                 }
                 t = time[0];
-                c = concentration[0];
+                c = concentration[arraysize-1];
                 oxyg1.setText(String.valueOf(c));
                 //GraphView graph = (GraphView) findViewById(R.id.graph1);
                 //series = new LineGraphSeries<DataPoint>();
@@ -97,9 +98,29 @@ public class mcu1oxygen extends AppCompatActivity {
         rootDatabaseref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String data = snapshot.getValue().toString();
-                Double z = Double.parseDouble(data);
-                oxyg2.setText(String.valueOf(z));
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
+
+                double y;
+                int x;
+                x = -1;
+                int arraysize = 0;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[arraysize-1];
+                oxyg2.setText(String.valueOf(c));
             }
 
             @Override
@@ -110,9 +131,29 @@ public class mcu1oxygen extends AppCompatActivity {
         rootDatabaseref3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String data = snapshot.getValue().toString();
-                Double z = Double.parseDouble(data);
-                oxyg3.setText(String.valueOf(z));
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
+
+                double y;
+                int x;
+                x = -1;
+                int arraysize = 0;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[arraysize-1];
+                oxyg3.setText(String.valueOf(c));
             }
 
             @Override
@@ -123,9 +164,29 @@ public class mcu1oxygen extends AppCompatActivity {
         rootDatabaseref4.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String data = snapshot.getValue().toString();
-                Double z = Double.parseDouble(data);
-                oxyg4.setText(String.valueOf(z));
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
+
+                double y;
+                int x;
+                x = -1;
+                int arraysize = 0;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[arraysize-1];
+                oxyg4.setText(String.valueOf(c));
             }
 
             @Override

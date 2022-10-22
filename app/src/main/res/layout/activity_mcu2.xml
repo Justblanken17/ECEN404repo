@@ -111,12 +111,12 @@
 
     <Button
         android:id="@+id/temphumidmcu2"
-        android:layout_width="115dp"
+        android:layout_width="243dp"
         android:layout_height="50dp"
         android:layout_marginTop="256dp"
-        android:layout_marginEnd="116dp"
+        android:layout_marginEnd="48dp"
         android:backgroundTint="#800000"
-        android:text="temphumid"
+        android:text="Temperature + Humidity"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

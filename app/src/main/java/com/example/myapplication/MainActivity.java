@@ -52,22 +52,22 @@ public class MainActivity extends AppCompatActivity {
         //where I do operations in the background
             String dataread ="";
             //note: the code in this section isnt actually displayed, was just used during early stages of project to test out connect
-            String link = "http://10.228.233.66/android_connect/establishconnection.php"; //This string will be used as URI I will use to access the php file
-            try{ //block of code 58-61 sets up connection to the internet via apache, 63-69 read the contents of the code
-                URL url = new URL(link);
-                HttpClient androidclient = new DefaultHttpClient(); // HTTP - Hypertext Transfer Protocol, used to connect browsers/clients and servers. HTTP client sends requests to access my resources/php file
-                HttpGet androidget = new HttpGet(); //androidget will request data from a server
-                androidget.setURI(new URI(link)); //the Uniform Resource Identifier is set to identify the php file whose hyperlink I mentioned previously
-                HttpResponse respond = androidclient.execute(androidget); //Httprespnse gets the data that androidget requested
-                BufferedReader phpread = new BufferedReader(new InputStreamReader(respond.getEntity().getContent()));//will be used to read the contents of response
-                StringBuilder stringBuffer = new StringBuilder(""); //string builder is what I use to store the data that is being read
-                String lineread = ""; //will store a line of the read contents of phpread
-                while ((lineread = phpread.readLine()) != null) {  //loop reads through each line of the php file, and adds the contents to the stringBuffer
-                    stringBuffer.append(lineread + "\n"); //adds the line to string buffer
+        //    String link = "http://10.228.235.82/android_connect/establishconnection.php"; //This string will be used as URI I will use to access the php file
+        //    try{ //block of code 58-61 sets up connection to the internet via apache, 63-69 read the contents of the code
+        //        URL url = new URL(link);
+        //        HttpClient androidclient = new DefaultHttpClient(); // HTTP - Hypertext Transfer Protocol, used to connect browsers/clients and servers. HTTP client sends requests to access my resources/php file
+        //        HttpGet androidget = new HttpGet(); //androidget will request data from a server
+        //        androidget.setURI(new URI(link)); //the Uniform Resource Identifier is set to identify the php file whose hyperlink I mentioned previously
+        //        HttpResponse respond = androidclient.execute(androidget); //Httprespnse gets the data that androidget requested
+        //        BufferedReader phpread = new BufferedReader(new InputStreamReader(respond.getEntity().getContent()));//will be used to read the contents of response
+        //        StringBuilder stringBuffer = new StringBuilder(""); //string builder is what I use to store the data that is being read
+        //        String lineread = ""; //will store a line of the read contents of phpread
+        //        while ((lineread = phpread.readLine()) != null) {  //loop reads through each line of the php file, and adds the contents to the stringBuffer
+        //            stringBuffer.append(lineread + "\n"); //adds the line to string buffer
 
-                }
-                phpread.close(); //closes phpread since all its contents are read
-                dataread = stringBuffer.toString(); //closes phpread since all its contents are read
+        //        }
+        //        phpread.close(); //closes phpread since all its contents are read
+        //        dataread = stringBuffer.toString(); //closes phpread since all its contents are read
 
           //      HttpClient androidclient = new DefaultHttpClient();
           //        HttpGet androidget = new HttpGet();
@@ -87,32 +87,33 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            }
-            catch (Exception e){
-                return new String("Exception" + e.getMessage());
-            }
+        //    }
+        //    catch (Exception e){
+        //        return new String("Exception" + e.getMessage());
+        //    }
             final String res_fin = ""; //result
             runOnUiThread(new Runnable() {//runONUi thread allows content to run on main thread since, only there can necessary code be run
                   @Override
                   public void run() {
                       setContentView(R.layout.activity_main);//adds desired layout to be displayed
                       TextView textView1 = (TextView)findViewById(R.id.textView); //connects a text variable to text button in the layout
-                      textView1.setText(res_fin); //sets a value to the text
-                      Button button = (Button) findViewById(R.id.gotothing); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttoncdc = (Button) findViewById(R.id.cdctext); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttoncm = (Button) findViewById(R.id.cmbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonct = (Button) findViewById(R.id.ctbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonec = (Button) findViewById(R.id.ecbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonlmc = (Button) findViewById(R.id.lmcbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonmc = (Button) findViewById(R.id.mcbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonoc = (Button) findViewById(R.id.OCbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
-                      Button buttonumc = (Button) findViewById(R.id.umcbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      textView1.setText(""); //sets a value to the text res_fin
+                      //Button button = (Button) findViewById(R.id.gotothing); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      //Button buttoncdc = (Button) findViewById(R.id.cdctext); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      //Button buttoncm = (Button) findViewById(R.id.cmbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      //Button buttonct = (Button) findViewById(R.id.ctbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      //Button buttonec = (Button) findViewById(R.id.ecbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      //Button buttonlmc = (Button) findViewById(R.id.lmcbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      //Button buttonmc = (Button) findViewById(R.id.mcbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      //Button buttonoc = (Button) findViewById(R.id.OCbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
+                      //Button buttonumc = (Button) findViewById(R.id.umcbutton); //connects the button from the layout to a newly defined button variable by assoicating with its ID
                       Button buttonmcu5 = (Button) findViewById(R.id.MCU5); //connects the button from the layout to a newly defined button variable by assoicating with its ID
                       Button buttonmcu4 = (Button) findViewById(R.id.MCU4button); //connects the button from the layout to a newly defined button variable by assoicating with its ID
                       Button buttonmcu3 = (Button) findViewById(R.id.mcu3button); //connects the button from the layout to a button variable by assoicating with its ID
                       Button buttonmcu2 = (Button) findViewById(R.id.mcu2button);
                       Button buttonimage = (Button) findViewById(R.id.imagebutton);//connects the button from the layout to a button variable by assoicating with its ID
                       Button recycle = (Button) findViewById(R.id.firebasetest);
+                      /*
                       button.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
                           @Override
                           public void onClick(View view) {
@@ -167,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                               openActivityumc();
                           }
                       });
+                      */
                       buttonmcu5.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
                           @Override
                           public void onClick(View view) {
