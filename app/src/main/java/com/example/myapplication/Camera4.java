@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,9 +11,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -41,6 +48,9 @@ public class Camera4 extends AppCompatActivity {
         //image4 = (ImageView)findViewById(R.id.imageView18);
         Button buttonreferesh = (Button) findViewById(R.id.buttonrefreshimage5);
         Button buttonback = (Button) findViewById(R.id.buttonbsckimage5);
+        Button buttonhome = (Button) findViewById(R.id.homebutton10);
+        TextView stateb = findViewById(R.id.statetext4);
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 1");
         //Button buttoncamera1 = (Button) findViewById(R.id.buttoncamera1);
         //Button buttoncamera2 = (Button) findViewById(R.id.buttoncamera2);
         //Button buttoncamera3 = (Button) findViewById(R.id.buttoncamera1);
@@ -57,8 +67,14 @@ public class Camera4 extends AppCompatActivity {
                 openActivitymain();
             }
         });
+        buttonhome.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+            @Override
+            public void onClick(View view) {
+                openActivityhome();
+            }
+        });
 
-
+            //MCU 1/Camera 4/Images
         lStorage = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 4/Images");
         //lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
         //lStorage3 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 3/Images");
@@ -83,6 +99,56 @@ public class Camera4 extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        rootDatabaseref.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
+
+                double y;
+                int x;
+                x = -1;
+                int arraysize = 0;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[arraysize-1];
+                if(c == 0)
+                {
+                    stateb.setText("Nitrogen Deficient - Check Sensors");
+                }
+                if(c == 1)
+                {
+                    stateb.setText("Healthy");
+                }
+                //stateb.setText(String.valueOf(c));
+                //GraphView graph = (GraphView) findViewById(R.id.graph1);
+                //series = new LineGraphSeries<DataPoint>();
+                //for(int i = 0; i < 100; i++) {
+                //    series.appendData(new DataPoint(time[i], concentration[i]), true, 100);
+
+                //}
+                //graph.addSeries(series);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         /*
         try {
             final File lclfile2 = File.createTempFile("Images", "jpg");
@@ -206,6 +272,10 @@ public class Camera4 extends AppCompatActivity {
     }
     public void openActivitymain(){
         Intent intent = new Intent(this, Imagebutton.class); //causes the subordinate activity file to be opened, redirects to new layout
+        startActivity(intent);
+    }
+    public void openActivityhome(){
+        Intent intent = new Intent(this, MainActivity.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
 

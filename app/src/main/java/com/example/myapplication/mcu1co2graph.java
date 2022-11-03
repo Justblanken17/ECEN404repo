@@ -113,7 +113,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
         Button buttonreferesh = (Button) findViewById(R.id.refreshmcu9);
         Button buttonback = (Button) findViewById(R.id.backmcu10);
         //Button buttonseconds = (Button) findViewById(R.id.secondstab);
-        Button buttonminutes = (Button) findViewById(R.id.minutestab);
+        //Button buttonminutes = (Button) findViewById(R.id.minutestab);
 
         Spinner spinner = findViewById(R.id.spinner);
 
@@ -122,18 +122,11 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1"); //these are for
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");
-        //DatabaseReference rootDatabaserefmin = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1");
-        //DatabaseReference rootDatabaserefmin2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 2");
-        //DatabaseReference rootDatabaserefmin3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 3");
-        //DatabaseReference rootDatabaserefmin4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");
-        //DatabaseReference rootDatabaserefhour = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1");
-        //DatabaseReference rootDatabaserefhour2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 2");
-        //DatabaseReference rootDatabaserefhour3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 3");
-        //DatabaseReference rootDatabaserefhour4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");
+        //these are seconds, create an array for j
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
             public void onClick(View view) {
@@ -153,12 +146,15 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 openActivityrefresh();
             }
         }); */
-        buttonminutes.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
-            @Override
-            public void onClick(View view) {
-                openActivityminutes();
-            }
-        });
+        //buttonminutes.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+        //    @Override
+        //    public void onClick(View view) {
+        //        openActivityminutes();
+        //    }
+        //});
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -168,6 +164,13 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 LineGraphSeries<DataPoint> seriesday;
                 LineGraphSeries<DataPoint> seriesweek;
                 LineGraphSeries<DataPoint> seriesyear;
+
+                LineGraphSeries<DataPoint> seriesB;
+                LineGraphSeries<DataPoint> seriesminutesB;
+                LineGraphSeries<DataPoint> serieshoursB;
+                LineGraphSeries<DataPoint> seriesdayB;
+                LineGraphSeries<DataPoint> seriesweekB;
+                LineGraphSeries<DataPoint> seriesyearB;
                 String data;// = snapshot.child();
                 Double z;// = Double.parseDouble(data);
                 // oxyg1.setText(S tring.valueOf(z));
@@ -190,6 +193,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 double weekdiv = arraysize/302400;
                 double yeardiv = arraysize/15768000;
 
+
                 double minutesdoub = Math.floor(minutediv);     ///////////
                 double hoursdoub = Math.floor(hourdiv);     ///////////
                 double daydouble = Math.floor(daydiv);
@@ -207,8 +211,66 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 int[] daytime = new int[days];
                 int[] weektime = new int[weeks];
                 int[] yeartime = new int[years];
+                /////////////////////////////////////////////////////NEW VARIABLES TO PLAY WITH
+                int parsetogetsizes = 0;
 
+                int[] minutetimeB = new int[arraysize];
+                int[] hourtimeB = new int[arraysize];            //////////
+                int[] daytimeB = new int[arraysize];
+                int[] monthtimeB = new int[arraysize];
+                int[] yeartimeB = new int[arraysize];
 
+                int[] secondwindow = new int[60];
+                int[] minutewindow = new int[60];
+                for(int i = 0; i < 60; i++)
+                {
+                    secondwindow[i] = -1;
+                    minutewindow[i] = -1;
+                }
+                int[] hourwindow = new int[24];            //////////
+                for(int i = 0; i < 24; i++)
+                {
+                    hourwindow[i] = -1;
+
+                }
+                int[] daywindow = new int[31];
+                for(int i = 0; i < 31; i++)
+                {
+                    daywindow[i] = -1;
+
+                }
+                int[] monthwindow = new int[12];
+                for(int i = 0; i < 12; i++)
+                {
+                    monthwindow[i] = -1;
+
+                }
+                int[] yearwindow = new int[10];
+                for(int i = 0; i < 10; i++)
+                {
+                    yearwindow[i] = -1;
+
+                }
+                double [] secconcentrationAVG = new double[60];
+                double[] mintuteconcentrationAVG = new double[60]; ////// hold average values for each unit
+                double[] hourconcentrationAVG = new double[24]; ////// hold average
+                double[] dayconcenctrationAVG = new double[31]; //
+                double[] weekconcenctrationAVG = new double[12];
+                double[] yearsconcentrationAVG = new double[10];
+                int iteratorB = 0;
+                int minutiteratorB = 0;      ///////
+                int houriteratorB = 0;      ///////
+                int dayiteratorB = 0;
+                int weekiteratorB = 0;
+                int yeariteratorB = 0;
+
+                int secondssize = 0; //tells how much stuff is in a window
+                int minutessize = 0;
+                int hourssize = 0;
+                int dayssize = 0;
+                int monthssize = 0;
+                int yearssize = 0;
+                /////////////////////////////////////////////////////NEW VARIABLES TO PLAY WITH 2
                 double[] concentration = new double[arraysize];
                 double[] mintuteconcentration = new double[minutes]; //////
                 double[] hourconcentration = new double[hours]; //////
@@ -223,18 +285,132 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 int yeariterator = 0;
 
                 double averagesum = 0;
+                series = new LineGraphSeries<DataPoint>();
+                seriesminutes = new LineGraphSeries<DataPoint>();
+                serieshours = new LineGraphSeries<DataPoint>();
+
+                /////////////////////////////////////////////////////////new stuff
+                seriesB = new LineGraphSeries<DataPoint>();
+                seriesminutesB = new LineGraphSeries<DataPoint>();
+                serieshoursB = new LineGraphSeries<DataPoint>();
+                seriesdayB = new LineGraphSeries<DataPoint>();
+                seriesweekB = new LineGraphSeries<DataPoint>();
+                seriesyearB = new LineGraphSeries<DataPoint>();
+
+                DataPoint[] aseriesB= new DataPoint[60];
+                DataPoint[] aseriesminutesB= new DataPoint[60];
+                DataPoint[] aserieshoursB= new DataPoint[24];
+                DataPoint[] aseriesdayB= new DataPoint[31];
+                DataPoint[] aseriesweekB= new DataPoint[12];
+                DataPoint[] aseriesyearB= new DataPoint[10];
+                ////////////////////////////////////////////////////////
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
 
                     time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
                     concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString());
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];
                     }
+                    //////////////////////////////////////////////NEW STUFF
+                    for(int i = 0; i < 60; i++)
+                    {
+                        if(secondwindow[i] != -1)
+                        {
+                            secondssize = secondssize + 1;
+                        }
+                        if(minutewindow[i] != -1)
+                        {
+                            minutessize = minutessize + 1;
+                        }
+                    }
+
+                    for(int i = 0; i < 24; i++)
+                    {
+                        if(hourwindow[i] != -1)
+                        {
+                            hourssize = hourssize + 1;
+                        }
+
+                    }
+
+                    for(int i = 0; i < 31; i++)
+                    {
+                        if(daywindow[i] != -1)
+                        {
+                            dayssize = dayssize + 1;
+                        }
+
+                    }
+
+                    for(int i = 0; i < 12; i++)
+                    {
+                        if(monthwindow[i] != -1 )
+                        {
+                            monthssize = monthssize + 1;
+                        }
+                    }
+
+                    for(int i = 0; i < 10; i++)
+                    {
+                        if(yearwindow[i] != -1)
+                        {
+                            yearssize = yearssize + 1;
+                        }
+
+                    }
+                    //controlling seconds and part of minutes arrays
+                    if(time[iterator] == 0) //checks if time index is 0
+                    {
+
+                        if(iterator>0 && time[iterator-1] == 59) //makes sure last point was 59 and your higher then 0
+                        {
+                            seriesB.resetData(aserieshoursB);
+                            minutewindow[minutetimeB[iterator-1]] = minutetimeB[iterator-1]; //
+                            //dseriesB.resetData();
+
+                            if(secondssize < 59 )
+                            {
+                                for(int i = iterator - secondssize; i< iterator ; i++)        ////
+                                {                                                         ////
+                                    averagesum = averagesum + concentration[i];           ////
+                                    ////
+                                }
+                                mintuteconcentrationAVG[minutiteratorB] = averagesum/secondssize;
+                                averagesum = 0;
+                                minutiteratorB = minutiteratorB + 1;
+
+
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        else
+                        {
+                            secondwindow[time[iterator]] = time[iterator];
+                            secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        }
+                    }
+                    else
+                    {
+                        secondwindow[time[iterator]] = time[iterator];
+                        secconcentrationAVG[time[iterator]] = concentration[iterator];
+                    }
+
+
+
+                    ///////////////////////////////////////////// NEW STUFF2
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
-                        minutetime[minutiterator] = minutiterator + 1;                ////
+                        minutetime[minutiterator] = minutiterator;                //// +1
                         for(int i = (iterator-59); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -245,9 +421,10 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         minutiterator = minutiterator + 1;////
 
                     }
+
                     if((iterator+1)%3600==0)                                        /////
                     {                                                             /////
-                        hourtime[houriterator] = houriterator + 1;                ////
+                        hourtime[houriterator] = houriterator ;                //// +1
                         for(int i = (iterator-3599); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -260,7 +437,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%43200==0)                                        /////
                     {                                                             /////
-                        daytime[dayiterator] = dayiterator + 1;                ////
+                        daytime[dayiterator] = dayiterator;                ////
                         for(int i = (iterator-43199); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -273,7 +450,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%302400==0)                                        /////
                     {                                                             /////
-                        weektime[weekiterator] = weekiterator + 1;                ////
+                        weektime[weekiterator] = weekiterator;                ////
                         for(int i = (iterator-302399); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -286,7 +463,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%1576800==0)                                        /////
                     {                                                             /////
-                        yeartime[yeariterator] = yeariterator + 1;                ////
+                        yeartime[yeariterator] = yeariterator;                ////
                         for(int i = (iterator-1576799); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -294,21 +471,35 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         }                                                         ////
                         yearsconcentration[yeariterator] = averagesum/1576800;      ////
                         averagesum = 0;
-                        weekiterator = weekiterator + 1;////
+                        yeariterator = yeariterator + 1;////
 
                     }
 
                     iterator = iterator + 1;
                 }
 
+                int whilecheck = 0;
+                for(int i = 0; i < 60; i++)
+                {
+
+                    if(secondwindow[i] != -1)
+                    {                   //secondwindow[i]
+                    aseriesB[whilecheck] = new DataPoint(secondwindow[i], secconcentrationAVG[i] );
+                    seriesB.appendData( aseriesB[whilecheck], true, 100);
+                    whilecheck = whilecheck + 1;
+                    }
+                }
+                buttonreferesh.setText(String.valueOf(secondwindow[1]));
+
+                //series = new LineGraphSeries<DataPoint>();
+                //seriesminutes = new LineGraphSeries<DataPoint>();
+                //serieshours = new LineGraphSeries<DataPoint>();
                 t = time[0];
                 c = concentration[0];
                 //oxyg1.setText(String.valueOf(c));
                 GraphView graph = (GraphView) findViewById(R.id.graphth);
                 //GraphView graph2 = (GraphView) findViewById(R.id.graph);
-                series = new LineGraphSeries<DataPoint>();
-                seriesminutes = new LineGraphSeries<DataPoint>();
-                serieshours = new LineGraphSeries<DataPoint>();
+
                 double g = 0;
                 String ge;
                 DataPoint[] a = new DataPoint[arraysize];
@@ -362,22 +553,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 //String ge;
                 DataPoint[] aweek= new DataPoint[weeks];  ///////
 
-                //if(series.)
+
                 for(int i = 0; i < weeks; i++) {                                      ////
                     //protected(series.resetData(new DataPoint[] {}));
                     aweek[i] = new DataPoint(weektime[i], weekconcenctration[i]);       ////
 
                     seriesweek.appendData(aweek[i], true, weeks + 3);    ////
-                    //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
 
                 seriesyear = new LineGraphSeries<DataPoint>();
-                //double g = 0;
-                //String ge;
+
                 DataPoint[] ayear= new DataPoint[years];  ///////
 
-                //if(series.)
                 for(int i = 0; i < years; i++) {                                      ////
                     //protected(series.resetData(new DataPoint[] {}));
                     ayear[i] = new DataPoint(yeartime[i], yearsconcentration[i]);       ////
@@ -389,7 +577,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
 
                 }
 
-                seriessupersecond = series;
+                seriessupersecond = seriesB;  //series
                 seriessuperminute1 = seriesminutes;
                 seriesghour1 = serieshours;
                 seriesgday1 = seriesday;
@@ -404,185 +592,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 arraysizeglobalyear1 = years;
                 graph = (GraphView) findViewById(R.id.graphth);
                 opentesting();
-                //openActivityminutes();
-                /*
-                if(indication == 2)
-                {
-                    graph.setTitle("         CO2 Sensor 1");
-                    graph.setTitleTextSize(25);
-                    graph.removeAllSeries();
 
-                    graph.addSeries(seriesghour1);
-                    GridLabelRenderer griLa = graph.getGridLabelRenderer();
-                    LineGraphSeries lil = seriesghour1;
-                    lil.setThickness(2);
-                    griLa.setHorizontalAxisTitle("              hours");
-                    griLa.setHorizontalAxisTitleTextSize(20);
-                    griLa.setVerticalAxisTitle("ppm");
-                    griLa.setLabelVerticalWidth(43);
-                    griLa.setLabelVerticalWidth(55);
-                    //griLa.setH;
-                    griLa.setVerticalAxisTitleTextSize(20);
-                    graph.getViewport().setXAxisBoundsManual(true);
-                    graph.getViewport().setYAxisBoundsManual(true);
-                    if(hours<10)
-                    {
-                        graph.getViewport().setMinX(0);
-                        graph.getViewport().setMaxX(10);
-                    }
-                    else
-                    {
-                        graph.getViewport().setMinX(hours-10);
-                        graph.getViewport().setMaxX(hours);
-                    }
-                    graph.getViewport().setMaxY(max + .2*max);
-                    graph.getViewport().setMinY(0);
-                }
-
-                if(indication == 3)
-                {
-                    graph.setTitle("         CO2 Sensor 1");
-                    graph.setTitleTextSize(25);
-                    graph.removeAllSeries();
-                    graph.addSeries(seriesgday1);
-                    GridLabelRenderer griLa = graph.getGridLabelRenderer();
-                    LineGraphSeries lil = seriesgday1;
-                    lil.setThickness(2);
-                    griLa.setHorizontalAxisTitle("              days");
-                    griLa.setHorizontalAxisTitleTextSize(20);
-                    griLa.setVerticalAxisTitle("ppm");
-                    griLa.setLabelVerticalWidth(43);
-                    griLa.setLabelVerticalWidth(55);
-                    //griLa.setH;
-                    griLa.setVerticalAxisTitleTextSize(20);
-                    graph.getViewport().setXAxisBoundsManual(true);
-                    graph.getViewport().setYAxisBoundsManual(true);
-                    if(days<10)
-                    {
-                        graph.getViewport().setMinX(0);
-                        graph.getViewport().setMaxX(10);
-                    }
-                    else
-                    {
-                        graph.getViewport().setMinX(days-10);
-                        graph.getViewport().setMaxX(days);
-                    }
-                    graph.getViewport().setMaxY(max + .2*max);
-                    graph.getViewport().setMinY(0);
-                }
-
-                if(indication == 4)
-                {
-                    graph.setTitle("         CO2 Sensor 1");
-                    graph.setTitleTextSize(25);
-                    graph.removeAllSeries();
-                    graph.addSeries(seriesgweek1);
-                    GridLabelRenderer griLa = graph.getGridLabelRenderer();
-                    LineGraphSeries lil = seriesgweek1;
-                    lil.setThickness(2);
-                    griLa.setHorizontalAxisTitle("              weeks");
-                    griLa.setHorizontalAxisTitleTextSize(20);
-                    griLa.setVerticalAxisTitle("ppm");
-                    griLa.setLabelVerticalWidth(43);
-                    griLa.setLabelVerticalWidth(55);
-                    //griLa.setH;
-                    griLa.setVerticalAxisTitleTextSize(20);
-                    graph.getViewport().setXAxisBoundsManual(true);
-                    graph.getViewport().setYAxisBoundsManual(true);
-                    if(weeks<10)
-                    {
-                        graph.getViewport().setMinX(0);
-                        graph.getViewport().setMaxX(10);
-                    }
-                    else
-                    {
-                        graph.getViewport().setMinX(weeks-10);
-                        graph.getViewport().setMaxX(weeks);
-                    }
-                    graph.getViewport().setMaxY(max + .2*max);
-                    graph.getViewport().setMinY(0);
-                }
-
-
-                if(indication == 5)
-                {
-                    graph.setTitle("         CO2 Sensor 1");
-                    graph.setTitleTextSize(25);
-                    graph.removeAllSeries();
-                    graph.addSeries(seriesgyear1);
-
-                    GridLabelRenderer griLa = graph.getGridLabelRenderer();
-                    LineGraphSeries lil = seriesgyear1;
-                    lil.setThickness(2);
-                    griLa.setHorizontalAxisTitle("              years");
-                    griLa.setHorizontalAxisTitleTextSize(20);
-                    griLa.setVerticalAxisTitle("ppm");
-                    griLa.setLabelVerticalWidth(43);
-                    griLa.setLabelVerticalWidth(55);
-                    //griLa.setH;
-                    griLa.setVerticalAxisTitleTextSize(20);
-                    graph.getViewport().setXAxisBoundsManual(true);
-                    graph.getViewport().setYAxisBoundsManual(true);
-                    if(years<10)
-                    {
-                        graph.getViewport().setMinX(0);
-                        graph.getViewport().setMaxX(10);
-                    }
-                    else
-                    {
-                        graph.getViewport().setMinX(years-3);
-                        graph.getViewport().setMaxX(years);
-                    }
-                    graph.getViewport().setMaxY(max + .2*max);
-                    graph.getViewport().setMinY(0);
-
-                }
-                */
-
-                //series = null;
-                //series = new LineGraphSeries<DataPoint>(a);
-                //ge = String.valueOf(series.findDataPointAtX(1));
-                //cra.setText(ge);// "         CO2 Sensor 1"
-
-                ///////////////////////////////////////////////////////////////
-                /*
-                graph.setTitle("         CO2 Sensor 1");
-                graph.setTitleTextSize(25);
-                graph.getGridLabelRenderer().setNumHorizontalLabels(3);
-                //graph.getGridLabelRenderer().setNumVerticalLabels(4);
-                graph.removeAllSeries();
-                graph.addSeries(seriessupersecond);
-                //graph.setVisibility(View.GONE);
-                GridLabelRenderer griLa = graph.getGridLabelRenderer();
-                LineGraphSeries lil = series;
-                lil.setThickness(2);
-                griLa.setHorizontalAxisTitle("              Seconds");
-                griLa.setHorizontalAxisTitleTextSize(20);
-                griLa.setVerticalAxisTitle("ppm");
-                griLa.setLabelVerticalWidth(43);
-                //griLa.setH;
-                griLa.setVerticalAxisTitleTextSize(20);
-                graph.getViewport().setXAxisBoundsManual(true);
-                graph.getViewport().setYAxisBoundsManual(true);
-                if(arraysize<60)
-                {
-                    graph.getViewport().setMinX(0);
-                    graph.getViewport().setMaxX(60);
-                }
-                else
-                {
-                    graph.getViewport().setMinX(arraysize-60);
-                    graph.getViewport().setMaxX(arraysize);
-                }
-                graph.getViewport().setMaxX(arraysize);
-                graph.getViewport().setMaxY(max + .2*max);
-                graph.getViewport().setMinY(0);
-
-                 */
-                /////////////////////////////////////////////////////////////////
-
-                //graph.getViewport().setMaxY(max);
-                //graph.getViewport().setMaxX(arraysize);
 
 
             }
@@ -689,7 +699,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
-                        minutetime[minutiterator] = minutiterator + 1;                ////
+                        minutetime[minutiterator] = minutiterator ;                //// +1
                         for(int i = (iterator-59); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -702,7 +712,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%3600==0)                                        /////
                     {                                                             /////
-                        hourtime[houriterator] = houriterator + 1;                ////
+                        hourtime[houriterator] = houriterator;                ////
                         for(int i = (iterator-3599); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -715,7 +725,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%43200==0)                                        /////
                     {                                                             /////
-                        daytime[dayiterator] = dayiterator + 1;                ////
+                        daytime[dayiterator] = dayiterator;                ////
                         for(int i = (iterator-43199); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -728,7 +738,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%302400==0)                                        /////
                     {                                                             /////
-                        weektime[weekiterator] = weekiterator + 1;                ////
+                        weektime[weekiterator] = weekiterator;                ////
                         for(int i = (iterator-302399); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -741,7 +751,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%1576800==0)                                        /////
                     {                                                             /////
-                        yeartime[yeariterator] = yeariterator + 1;                ////
+                        yeartime[yeariterator] = yeariterator;                ////
                         for(int i = (iterator-1576799); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -749,7 +759,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         }                                                         ////
                         yearsconcentration[yeariterator] = averagesum/1576800;      ////
                         averagesum = 0;
-                        weekiterator = weekiterator + 1;////
+                        yeariterator = yeariterator + 1;////
 
                     }
 
@@ -980,7 +990,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
-                        minutetime[minutiterator] = minutiterator + 1;                ////
+                        minutetime[minutiterator] = minutiterator;                ////
                         for(int i = (iterator-59); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -993,7 +1003,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%3600==0)                                        /////
                     {                                                             /////
-                        hourtime[houriterator] = houriterator + 1;                ////
+                        hourtime[houriterator] = houriterator;                ////
                         for(int i = (iterator-3599); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1006,7 +1016,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%43200==0)                                        /////
                     {                                                             /////
-                        daytime[dayiterator] = dayiterator + 1;                ////
+                        daytime[dayiterator] = dayiterator;                ////
                         for(int i = (iterator-43199); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1019,7 +1029,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%302400==0)                                        /////
                     {                                                             /////
-                        weektime[weekiterator] = weekiterator + 1;                ////
+                        weektime[weekiterator] = weekiterator;                ////
                         for(int i = (iterator-302399); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1032,7 +1042,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%1576800==0)                                        /////
                     {                                                             /////
-                        yeartime[yeariterator] = yeariterator + 1;                ////
+                        yeartime[yeariterator] = yeariterator;                ////
                         for(int i = (iterator-1576799); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1040,7 +1050,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         }                                                         ////
                         yearsconcentration[yeariterator] = averagesum/1576800;      ////
                         averagesum = 0;
-                        weekiterator = weekiterator + 1;////
+                        yeariterator = yeariterator + 1;////
 
                     }
 
@@ -1269,7 +1279,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
-                        minutetime[minutiterator] = minutiterator + 1;                ////
+                        minutetime[minutiterator] = minutiterator;                ////
                         for(int i = (iterator-59); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1282,7 +1292,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%3600==0)                                        /////
                     {                                                             /////
-                        hourtime[houriterator] = houriterator + 1;                ////
+                        hourtime[houriterator] = houriterator;                ////
                         for(int i = (iterator-3599); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1295,7 +1305,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%43200==0)                                        /////
                     {                                                             /////
-                        daytime[dayiterator] = dayiterator + 1;                ////
+                        daytime[dayiterator] = dayiterator;                ////
                         for(int i = (iterator-43199); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1308,7 +1318,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%302400==0)                                        /////
                     {                                                             /////
-                        weektime[weekiterator] = weekiterator + 1;                ////
+                        weektime[weekiterator] = weekiterator;                ////
                         for(int i = (iterator-302399); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1321,7 +1331,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     if((iterator+1)%1576800==0)                                        /////
                     {                                                             /////
-                        yeartime[yeariterator] = yeariterator + 1;                ////
+                        yeartime[yeariterator] = yeariterator;                ////
                         for(int i = (iterator-1576799); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1329,7 +1339,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         }                                                         ////
                         yearsconcentration[yeariterator] = averagesum/1576800;      ////
                         averagesum = 0;
-                        weekiterator = weekiterator + 1;////
+                        yeariterator = yeariterator + 1;////
 
                     }
 
@@ -1362,6 +1372,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     a[i] = new DataPoint(time[i], concentration[i]);
 
                     series.appendData(a[i], true, arraysize + 40);
+
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1510,7 +1521,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
         GraphView graph3 = (GraphView) findViewById(R.id.graph3th);
         GraphView graph4 = (GraphView) findViewById(R.id.graph4);
         Button buttonminutes = (Button) findViewById(R.id.minutestab);
-        buttonminutes.setText(String.valueOf(indication));
+
         if(indication == 0)
         {
             graph.setTitle("         CO2 Sensor 1");
@@ -1530,16 +1541,18 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
 
-            if(arraysizeCHECKglobal<60)
-            {
+            //if(arraysizeCHECKglobal<60)
+            //{}
                 graph.getViewport().setMinX(0);
                 graph.getViewport().setMaxX(60);
-            }
+            /*
             else
             {
                 graph.getViewport().setMinX(arraysizeCHECKglobal-60);
                 graph.getViewport().setMaxX(arraysizeCHECKglobal);
             }
+
+             */
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -1562,16 +1575,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             //graph2.getViewport().setMaxX(arraysizeglobalsecond2 + 1);
             //graph2.getViewport().setMaxX(arraysizeglobalsecond2 + 1);
 
-            if(arraysizeglobalsecond2<60)
-            {
+            //if(arraysizeglobalsecond2<60)
+            //{
                 graph2.getViewport().setMinX(0);
                 graph2.getViewport().setMaxX(60);
-            }
+            //}
+            /*
             else
             {
                 graph2.getViewport().setMinX(arraysizeglobalsecond2-60);
                 graph2.getViewport().setMaxX(arraysizeglobalsecond2);
             }
+
+             */
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -1594,16 +1610,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalsecond3<60)
-            {
+            //if(arraysizeglobalsecond3<60)
+            //{
                 graph3.getViewport().setMinX(0);
                 graph3.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalsecond3-60);
-                graph3.getViewport().setMaxX(arraysizeglobalsecond3);
-            }
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalsecond3-60);
+            //    graph3.getViewport().setMaxX(arraysizeglobalsecond3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -1626,16 +1642,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setMaxX(arraysizeglobalsecond4 + 1);
 
 
-            if(arraysizeglobalsecond4<60)
-            {
+            //if(arraysizeglobalsecond4<60)
+            //{
                 graph4.getViewport().setMinX(0);
                 graph4.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalsecond4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalsecond4);
-            }
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalsecond4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalsecond4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -1663,16 +1679,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute1<10)
-            {
+            //if(arraysizeglobalminute1<10)
+            //{}
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
+                graph.getViewport().setMaxX(60);
+            //}
+            /*
             else
             {
                 graph.getViewport().setMinX(arraysizeglobalminute1-10);
                 graph.getViewport().setMaxX(arraysizeglobalminute1);
             }
+
+             */
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -1693,16 +1712,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute2<10)
-            {
+            //if(arraysizeglobalminute2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
+                graph2.getViewport().setMaxX(60);
+            //}
+            /*
             else
             {
                 graph2.getViewport().setMinX(arraysizeglobalminute2-10);
                 graph2.getViewport().setMaxX(arraysizeglobalminute2);
             }
+
+             */
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -1723,16 +1745,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute3<10)
-            {
+            //if(arraysizeglobalminute3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalminute3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalminute3);
-            }
+                graph3.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalminute3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalminute3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -1753,16 +1775,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute4<10)
-            {
+            //if(arraysizeglobalminute4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalminute3-10);
-                graph4.getViewport().setMaxX(arraysizeglobalminute3);
-            }
+                graph4.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalminute3-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalminute3);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
         }
@@ -1786,16 +1808,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour1<10)
-            {
+            //if(arraysizeglobalhour1<10)
+            //{}
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
+                graph.getViewport().setMaxX(24);
+            //}
+            /*
             else
             {
                 graph.getViewport().setMinX(arraysizeglobalhour1-10);
                 graph.getViewport().setMaxX(arraysizeglobalhour1);
             }
+
+             */
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -1816,16 +1841,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour2<10)
-            {
+            //if(arraysizeglobalhour2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalhour2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalhour2);
-            }
+                graph2.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalhour2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalhour2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -1846,16 +1871,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour3<10)
-            {
+            //if(arraysizeglobalhour3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalhour3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalhour3);
-            }
+                graph3.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalhour3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalhour3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -1876,16 +1901,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour4<10)
-            {
+            //if(arraysizeglobalhour4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalhour4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalhour4);
-            }
+                graph4.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalhour4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalhour4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
         }
@@ -1908,16 +1933,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday1<10)
-            {
+            //if(arraysizeglobalday1<10)
+            //{}
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
+                graph.getViewport().setMaxX(31);
+            //}
+            /*
             else
             {
                 graph.getViewport().setMinX(arraysizeglobalday1-10);
                 graph.getViewport().setMaxX(arraysizeglobalday1);
             }
+
+             */
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -1938,16 +1966,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday2<10)
-            {
+            //if(arraysizeglobalday2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalday2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalday2);
-            }
+                graph2.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalday2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalday2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -1968,16 +1996,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday3<10)
-            {
+            //if(arraysizeglobalday3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalday3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalday3);
-            }
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalday3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalday3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -1998,16 +2026,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday4<10)
-            {
+            //if(arraysizeglobalday4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalday4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalday4);
-            }
+                graph4.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalday4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalday4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
         }
@@ -2030,16 +2058,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek1<10)
-            {
+            //if(arraysizeglobalweek1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
+                graph.getViewport().setMaxX(12);
+            //}
+            /*
             else
             {
                 graph.getViewport().setMinX(arraysizeglobalweek1-10);
                 graph.getViewport().setMaxX(arraysizeglobalweek1);
             }
+
+             */
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2060,16 +2091,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek2<10)
-            {
+            //if(arraysizeglobalweek2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
+                graph2.getViewport().setMaxX(12);
+            //}
+            /*
             else
             {
                 graph2.getViewport().setMinX(arraysizeglobalweek1-10);
                 graph2.getViewport().setMaxX(arraysizeglobalweek1);
             }
+
+             */
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -2090,16 +2124,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek3<10)
-            {
+            //if(arraysizeglobalweek3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalweek3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalweek3);
-            }
+                graph3.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalweek3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalweek3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -2120,16 +2154,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek4<10)
-            {
+            //if(arraysizeglobalweek4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalweek4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalweek4);
-            }
+                graph4.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalweek4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalweek4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
         }
@@ -2153,16 +2187,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear1<3)
-            {
-                graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(3);
-            }
+            //if(arraysizeglobalyear1<3)
+            //{
+                graph.getViewport().setMinX(21);
+                graph.getViewport().setMaxX(31);
+            //}
+            /*
             else
             {
                 graph.getViewport().setMinX(arraysizeglobalyear1-3);
                 graph.getViewport().setMaxX(arraysizeglobalyear1);
             }
+
+             */
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2183,16 +2220,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear2<3)
-            {
-                graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalyear2-3);
-                graph2.getViewport().setMaxX(arraysizeglobalyear2);
-            }
+            //if(arraysizeglobalyear2<3)
+            //{
+                graph2.getViewport().setMinX(21);
+                graph2.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalyear2-3);
+            //    graph2.getViewport().setMaxX(arraysizeglobalyear2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -2203,7 +2240,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
             LineGraphSeries lil3 = seriesgyear3;
             lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            griLa3.setHorizontalAxisTitle("              years");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("ppm");
             griLa3.setLabelVerticalWidth(43);
@@ -2213,16 +2250,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear3<3)
-            {
-                graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalyear3-3);
-                graph3.getViewport().setMaxX(arraysizeglobalyear3);
-            }
+            //if(arraysizeglobalyear3<3)
+            //{
+                graph3.getViewport().setMinX(21);
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalyear3-3);
+            //    graph3.getViewport().setMaxX(arraysizeglobalyear3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -2243,16 +2280,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear4<3)
-            {
-                graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalyear4-3);
-                graph4.getViewport().setMaxX(arraysizeglobalyear4);
-            }
+            //if(arraysizeglobalyear4<3)
+            //{
+                graph4.getViewport().setMinX(21);
+                graph4.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalyear4-3);
+            //   graph4.getViewport().setMaxX(arraysizeglobalyear4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -2269,7 +2306,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
         //adapterView.setSelection(i);
 
         indication = i;
-
+        openActivityminutes();
         //graph.setTitle(indication);
         //openActivityrefresh();
 
@@ -2282,6 +2319,10 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
 
     public void indicator2(){
         indication2 = indication;
+
+
+
+
     }
 
     public void opentesting(){
@@ -2305,16 +2346,19 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
 
-            if(arraysizeCHECKglobal<60)
-            {
+            //if(arraysizeCHECKglobal<60)
+            //{}
                 graph.getViewport().setMinX(0);
                 graph.getViewport().setMaxX(60);
-            }
+            //}
+            /*
             else
             {
                 graph.getViewport().setMinX(arraysizeCHECKglobal-60);
                 graph.getViewport().setMaxX(arraysizeCHECKglobal);
             }
+
+             */
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2344,16 +2388,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute1<10)
-            {
+            //if(arraysizeglobalminute1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalminute1-10);
-                graph.getViewport().setMaxX(arraysizeglobalminute1);
-            }
+                graph.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalminute1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalminute1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2379,16 +2423,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour1<10)
-            {
+            //if(arraysizeglobalhour1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalhour1-10);
-                graph.getViewport().setMaxX(arraysizeglobalhour1);
-            }
+                graph.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalhour1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalhour1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2413,16 +2457,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday1<10)
-            {
+            //if(arraysizeglobalday1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalday1-10);
-                graph.getViewport().setMaxX(arraysizeglobalday1);
-            }
+                graph.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalday1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalday1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2447,16 +2491,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek1<10)
-            {
+            //if(arraysizeglobalweek1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalweek1-10);
-                graph.getViewport().setMaxX(arraysizeglobalweek1);
-            }
+                graph.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalweek1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalweek1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2482,16 +2526,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear1<3)
-            {
-                graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalyear1-3);
-                graph.getViewport().setMaxX(arraysizeglobalyear1);
-            }
+            //if(arraysizeglobalyear1<3)
+            //{
+                graph.getViewport().setMinX(21);
+                graph.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalyear1-3);
+            //    graph.getViewport().setMaxX(arraysizeglobalyear1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2526,16 +2570,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             //graph2.getViewport().setMaxX(arraysizeglobalsecond2 + 1);
             //graph2.getViewport().setMaxX(arraysizeglobalsecond2 + 1);
 
-            if(arraysizeglobalsecond2<60)
-            {
+            //if(arraysizeglobalsecond2<60)
+            //{
                 graph2.getViewport().setMinX(0);
                 graph2.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalsecond2-60);
-                graph2.getViewport().setMaxX(arraysizeglobalsecond2);
-            }
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalsecond2-60);
+            //    graph2.getViewport().setMaxX(arraysizeglobalsecond2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -2568,16 +2612,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute2<10)
-            {
+            //if(arraysizeglobalminute2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalminute2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalminute2);
-            }
+                graph2.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalminute2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalminute2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -2605,16 +2649,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour2<10)
-            {
+            //if(arraysizeglobalhour2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalhour2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalhour2);
-            }
+                graph2.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalhour2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalhour2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -2641,16 +2685,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday2<10)
-            {
+            //if(arraysizeglobalday2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
+                graph2.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
                 graph2.getViewport().setMinX(arraysizeglobalday2-10);
                 graph2.getViewport().setMaxX(arraysizeglobalday2);
-            }
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -2676,16 +2720,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek2<10)
-            {
+            //if(arraysizeglobalweek2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalweek1-10);
-                graph2.getViewport().setMaxX(arraysizeglobalweek1);
-            }
+                graph2.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalweek1-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalweek1);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -2711,16 +2755,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear2<3)
-            {
-                graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalyear2-3);
-                graph2.getViewport().setMaxX(arraysizeglobalyear2);
-            }
+            //if(arraysizeglobalyear2<3)
+            //{
+                graph2.getViewport().setMinX(21);
+                graph2.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalyear2-3);
+            //    graph2.getViewport().setMaxX(arraysizeglobalyear2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -2756,16 +2800,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalsecond3<60)
-            {
+            //if(arraysizeglobalsecond3<60)
+            //{
                 graph3.getViewport().setMinX(0);
                 graph3.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalsecond3-60);
-                graph3.getViewport().setMaxX(arraysizeglobalsecond3);
-            }
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalsecond3-60);
+            //    graph3.getViewport().setMaxX(arraysizeglobalsecond3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -2796,16 +2840,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute3<10)
-            {
+            //if(arraysizeglobalminute3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalminute3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalminute3);
-            }
+                graph3.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalminute3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalminute3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -2832,16 +2876,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour3<10)
-            {
+            //if(arraysizeglobalhour3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalhour3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalhour3);
-            }
+                graph3.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalhour3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalhour3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -2868,16 +2912,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday3<10)
-            {
+            //if(arraysizeglobalday3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalday3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalday3);
-            }
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalday3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalday3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -2904,16 +2948,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek3<10)
-            {
+            //if(arraysizeglobalweek3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalweek3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalweek3);
-            }
+                graph3.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalweek3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalweek3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -2940,16 +2984,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear3<3)
-            {
-                graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalyear3-3);
-                graph3.getViewport().setMaxX(arraysizeglobalyear3);
-            }
+            //if(arraysizeglobalyear3<3)
+            //{
+                graph3.getViewport().setMinX(21);
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalyear3-3);
+            //    graph3.getViewport().setMaxX(arraysizeglobalyear3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -2982,16 +3026,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setMaxX(arraysizeglobalsecond4 + 1);
 
 
-            if(arraysizeglobalsecond4<60)
-            {
+            //if(arraysizeglobalsecond4<60)
+            //{
                 graph4.getViewport().setMinX(0);
                 graph4.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalsecond4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalsecond4);
-            }
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalsecond4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalsecond4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -3018,16 +3062,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute4<10)
-            {
+            //if(arraysizeglobalminute4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalminute3-10);
-                graph4.getViewport().setMaxX(arraysizeglobalminute3);
-            }
+                graph4.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalminute3-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalminute3);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
         }
@@ -3052,16 +3096,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour4<10)
-            {
+            //if(arraysizeglobalhour4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalhour4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalhour4);
-            }
+                graph4.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalhour4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalhour4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
         }
@@ -3087,16 +3131,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday4<10)
-            {
+            //if(arraysizeglobalday4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalday4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalday4);
-            }
+                graph4.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalday4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalday4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
         }
@@ -3121,16 +3165,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek4<10)
-            {
+            //if(arraysizeglobalweek4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalweek4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalweek4);
-            }
+                graph4.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalweek4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalweek4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
         }
@@ -3153,16 +3197,16 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear4<3)
-            {
-                graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalyear4-3);
-                graph4.getViewport().setMaxX(arraysizeglobalyear4);
-            }
+            //if(arraysizeglobalyear4<3)
+            //{
+                graph4.getViewport().setMinX(21);
+                graph4.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalyear4-3);
+            //    graph4.getViewport().setMaxX(arraysizeglobalyear4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 

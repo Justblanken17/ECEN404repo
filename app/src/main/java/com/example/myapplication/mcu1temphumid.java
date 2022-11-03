@@ -29,6 +29,7 @@ public class mcu1temphumid extends AppCompatActivity {
         Button buttonreferesh = (Button) findViewById(R.id.refreshmcu1temp);
         Button buttonback = (Button) findViewById(R.id.backmcu1temp);
         Button buttongraph = (Button) findViewById(R.id.graphmcutemphumid);
+        Button buttonhome = (Button) findViewById(R.id.homebutton7);
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 3");
@@ -49,6 +50,12 @@ public class mcu1temphumid extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openActivitygraph();
+            }
+        });
+        buttonhome.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+            @Override
+            public void onClick(View view) {
+                openActivityhome();
             }
         });
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
@@ -162,6 +169,10 @@ public class mcu1temphumid extends AppCompatActivity {
     }
     public void openActivitygraph(){
         Intent intent = new Intent(this, mcu1temphumidgraph.class); //causes the subordinate activity file to be opened, redirects to new layout
+        startActivity(intent);
+    }
+    public void openActivityhome(){
+        Intent intent = new Intent(this, MainActivity.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
 }

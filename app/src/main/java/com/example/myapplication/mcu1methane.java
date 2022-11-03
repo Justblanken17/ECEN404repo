@@ -28,6 +28,7 @@ public class mcu1methane extends AppCompatActivity {
         Button buttonreferesh = (Button) findViewById(R.id.refreshmcu1methane);
         Button buttonback = (Button) findViewById(R.id.backmcu1methane);
         Button buttongraph = (Button) findViewById(R.id.graphmcuco3);
+        Button buttonhome = (Button) findViewById(R.id.homebutton5);
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Methane").child("Sensor 1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Methane").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Methane").child("Sensor 3");
@@ -48,6 +49,12 @@ public class mcu1methane extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openActivitygraph();
+            }
+        });
+        buttonhome.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+            @Override
+            public void onClick(View view) {
+                openActivityhome();
             }
         });
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
@@ -193,6 +200,10 @@ public class mcu1methane extends AppCompatActivity {
     }
     public void openActivitygraph(){
         Intent intent = new Intent(this, mcu1methanegraph.class); //causes the subordinate activity file to be opened, redirects to new layout
+        startActivity(intent);
+    }
+    public void openActivityhome(){
+        Intent intent = new Intent(this, MainActivity.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
 }

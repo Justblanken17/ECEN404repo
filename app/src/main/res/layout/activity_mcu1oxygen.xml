@@ -71,6 +71,19 @@
         android:layout_height="match_parent"
         tools:context=".mcu1ethy">
 
+        <Button
+            android:id="@+id/homebutton4"
+            android:layout_width="115dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="338dp"
+            android:layout_marginEnd="48dp"
+            android:backgroundTint="#800000"
+            android:text="Home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/sens35"
             android:layout_width="110dp"
@@ -113,8 +126,8 @@
             android:layout_height="81dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="224dp"
-            android:layout_marginTop="416dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="392dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/texasamlogojpg___copy" />
@@ -123,10 +136,10 @@
             android:id="@+id/graphmcu"
             android:layout_width="115dp"
             android:layout_height="50dp"
-            android:layout_marginTop="360dp"
+            android:layout_marginTop="338dp"
             android:layout_marginEnd="176dp"
             android:backgroundTint="#800000"
-            android:text="Graph data"
+            android:text="Graphs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +175,7 @@
         android:id="@+id/backmcu3"
         android:layout_width="115dp"
         android:layout_height="50dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginTop="290dp"
         android:layout_marginEnd="176dp"
         android:backgroundTint="#800000"
         android:text="Back"
@@ -173,7 +186,7 @@
         android:id="@+id/refreshmcu3"
         android:layout_width="115dp"
         android:layout_height="50dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginTop="290dp"
         android:layout_marginEnd="48dp"
         android:backgroundTint="#800000"
         android:text="Refresh"
@@ -193,18 +206,6 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView24"
-        android:layout_width="99dp"
-        android:layout_height="81dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="416dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/texasamlogojpg___copy" />
 
     <TextView
         android:id="@+id/sens16"

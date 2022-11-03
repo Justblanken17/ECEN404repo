@@ -8,10 +8,22 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="       Growable Space Habitat"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity
+            android:name=".camera4graph"
+            android:exported="false" />
+        <activity
+            android:name=".camera3graph"
+            android:exported="false" />
+        <activity
+            android:name=".camera2graph"
+            android:exported="false" />
+        <activity
+            android:name=".camera1graph"
+            android:exported="false" />
         <activity
             android:name=".Camera4"
             android:exported="false" />

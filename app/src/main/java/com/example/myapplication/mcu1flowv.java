@@ -28,6 +28,7 @@ public class mcu1flowv extends AppCompatActivity {
         Button buttonreferesh = (Button) findViewById(R.id.refreshmcu1maxflu);
         Button buttonback = (Button) findViewById(R.id.backmcu1maxfl);
         Button buttongraph = (Button) findViewById(R.id.graphmcuflowv1);
+        Button buttonhome = (Button) findViewById(R.id.homebutton6);
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Flow").child("Sensor 1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Level").child("Sensor 1");
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
@@ -46,6 +47,12 @@ public class mcu1flowv extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openActivitygraph();
+            }
+        });
+        buttonhome.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+            @Override
+            public void onClick(View view) {
+                openActivityhome();
             }
         });
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
@@ -131,6 +138,11 @@ public class mcu1flowv extends AppCompatActivity {
 
     public void openActivitygraph(){
         Intent intent = new Intent(this, mcu1flowvgraph.class); //causes the subordinate activity file to be opened, redirects to new layout
+        startActivity(intent);
+    }
+
+    public void openActivityhome(){
+        Intent intent = new Intent(this, MainActivity.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
 }

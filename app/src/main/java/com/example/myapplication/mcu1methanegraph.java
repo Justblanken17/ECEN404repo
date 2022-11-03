@@ -113,7 +113,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
         Button buttonreferesh = (Button) findViewById(R.id.refreshmcu9);
         Button buttonback = (Button) findViewById(R.id.backmcu10);
         //Button buttonseconds = (Button) findViewById(R.id.secondstab);
-        Button buttonminutes = (Button) findViewById(R.id.minutestab);
+        //Button buttonminutes = (Button) findViewById(R.id.minutestab);
 
         Spinner spinner = findViewById(R.id.spinner);
 
@@ -153,12 +153,12 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                 openActivityrefresh();
             }
         }); */
-        buttonminutes.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
-            @Override
-            public void onClick(View view) {
-                openActivityminutes();
-            }
-        });
+        //buttonminutes.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+        //    @Override
+        //    public void onClick(View view) {
+        //        openActivityminutes();
+        //    }
+        //});
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -234,7 +234,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
-                        minutetime[minutiterator] = minutiterator + 1;                ////
+                        minutetime[minutiterator] = minutiterator;                ////
                         for(int i = (iterator-59); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -247,7 +247,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%3600==0)                                        /////
                     {                                                             /////
-                        hourtime[houriterator] = houriterator + 1;                ////
+                        hourtime[houriterator] = houriterator;                ////
                         for(int i = (iterator-3599); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -260,7 +260,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%43200==0)                                        /////
                     {                                                             /////
-                        daytime[dayiterator] = dayiterator + 1;                ////
+                        daytime[dayiterator] = dayiterator;                ////
                         for(int i = (iterator-43199); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -273,7 +273,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%302400==0)                                        /////
                     {                                                             /////
-                        weektime[weekiterator] = weekiterator + 1;                ////
+                        weektime[weekiterator] = weekiterator;                ////
                         for(int i = (iterator-302399); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -286,7 +286,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%1576800==0)                                        /////
                     {                                                             /////
-                        yeartime[yeariterator] = yeariterator + 1;                ////
+                        yeartime[yeariterator] = yeariterator;                ////
                         for(int i = (iterator-1576799); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -294,7 +294,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                         }                                                         ////
                         yearsconcentration[yeariterator] = averagesum/1576800;      ////
                         averagesum = 0;
-                        weekiterator = weekiterator + 1;////
+                        yeariterator = yeariterator + 1;////
 
                     }
 
@@ -689,7 +689,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
-                        minutetime[minutiterator] = minutiterator + 1;                ////
+                        minutetime[minutiterator] = minutiterator ;                ////
                         for(int i = (iterator-59); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -702,7 +702,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%3600==0)                                        /////
                     {                                                             /////
-                        hourtime[houriterator] = houriterator + 1;                ////
+                        hourtime[houriterator] = houriterator ;                ////
                         for(int i = (iterator-3599); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -715,7 +715,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%43200==0)                                        /////
                     {                                                             /////
-                        daytime[dayiterator] = dayiterator + 1;                ////
+                        daytime[dayiterator] = dayiterator ;                ////
                         for(int i = (iterator-43199); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -728,7 +728,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%302400==0)                                        /////
                     {                                                             /////
-                        weektime[weekiterator] = weekiterator + 1;                ////
+                        weektime[weekiterator] = weekiterator ;                ////
                         for(int i = (iterator-302399); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -741,7 +741,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%1576800==0)                                        /////
                     {                                                             /////
-                        yeartime[yeariterator] = yeariterator + 1;                ////
+                        yeartime[yeariterator] = yeariterator ;                ////
                         for(int i = (iterator-1576799); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -749,7 +749,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                         }                                                         ////
                         yearsconcentration[yeariterator] = averagesum/1576800;      ////
                         averagesum = 0;
-                        weekiterator = weekiterator + 1;////
+                        yeariterator = yeariterator + 1;////
 
                     }
 
@@ -980,7 +980,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
-                        minutetime[minutiterator] = minutiterator + 1;                ////
+                        minutetime[minutiterator] = minutiterator ;                ////
                         for(int i = (iterator-59); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -993,7 +993,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%3600==0)                                        /////
                     {                                                             /////
-                        hourtime[houriterator] = houriterator + 1;                ////
+                        hourtime[houriterator] = houriterator ;                ////
                         for(int i = (iterator-3599); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1006,7 +1006,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%43200==0)                                        /////
                     {                                                             /////
-                        daytime[dayiterator] = dayiterator + 1;                ////
+                        daytime[dayiterator] = dayiterator ;                ////
                         for(int i = (iterator-43199); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1019,7 +1019,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%302400==0)                                        /////
                     {                                                             /////
-                        weektime[weekiterator] = weekiterator + 1;                ////
+                        weektime[weekiterator] = weekiterator ;                ////
                         for(int i = (iterator-302399); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1032,7 +1032,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%1576800==0)                                        /////
                     {                                                             /////
-                        yeartime[yeariterator] = yeariterator + 1;                ////
+                        yeartime[yeariterator] = yeariterator ;                ////
                         for(int i = (iterator-1576799); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1040,7 +1040,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                         }                                                         ////
                         yearsconcentration[yeariterator] = averagesum/1576800;      ////
                         averagesum = 0;
-                        weekiterator = weekiterator + 1;////
+                        yeariterator = yeariterator + 1;////
 
                     }
 
@@ -1269,7 +1269,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
-                        minutetime[minutiterator] = minutiterator + 1;                ////
+                        minutetime[minutiterator] = minutiterator ;                ////
                         for(int i = (iterator-59); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1282,7 +1282,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%3600==0)                                        /////
                     {                                                             /////
-                        hourtime[houriterator] = houriterator + 1;                ////
+                        hourtime[houriterator] = houriterator ;                ////
                         for(int i = (iterator-3599); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1295,7 +1295,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%43200==0)                                        /////
                     {                                                             /////
-                        daytime[dayiterator] = dayiterator + 1;                ////
+                        daytime[dayiterator] = dayiterator ;                ////
                         for(int i = (iterator-43199); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1308,7 +1308,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%302400==0)                                        /////
                     {                                                             /////
-                        weektime[weekiterator] = weekiterator + 1;                ////
+                        weektime[weekiterator] = weekiterator ;                ////
                         for(int i = (iterator-302399); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1321,7 +1321,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                     }
                     if((iterator+1)%1576800==0)                                        /////
                     {                                                             /////
-                        yeartime[yeariterator] = yeariterator + 1;                ////
+                        yeartime[yeariterator] = yeariterator ;                ////
                         for(int i = (iterator-1576799); i< (iterator + 1); i++)        ////
                         {                                                         ////
                             averagesum = averagesum + concentration[i];           ////
@@ -1329,7 +1329,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
                         }                                                         ////
                         yearsconcentration[yeariterator] = averagesum/1576800;      ////
                         averagesum = 0;
-                        weekiterator = weekiterator + 1;////
+                        yeariterator = yeariterator + 1;////
 
                     }
 
@@ -1509,7 +1509,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
         GraphView graph3 = (GraphView) findViewById(R.id.graph3th);
         GraphView graph4 = (GraphView) findViewById(R.id.graph4);
         Button buttonminutes = (Button) findViewById(R.id.minutestab);
-        buttonminutes.setText(String.valueOf(indication));
+
         if(indication == 0)
         {
             graph.setTitle("         CH4 Sensor 1");
@@ -2268,7 +2268,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
         //adapterView.setSelection(i);
 
         indication = i;
-
+        openActivityminutes();
         //graph.setTitle(indication);
         //openActivityrefresh();
 

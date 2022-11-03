@@ -7,13 +7,26 @@
     tools:context=".mcu1temphumid">
 
     <Button
+        android:id="@+id/homebutton7"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="338dp"
+        android:layout_marginEnd="48dp"
+        android:backgroundTint="#800000"
+        android:text="Home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/graphmcutemphumid"
         android:layout_width="115dp"
         android:layout_height="50dp"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="338dp"
         android:layout_marginEnd="176dp"
         android:backgroundTint="#800000"
-        android:text="Graph data"
+        android:text="Graphs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +51,7 @@
         android:layout_marginStart="251dp"
         android:layout_marginTop="156dp"
         android:background="#FBBABA"
-        android:text="NA"
+        android:text="85-100%"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +63,7 @@
         android:layout_marginStart="251dp"
         android:layout_marginTop="184dp"
         android:background="#FBBABA"
-        android:text="NA"
+        android:text="60-75%"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +87,7 @@
         android:layout_marginStart="251dp"
         android:layout_marginTop="212dp"
         android:background="#FBBABA"
-        android:text="NA"
+        android:text="15.5-23.8C"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -95,7 +108,7 @@
         android:id="@+id/backmcu1temp"
         android:layout_width="115dp"
         android:layout_height="50dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginTop="290dp"
         android:layout_marginEnd="176dp"
         android:backgroundTint="#800000"
         android:text="Back"
@@ -106,7 +119,7 @@
         android:id="@+id/refreshmcu1temp"
         android:layout_width="115dp"
         android:layout_height="50dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginTop="290dp"
         android:layout_marginEnd="48dp"
         android:backgroundTint="#800000"
         android:text="Refresh"
@@ -133,8 +146,8 @@
         android:layout_height="81dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="416dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="392dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/texasamlogojpg___copy" />
