@@ -1,0 +1,2 @@
+1.8V regulator keeps breaking. MCU chip likely is drawing more than the rated 150mA.
+LED power indicator circuit does not work.
