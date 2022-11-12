@@ -1,0 +1,4 @@
+Added 1V regulator
+Added ground pin
+Corrected Test point connections
+Redid layout/Rerouted
