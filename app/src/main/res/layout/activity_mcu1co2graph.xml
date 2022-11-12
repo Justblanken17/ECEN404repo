@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:foregroundTint="#ECE1E1"
     tools:context=".mcu1co2graph">
 
     <ScrollView
@@ -29,11 +30,14 @@
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@color/white"
                     android:contentDescription="@string/app_name"
+                    android:dropDownSelector="@color/black"
                     android:minHeight="48dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
 
