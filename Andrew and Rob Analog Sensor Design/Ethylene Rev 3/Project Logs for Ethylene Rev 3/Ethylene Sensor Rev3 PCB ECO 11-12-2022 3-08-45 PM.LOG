@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=-3V Pin=C2-1
+Removed Pin From Net: NetName=3V Pin=C3-1
+Removed Pin From Net: NetName=3V Pin=U1-4
+Removed Pin From Net: NetName=-3V Pin=U1-8
+Added Pin To Net: NetName=3V Pin=C2-1
+Added Pin To Net: NetName=-3V Pin=C3-1
+Added Pin To Net: NetName=-3V Pin=U1-4
+Added Pin To Net: NetName=3V Pin=U1-8
+Change Class Name : Old Net Name=Ethylene Sensor Rev2 New Net Name=Ethylene Sensor Rev3
+Added Room: Name=Ethylene Sensor Rev3
