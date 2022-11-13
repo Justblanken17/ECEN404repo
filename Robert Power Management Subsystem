@@ -43,3 +43,9 @@ Things that the next ECEN team will need to work on for this system:
 Cell monitoring issue that was just spoken of. My suggestion would be to use a differnet chip. The only reason this chip was chosen was because of the 
 major supply chain issues, and these were the only two chips that would work with what we were using. With the changing of the chips, this would 
 also mean the changing to part of the pcb design. 
+
+My accomplishments: 
+
+The design of the BMS Pcb.
+The design of the 4 analog sensors alongside Andrew for the MCU system.
+The design of the MCU PCB alongisde Andrew for the MCU system. 
