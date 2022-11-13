@@ -1,1 +1,45 @@
 Here, I will discuss what the Power mnagaement System is, why we are using it, and everythng else that goes along with it. 
+What is the power mangement system:
+The power management system is a system that is used to power 2 other systems on the growable space habitat. The Microcontroller system as well as the AI/Data processing
+system
+This system can be broken up into several componets:
+
+1: Output power: This system is responsible for giving an output of 5 volts to 1 raspberry pi that is repsonsible for controlling the AI/Data processing system
+It is also responsible for supplying 5 volts to the MCU subsystem. The amperage it needs to give off varies depending on the load that is being driven.
+This load can range anywhere  from 300mA to power the MCU to a maximum of 2A with the pi that will be driving 4 cameras and running a machine learning model
+The battery pack that is being used will start off at 14.8V for the nominal voltage and will go be bumped down to 5 votls through a buck converter. 
+
+2. The next component of this system is the charging aspect. This consists of a MPPT charge controller, solar panel, and the PCB that allows for the
+charging. The MPPT controller takes in the output from the battery pack and the output from the solar panel, and allows from the output for the load. 
+Since the PV cells, battery pack, and the load are all in parallel, it allows for the dispersion of power to be at the same time that the battery accepts 
+power.
+
+3. This last part is something that countless hours have been spent on but could not be completed, and will need to be passed down to the next ECEN team
+that happens to work on this project. This is the cell monitoring and pack monitoring for the state of health (SOH) of the battery. I have spent 2 months 
+along just communicating back and forth with application engineers from Texas Instruments (manufaturer of the monitoring chips), as well as in the forums 
+talking with Texas Instrument support employees for the same issue. For most of this semester I have also been working with Dr. Luhser who specializes in 
+PCB design, microchip usage etc. We have been continuously hitting road blocks. 
+
+The issue with the monitoring aspect of this system is: 
+
+There are two chips BQ78350 and BQ7693000, these are the fuel gauge and the cell monitor respectively. The BQ78350 is supposed to be driven by the other 
+chip via the REGOUT pin on the BQ7693000 chip. This is where the problem arises. The pin REGSRC on this chip takes the battery voltage and internally has 
+a voltage regulator that will send about 3.3V to power on the gauge chip. The issue with thi part is the chip will not send an output voltage, at the 
+pin, it is 0V. I have tried many different things to get around this issue. I placed both of the chips separate from the PCB and placed them on 
+breakout boards and tested on a breadboard to make sure that it is ot a pcb design error, still the same result. I have broke he REGSRC trace to isolate 
+the chip within the pcb and the same result. I have replaced both of the chips 4 times each jsut to make sure that I was not given a bad batch of chips.
+One possibility that I believe may be the corporate, is that it is genuinely possible that the reference design that I used for my pcb design itself 
+being inherently bad or incorrect within certain parts. This is something that is definetely rare, but not unheard of. What confuses me about the chip, 
+is that I am able to still charge and discharge through the chip. 
+
+The reason that the BQ78350 chip needs to be turned on to be recognized is because it is set to default to sleep mode, meaning that the chip is not on.
+
+The EV2400 board is what I am currently using to be able to both read that the chips is on, as well as program the chip to do specific things 
+such as monitor each of the cells in the battery pack as well as the overall health of the battery pack. Currently, when the EV2400 is connected to do 
+the laptop and the pcb, it is just completely unable to read the chip since it is in sleep mode, thus making it impossible to code the chip. 
+
+Things that the next ECEN team will need to work on for this system: 
+
+Cell monitoring issue that was just spoken of. My suggestion would be to use a differnet chip. The only reason this chip was chosen was because of the 
+major supply chain issues, and these were the only two chips that would work with what we were using. With the changing of the chips, this would 
+also mean the changing to part of the pcb design. 
