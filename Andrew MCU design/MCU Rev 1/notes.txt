@@ -1,0 +1,5 @@
+1.8V regulator keeps breaking. MCU chip likely is drawing more than the rated 150mA.
+LED power indicator circuit does not work.
+
+Used 12MHz crystal oscillator, this means the clock configuration is max 198MHz, unlike the max 200MHz the curiosity 2.0 dev board is capable of.
+Dev board link: https://www.microchip.com/en-us/development-tool/DM320209
