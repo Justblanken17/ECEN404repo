@@ -16,7 +16,7 @@
         <item>Minute</item>
         <item>Hour</item>
         <item>Day</item>
-        <item>Week</item>
+        <item>Months</item>
         <item>Year</item>
     </string-array>
 

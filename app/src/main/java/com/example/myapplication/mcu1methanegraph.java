@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -1525,6 +1526,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -1555,6 +1557,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -1587,6 +1590,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -1619,6 +1623,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -1658,6 +1663,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -1688,6 +1694,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -1718,6 +1725,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -1748,6 +1756,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -1781,6 +1790,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -1811,6 +1821,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -1841,6 +1852,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -1871,6 +1883,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -1903,6 +1916,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -1933,6 +1947,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -1963,6 +1978,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -1993,6 +2009,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -2025,6 +2042,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -2055,6 +2073,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -2085,6 +2104,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -2115,6 +2135,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -2148,6 +2169,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -2178,6 +2200,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -2208,6 +2231,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -2238,6 +2262,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -2300,6 +2325,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -2339,6 +2365,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -2374,6 +2401,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -2408,6 +2436,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -2442,6 +2471,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -2477,6 +2507,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa.setLabelVerticalWidth(43);
             griLa.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa.setGridColor(Color.LTGRAY);
             griLa.setVerticalAxisTitleTextSize(20);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
@@ -2519,6 +2550,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -2563,6 +2595,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -2600,6 +2633,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -2636,6 +2670,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -2671,6 +2706,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -2706,6 +2742,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa2.setLabelVerticalWidth(43);
             griLa2.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa2.setGridColor(Color.LTGRAY);
             griLa2.setVerticalAxisTitleTextSize(20);
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
@@ -2749,6 +2786,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -2791,6 +2829,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -2827,6 +2866,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -2863,6 +2903,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -2899,6 +2940,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -2935,6 +2977,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa3.setLabelVerticalWidth(43);
             griLa3.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa3.setGridColor(Color.LTGRAY);
             griLa3.setVerticalAxisTitleTextSize(20);
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
@@ -2975,6 +3018,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -3013,6 +3057,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -3047,6 +3092,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -3082,6 +3128,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -3116,6 +3163,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
@@ -3148,6 +3196,7 @@ public class mcu1methanegraph extends AppCompatActivity implements AdapterView.O
             griLa4.setLabelVerticalWidth(43);
             griLa4.setLabelVerticalWidth(55);
             //griLa.setH;
+            griLa4.setGridColor(Color.LTGRAY);
             griLa4.setVerticalAxisTitleTextSize(20);
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);

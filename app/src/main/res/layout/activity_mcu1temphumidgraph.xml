@@ -28,7 +28,7 @@
                     android:layout_width="410dp"
                     android:layout_height="70dp"
                     android:background="@android:drawable/bottom_bar"
-                    android:backgroundTint="@color/purple_500"
+                    android:backgroundTint="@color/white"
                     android:gravity="center_vertical">
 
                     <Spinner
@@ -69,6 +69,33 @@
                     android:layout_height="170dp"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="64dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/graph4th"
+                    android:layout_width="300dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="94dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/graph5th"
+                    android:layout_width="300dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="124dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/graph6th"
+                    android:layout_width="300dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="154dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

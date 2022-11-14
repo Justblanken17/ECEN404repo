@@ -159,19 +159,27 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
                 LineGraphSeries<DataPoint> series;
                 LineGraphSeries<DataPoint> seriesminutes;
                 LineGraphSeries<DataPoint> serieshours;
                 LineGraphSeries<DataPoint> seriesday;
                 LineGraphSeries<DataPoint> seriesweek;
                 LineGraphSeries<DataPoint> seriesyear;
-
+               ////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////A
                 LineGraphSeries<DataPoint> seriesB;
                 LineGraphSeries<DataPoint> seriesminutesB;
                 LineGraphSeries<DataPoint> serieshoursB;
                 LineGraphSeries<DataPoint> seriesdayB;
                 LineGraphSeries<DataPoint> seriesweekB;
                 LineGraphSeries<DataPoint> seriesyearB;
+                /////////////////////////////////////////////////////////////////////////////////////B
+                ///////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////
                 String data;// = snapshot.child();
                 Double z;// = Double.parseDouble(data);
                 // oxyg1.setText(S tring.valueOf(z));
@@ -212,7 +220,9 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 int[] daytime = new int[days];
                 int[] weektime = new int[weeks];
                 int[] yeartime = new int[years];
-                /////////////////////////////////////////////////////NEW VARIABLES TO PLAY WITH
+                /////////////////////////////////////////////////////NEW VARIABLES TO PLAY WITH A
+                ////////////////////////////////////////////////////
+                /////////////////////////////////////////////////
                 int parsetogetsizes = 0;
 
                 int[] minutetimeB = new int[arraysize];
@@ -266,8 +276,9 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 int yeariteratorB = 0;
 
                 //put sizes back here if it doesnt work
-
-                /////////////////////////////////////////////////////NEW VARIABLES TO PLAY WITH 2
+                /////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////NEW VARIABLES TO PLAY WITH B
                 double[] concentration = new double[arraysize];
                 double[] mintuteconcentration = new double[minutes]; //////
                 double[] hourconcentration = new double[hours]; //////
@@ -286,7 +297,9 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 seriesminutes = new LineGraphSeries<DataPoint>();
                 serieshours = new LineGraphSeries<DataPoint>();
 
-                /////////////////////////////////////////////////////////new stuff
+                /////////////////////////////////////////////////////////A
+                /////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////
                 seriesB = new LineGraphSeries<DataPoint>();
                 seriesminutesB = new LineGraphSeries<DataPoint>();
                 serieshoursB = new LineGraphSeries<DataPoint>();
@@ -300,7 +313,9 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                 DataPoint[] aseriesdayB= new DataPoint[32];
                 DataPoint[] aseriesweekB= new DataPoint[13];
                 DataPoint[] aseriesyearB= new DataPoint[10];
+                //time[iterator] = Integer.parseInt((snapshot.getChildren()).child("time").getValue().toString());
                 ////////////////////////////////////////////////////////
+
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
                     int secondssize = 0; //tells how much stuff is in a window
@@ -312,16 +327,22 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
 
                     time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
                     concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
-                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString());
-                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());
-                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());
-                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());
-                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString()); //////////////////////////////////
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());     /////////////////////////////////
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());       /////////////////////////////////
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());   /////////////////////////////////
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());     ////////////////////////////////
+
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];
                     }
-                    //////////////////////////////////////////////NEW STUFF
+
+                    //if(snapshot1 == snapshot.getChildren()-1)
+                    //secondwindow[time[iterator]] = time[iterator];GO BACK
+                    //////////////////////////////////////////////A
+                    //////////////////////////////////////////////
+                    /////////////////////////////////////////////
                     for(int i = 0; i < 60; i++)
                     {
                         if(secondwindow[i] != -1)
@@ -386,21 +407,21 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
 
 
                                 if (secondssize < 60) {               //iterator - (secondssize)
-                                    for (int i = iterator - (secondssize); i < iterator; i++)        ////
+                                    for (int i = iterator - (secondssize); i < iterator+1; i++)        ////ITERATOR+1
                                     {                                                         ////
 
                                         averagesum = averagesum + concentration[i];           ////
                                         ////
                                         //buttonreferesh.setText(String.valueOf(secondssize));
                                     }
-                                    mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum / secondssize; //iterator-1
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum / (secondssize + 1); //iterator-1
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                     //minutiteratorB = minutiteratorB + 1;
 
 
                                 } else {
-                                    for (int i = iterator - (secondssize); i < iterator; i++)        ////
+                                    for (int i = iterator - (secondssize); i < iterator+1; i++)        ////ITERATOR+1
                                     {                                                         ////
 
                                         averagesum = averagesum + concentration[i];           ////
@@ -419,7 +440,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         {
                             secondwindow[time[iterator]] = time[iterator];
                             secconcentrationAVG[time[iterator]] = concentration[iterator];
-                            for(int i = iterator - (secondssize); i< iterator ; i++)        ////
+                            for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////ITERATOR+1
                             {                                                         ////
 
                                 averagesum = averagesum + concentration[i];           ////
@@ -427,7 +448,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                                 //buttonreferesh.setText(String.valueOf(secondssize));j
                             }
                             minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
-                            mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/secondssize;
+                            mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
 
                             //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                             averagesum = 0;
@@ -438,7 +459,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     {
                         secondwindow[time[iterator]] = time[iterator];
                         secconcentrationAVG[time[iterator]] = concentration[iterator];
-                        for(int i = iterator - (secondssize); i< iterator ; i++)        ////
+                        for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////
                         {                                                         ////
 
                             averagesum = averagesum + concentration[i];           ////
@@ -446,7 +467,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                             //buttonreferesh.setText(String.valueOf(secondssize));j
                         }
                         minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
-                        mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/secondssize;
+                        mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
                          //mintuteconcentrationAVG[23]
                         averagesum = 0;
                         //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));//mintuteconcentrationAVG[23] FFFFF
@@ -506,7 +527,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                             }
                             else
                             {
-                                for(int i = 0; i < minutessize; i++)        ////60 - (minutessize)    60
+                                for(int i = 0; i < 60; i++)        ////60 - (minutessize)    60
                                 {                                                         ////
 
                                     averagesum = averagesum + mintuteconcentrationAVG[i];           ////
@@ -527,7 +548,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         else
                         {
 
-                            for(int i = 0; i < minutessize; i++)        ////////60 - (minutessize)    60
+                            for(int i = 0; i < 60; i++)        ////////60 - (minutessize)    60
                             {                                                         ////
 
                                 averagesum = averagesum + mintuteconcentrationAVG[i];           ////
@@ -548,7 +569,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     {
                         //secondwindow[time[iterator]] = time[iterator];
                         //secconcentrationAVG[time[iterator]] = concentration[iterator];
-                        for(int i = 0; i < minutessize; i++)        ////
+                        for(int i = 0; i < 60; i++)        ////
                         {                                                         ////
 
                             averagesum = averagesum + mintuteconcentrationAVG[i];           ////
@@ -619,7 +640,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                             }
                             else
                             {
-                                for(int i = 0; i < hourssize; i++)        ////60 - (minutessize)    60
+                                for(int i = 0; i < hourwindow.length; i++)        ////hourssize
                                 {                                                         ////
 
                                     averagesum = averagesum + hourconcentrationAVG[i];           ////
@@ -681,8 +702,8 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         //buttonback.setText(String.valueOf(hourconcentrationAVG[11]));
                     }
                     //checkpoint//849
-                    buttonreferesh.setText(String.valueOf(daywindow[3]));
-                    buttonback.setText(String.valueOf(daywindow[2]));
+                    //buttonreferesh.setText(String.valueOf(daywindow[3]));
+                    //buttonback.setText(String.valueOf(daywindow[2]));
 
                     //////////////////////////////////////////////////////////////////////////////////
                     //////////    day/month
@@ -914,11 +935,15 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     }
                     //buttonback.setText(String.valueOf(monthwindow[12]));
                     //buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[12]));
-                    buttonback.setText(String.valueOf(yearwindow[1]));
-                    buttonreferesh.setText(String.valueOf(yearsconcentrationAVG[1]));
+                    buttonback.setText(String.valueOf(yearsconcentrationAVG[1]));
+                    buttonreferesh.setText(String.valueOf(yearsconcentrationAVG[2]));
                     //buttonreferesh.setText(String.valueOf(yearsconcentrationAVG[12]));
                     ////////////////////////////////////////MONTH TO YEAR//////////////////////////////////////
                     ///////////////////////////////////////////// NEW STUFF2
+                    ////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////
+
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
                         minutetime[minutiterator] = minutiterator;                //// +1
@@ -988,7 +1013,9 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
 
                     iterator = iterator + 1;
                 }
-
+                //////////////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////////////////////////
                 int whilecheck = 0;
                 for(int i = 0; i < 60; i++)
                 {
@@ -1059,6 +1086,12 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                         whilecheck6 = whilecheck6 + 1;
                     }
                 }
+
+
+                ////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////////////////////B
+
                 //buttonreferesh.setText(String.valueOf(secondwindow[6]));       ///////////////////////DEBUGGGING HERE
 
                 //series = new LineGraphSeries<DataPoint>();
@@ -2518,7 +2551,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             //graph.getViewport().setMaxX(10);
             //if(arraysizeglobalday1<10)
             //{}
-                graph.getViewport().setMinX(21);
+                graph.getViewport().setMinX(0);
                 graph.getViewport().setMaxX(31);
             //}
             /*
@@ -2552,7 +2585,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             //graph.getViewport().setMaxX(10);
             //if(arraysizeglobalday2<10)
             //{
-                graph2.getViewport().setMinX(21);
+                graph2.getViewport().setMinX(0);
                 graph2.getViewport().setMaxX(31);
             //}
             //else
@@ -2583,7 +2616,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             //graph.getViewport().setMaxX(10);
             //if(arraysizeglobalday3<10)
             //{
-                graph3.getViewport().setMinX(21);
+                graph3.getViewport().setMinX(0);
                 graph3.getViewport().setMaxX(31);
             //}
             //else
@@ -2614,7 +2647,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             //graph.getViewport().setMaxX(10);
             //if(arraysizeglobalday4<10)
             //{
-                graph4.getViewport().setMinX(21);
+                graph4.getViewport().setMinX(0);
                 graph4.getViewport().setMaxX(31);
             //}
             //else
@@ -2898,7 +2931,8 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
 
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         //adapterView.setSelection(i);
-
+        if((seriessupersecond == null) || (seriessuperminute1 == null) || (seriesghour1 == null) || (seriesgday1 == null) || (seriesgweek1 == null) || (seriesgyear1 == null))
+        {return;}
         indication = i;
         openActivityminutes();
         //graph.setTitle(indication);

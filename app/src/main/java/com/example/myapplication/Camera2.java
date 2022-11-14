@@ -49,8 +49,9 @@ public class Camera2 extends AppCompatActivity {
         Button buttonreferesh = (Button) findViewById(R.id.buttonrefreshimage3);
         Button buttonback = (Button) findViewById(R.id.buttonbsckimage3);
         Button buttonhome = (Button) findViewById(R.id.homebutton8);
+        Button buttongraph = (Button) findViewById(R.id.graphthing2);
         TextView stateb = findViewById(R.id.statetext2);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 2");
         //Button buttoncamera1 = (Button) findViewById(R.id.buttoncamera1);
         //Button buttoncamera2 = (Button) findViewById(R.id.buttoncamera2);
         //Button buttoncamera3 = (Button) findViewById(R.id.buttoncamera1);
@@ -71,6 +72,12 @@ public class Camera2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openActivityhome();
+            }
+        });
+        buttongraph.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+            @Override
+            public void onClick(View view) {
+                openActivitygraph();
             }
         });
 
@@ -102,44 +109,46 @@ public class Camera2 extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int t = 0;
-                int iterator = 0;
-                double c = 0;
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
 
-                double y;
-                int x;
-                x = -1;
-                int arraysize = 0;
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
-                {
-                    arraysize = arraysize + 1;
-                }
-                int[] time = new int[arraysize];
-                double[] concentration = new double[arraysize];
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
-                {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
-                    iterator = iterator + 1;
-                }
-                t = time[0];
-                c = concentration[arraysize-1];
-                if(c == 0)
-                {
-                    stateb.setText("Nitrogen Deficient - Check Sensors");
-                }
-                if(c == 1)
-                {
-                    stateb.setText("Healthy");
-                }
-                //stateb.setText(String.valueOf(c));
-                //GraphView graph = (GraphView) findViewById(R.id.graph1);
-                //series = new LineGraphSeries<DataPoint>();
-                //for(int i = 0; i < 100; i++) {
-                //    series.appendData(new DataPoint(time[i], concentration[i]), true, 100);
+                    int t = 0;
+                    int iterator = 0;
+                    double c = 0;
 
-                //}
-                //graph.addSeries(series);
+                    double y;
+                    int x;
+                    x = -1;
+                    int arraysize = 0;
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        arraysize = arraysize + 1;
+                    }
+                    int[] time = new int[arraysize];
+                    double[] concentration = new double[arraysize];
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        if ((snapshot1.getValue() == "time") || (snapshot1.getValue() == "state")) {
+                            time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                            concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
+                            iterator = iterator + 1;
+                        }
+                    }
+                    t = time[0];
+                    c = concentration[arraysize - 1];
+                    if (c == 0) {
+                        stateb.setText("Nitrogen Deficient - Check Sensors");
+                    }
+                    if (c == 1) {
+                        stateb.setText("Healthy");
+                    }
+                    //stateb.setText(String.valueOf(c));
+                    //GraphView graph = (GraphView) findViewById(R.id.graph1);
+                    //series = new LineGraphSeries<DataPoint>();
+                    //for(int i = 0; i < 100; i++) {
+                    //    series.appendData(new DataPoint(time[i], concentration[i]), true, 100);
+
+                    //}
+                    //graph.addSeries(series);
 
             }
 
@@ -275,6 +284,10 @@ public class Camera2 extends AppCompatActivity {
     }
     public void openActivityhome(){
         Intent intent = new Intent(this, MainActivity.class); //causes the subordinate activity file to be opened, redirects to new layout
+        startActivity(intent);
+    }
+    public void openActivitygraph(){
+        Intent intent = new Intent(this, camera2graph.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
 

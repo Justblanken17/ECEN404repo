@@ -72,6 +72,9 @@ public class mcu1co2 extends AppCompatActivity {
             //@SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
                 int t = 0;
                 int iterator = 0;
                 double c = 0;

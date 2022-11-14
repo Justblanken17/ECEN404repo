@@ -48,6 +48,7 @@ public class Camera3 extends AppCompatActivity {
         Button buttonreferesh = (Button) findViewById(R.id.buttonrefreshimage4);
         Button buttonback = (Button) findViewById(R.id.buttonbsckimage4);
         Button buttonhome = (Button) findViewById(R.id.homebutton9);
+        Button buttongraph = (Button) findViewById(R.id.graphthing3);
         TextView stateb = findViewById(R.id.statetext3);
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 1");
         //Button buttoncamera1 = (Button) findViewById(R.id.buttoncamera1);
@@ -70,6 +71,12 @@ public class Camera3 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openActivityhome();
+            }
+        });
+        buttongraph.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
+            @Override
+            public void onClick(View view) {
+                openActivitygraph();
             }
         });
 
@@ -274,6 +281,10 @@ public class Camera3 extends AppCompatActivity {
     }
     public void openActivityhome(){
         Intent intent = new Intent(this, MainActivity.class); //causes the subordinate activity file to be opened, redirects to new layout
+        startActivity(intent);
+    }
+    public void openActivitygraph(){
+        Intent intent = new Intent(this, camera3graph.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
 

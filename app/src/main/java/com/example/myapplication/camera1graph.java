@@ -20,84 +20,92 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
 public class camera1graph extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private int indication = 0;
     private int indication2 = 0;
     LineGraphSeries<DataPoint> seriessupersecond;
+    PointsGraphSeries<DataPoint> seriessuperseconda;
     GraphView graphz;
+
     int arraysizesecondglobal1;
     //int max = 0;
     double max = 0;
     int second1max = 0;
-    LineGraphSeries<DataPoint> seriessuperminute1;
+    PointsGraphSeries<DataPoint> seriessuperminute1;
+    PointsGraphSeries<DataPoint> seriessuperminute1a;
     int arraysizeglobalminute1;
     int arraysizeCHECKglobal;
     int minute1max = 0;
-    LineGraphSeries<DataPoint> seriesghour1;
+    PointsGraphSeries<DataPoint> seriesghour1;
+    PointsGraphSeries<DataPoint> seriesghour1a;
     int arraysizeglobalhour1;
     int hour1max = 0;
-    LineGraphSeries<DataPoint> seriesgday1;
+    PointsGraphSeries<DataPoint> seriesgday1;
+    PointsGraphSeries<DataPoint> seriesgday1a;
     int arraysizeglobalday1;
     int day1max = 0;
-    LineGraphSeries<DataPoint> seriesgweek1;
+    PointsGraphSeries<DataPoint> seriesgweek1;
+    PointsGraphSeries<DataPoint> seriesgweek1a;
     int arraysizeglobalweek1;
     int week1max = 0;
-    LineGraphSeries<DataPoint> seriesgyear1;
+    PointsGraphSeries<DataPoint> seriesgyear1;
+    PointsGraphSeries<DataPoint> seriesgyear1a;
     int arraysizeglobalyear1;
     int year1max = 0;
-    LineGraphSeries<DataPoint> seriesgsecond2;
+    PointsGraphSeries<DataPoint> seriesgsecond2;
     int arraysizeglobalsecond2;
     int second2max = 0;
-    LineGraphSeries<DataPoint> seriesgsuperminute2;
+    PointsGraphSeries<DataPoint> seriesgsuperminute2;
     int arraysizeglobalminute2;
     int minute2max = 0;
-    LineGraphSeries<DataPoint> seriesghour2;
+    PointsGraphSeries<DataPoint> seriesghour2;
     int arraysizeglobalhour2;
     int hour2max = 0;
-    LineGraphSeries<DataPoint> seriesgday2;
+    PointsGraphSeries<DataPoint> seriesgday2;
     int arraysizeglobalday2;
     int day2max = 0;
-    LineGraphSeries<DataPoint> seriesgweek2;
+    PointsGraphSeries<DataPoint> seriesgweek2;
     int arraysizeglobalweek2;
     int week2max = 0;
-    LineGraphSeries<DataPoint> seriesgyear2;
+    PointsGraphSeries<DataPoint> seriesgyear2;
     int arraysizeglobalyear2;
     int year2max = 0;
-    LineGraphSeries<DataPoint> seriesgsecond3;
+    PointsGraphSeries<DataPoint> seriesgsecond3;
     int arraysizeglobalsecond3;
     int second3max = 0;
-    LineGraphSeries<DataPoint> seriesgsuperminute3;
+    PointsGraphSeries<DataPoint> seriesgsuperminute3;
     int arraysizeglobalminute3;
     int minute3max = 0;
-    LineGraphSeries<DataPoint> seriesghour3;
+    PointsGraphSeries<DataPoint> seriesghour3;
     int arraysizeglobalhour3;
     int hour3max = 0;
-    LineGraphSeries<DataPoint> seriesgday3;
+    PointsGraphSeries<DataPoint> seriesgday3;
     int arraysizeglobalday3;
     int day3max = 0;
-    LineGraphSeries<DataPoint> seriesgweek3;
+    PointsGraphSeries<DataPoint> seriesgweek3;
     int arraysizeglobalweek3;
     int week3max = 0;
-    LineGraphSeries<DataPoint> seriesgyear3;
+    PointsGraphSeries<DataPoint> seriesgyear3;
     int arraysizeglobalyear3;
     int year3max = 0;
-    LineGraphSeries<DataPoint> seriesgsecond4;
+    PointsGraphSeries<DataPoint> seriesgsecond4;
     int arraysizeglobalsecond4;
     int second4max = 0;
-    LineGraphSeries<DataPoint> seriesgsuperminute4;
+    PointsGraphSeries<DataPoint> seriesgsuperminute4;
     int arraysizeglobalminute4;
     int minute4max = 0;
-    LineGraphSeries<DataPoint> seriesghour4;
+    PointsGraphSeries<DataPoint> seriesghour4;
     int arraysizeglobalhour4;
     int hour4max = 0;
-    LineGraphSeries<DataPoint> seriesgday4;
+    PointsGraphSeries<DataPoint> seriesgday4;
     int arraysizeglobalday4;
     int day4max = 0;
-    LineGraphSeries<DataPoint> seriesgweek4;
+    PointsGraphSeries<DataPoint> seriesgweek4;
     int arraysizeglobalweek4;
     int week4max = 0;
-    LineGraphSeries<DataPoint> seriesgyear4;
+    PointsGraphSeries<DataPoint> seriesgyear4;
     int arraysizeglobalyear4;
     int year4max;
     //GraphView graph1 = (GraphView) findViewById(R.id.graph);
@@ -105,8 +113,10 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         graphz = (GraphView) findViewById(R.id.graphth);
+
         setContentView(R.layout.activity_camera1graph);
         seriessupersecond = new LineGraphSeries<DataPoint>();
+        seriessuperseconda = new PointsGraphSeries<DataPoint>();
         //bull[0] = new DataPoint(0, 0);
         //seriessupersecond.appendData(bull[0], true, 2);
 
@@ -162,11 +172,12 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 LineGraphSeries<DataPoint> series;
-                LineGraphSeries<DataPoint> seriesminutes;
-                LineGraphSeries<DataPoint> serieshours;
-                LineGraphSeries<DataPoint> seriesday;
-                LineGraphSeries<DataPoint> seriesweek;
-                LineGraphSeries<DataPoint> seriesyear;
+                PointsGraphSeries<DataPoint> seriesa;
+                PointsGraphSeries<DataPoint> seriesminutes;
+                PointsGraphSeries<DataPoint> serieshours;
+                PointsGraphSeries<DataPoint> seriesday;
+                PointsGraphSeries<DataPoint> seriesweek;
+                PointsGraphSeries<DataPoint> seriesyear;
                 String data;// = snapshot.child();
                 Double z;// = Double.parseDouble(data);
                 // oxyg1.setText(S tring.valueOf(z));
@@ -306,8 +317,9 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
                 GraphView graph = (GraphView) findViewById(R.id.graphth);
                 //GraphView graph2 = (GraphView) findViewById(R.id.graph);
                 series = new LineGraphSeries<DataPoint>();
-                seriesminutes = new LineGraphSeries<DataPoint>();
-                serieshours = new LineGraphSeries<DataPoint>();
+                seriesa = new PointsGraphSeries<DataPoint>();
+                seriesminutes = new PointsGraphSeries<DataPoint>();
+                serieshours = new PointsGraphSeries<DataPoint>();
                 double g = 0;
                 String ge;
                 DataPoint[] a = new DataPoint[arraysize];
@@ -326,6 +338,7 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
                     a[i] = new DataPoint(time[i], concentration[i]);
                     //graph.onDataChanged(true,true);
                     series.appendData(a[i], true, arraysize + 40);
+                    seriesa.appendData(a[i], true, arraysize + 40);
                     //graph.onDataChanged(true,true);
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
@@ -341,7 +354,7 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
                 }
 
 
-                seriesday = new LineGraphSeries<DataPoint>();
+                seriesday = new PointsGraphSeries<DataPoint>();
                 //double g = 0;
                 //String ge;
                 DataPoint[] aday= new DataPoint[days];  ///////
@@ -356,7 +369,7 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
 
                 }
 
-                seriesweek = new LineGraphSeries<DataPoint>();
+                seriesweek = new PointsGraphSeries<DataPoint>();
                 //double g = 0;
                 //String ge;
                 DataPoint[] aweek= new DataPoint[weeks];  ///////
@@ -371,7 +384,7 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
 
                 }
 
-                seriesyear = new LineGraphSeries<DataPoint>();
+                seriesyear = new PointsGraphSeries<DataPoint>();
                 //double g = 0;
                 //String ge;
                 DataPoint[] ayear= new DataPoint[years];  ///////
@@ -389,6 +402,7 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
                 }
 
                 seriessupersecond = series;
+                seriessuperseconda = seriesa;
                 seriessuperminute1 = seriesminutes;
                 seriesghour1 = serieshours;
                 seriesgday1 = seriesday;
@@ -446,10 +460,11 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
-            graph.addSeries(seriessupersecond);
+            seriessuperseconda.setSize(2);
+            graph.addSeries(seriessuperseconda);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessupersecond;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessupersecond;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              seconds");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -488,11 +503,12 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessuperminute1.setSize(2);
             graph.addSeries(seriessuperminute1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessuperminute1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessuperminute1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              minutes");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -525,11 +541,11 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
-
+            seriesghour1.setSize(2);
             graph.addSeries(seriesghour1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesghour1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesghour1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              hours");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -562,10 +578,11 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgday1.setSize(2);
             graph.addSeries(seriesgday1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgday1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgday1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              days");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -598,10 +615,11 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgweek1.setSize(2);
             graph.addSeries(seriesgweek1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgweek1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgweek1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              weeks");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -634,11 +652,12 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgyear1.setSize(2);
             graph.addSeries(seriesgyear1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgyear1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgyear1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              years");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -701,10 +720,13 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
-            graph.addSeries(seriessupersecond);
+            seriessuperseconda.setSize(2);
+            graph.addSeries(seriessuperseconda);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessupersecond;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessupersecond;
+            //lil.setThickness(2);
+            //PointsGraphSeries lil2 = seriessuperseconda;
+            //lil2.setSize(1);
             griLa.setHorizontalAxisTitle("              seconds");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -742,11 +764,12 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessuperminute1.setSize(2);
             graph.addSeries(seriessuperminute1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessuperminute1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessuperminute1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              minutes");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -777,11 +800,11 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
-
+            seriesghour1.setSize(2);
             graph.addSeries(seriesghour1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesghour1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesghour1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              hours");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -812,10 +835,11 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgday1.setSize(2);
             graph.addSeries(seriesgday1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgday1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgday1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              days");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -846,10 +870,11 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgweek1.setSize(2);
             graph.addSeries(seriesgweek1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgweek1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgweek1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              weeks");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
@@ -880,11 +905,12 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             graph.setTitle("        State");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgyear1.setSize(2);
             graph.addSeries(seriesgyear1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgyear1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgyear1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              years");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("state");
