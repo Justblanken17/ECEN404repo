@@ -29,8 +29,8 @@ public class mcu1flowv extends AppCompatActivity {
         Button buttonback = (Button) findViewById(R.id.backmcu1maxfl);
         Button buttongraph = (Button) findViewById(R.id.graphmcuflowv1);
         Button buttonhome = (Button) findViewById(R.id.homebutton6);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Flow").child("Sensor 1");
-        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Level").child("Sensor 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Flow").child("1");
+        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Level").child("1");
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
             public void onClick(View view) {
@@ -74,8 +74,8 @@ public class mcu1flowv extends AppCompatActivity {
                 double[] concentration = new double[arraysize];
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration
                     iterator = iterator + 1;
                 }
                 t = time[0];
@@ -110,8 +110,8 @@ public class mcu1flowv extends AppCompatActivity {
                 x = -1;
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration
                     iterator = iterator + 1;
                 }
                 t = time[0];

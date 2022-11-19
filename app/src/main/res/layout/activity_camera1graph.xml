@@ -33,7 +33,7 @@
                         android:layout_width="410dp"
                         android:layout_height="70dp"
                         android:background="@android:drawable/bottom_bar"
-                        android:backgroundTint="@color/purple_500"
+                        android:backgroundTint="@color/white"
                         android:gravity="center_vertical">
 
                         <Spinner

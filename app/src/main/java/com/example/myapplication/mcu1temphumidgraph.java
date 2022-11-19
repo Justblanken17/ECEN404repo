@@ -161,8 +161,8 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
         spinner.setAdapter(adapter);
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 1");
-        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 2");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("Humidity 1");
+        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Temperature").child("1");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Humidity 1");
         DatabaseReference rootDatabaseref5 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Humidity 2");
@@ -361,13 +361,13 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     int monthssize = 0;
                     int yearssize = 0;
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
-                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString()); //////////////////////////////////
-                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());     /////////////////////////////////
-                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());       /////////////////////////////////
-                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());   /////////////////////////////////
-                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());     ////////////////////////////////
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());                       //7-Seconds time
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());   //1-Concentration concentration
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString()); ///////////////6-Minute minute
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());     /////////////////5-Hour hour
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());       //////////////////4-Day day
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());   //////////////////3-Month month
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());     ///////////////////2-Year year
 
                     if(concentration[iterator] > max)
                     {
@@ -423,10 +423,10 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
 
                     }
                     //controlling seconds and part of minutes arrays
-                    if(time[iterator] == 0) //checks if time index is 0
+                    if(iterator > 0) //checks if time index is 0
                     {
                         if(iterator>0) {//iterator > 0 &&
-                            if ( time[iterator - 1] == 59) //makes sure last point was 59 and your higher then 0
+                            if ( minutetimeB[iterator - 1] != minutetimeB[iterator]) //makes sure last point was 59 and your higher then 0
                             {
                                 secondwindow[time[iterator]] = time[iterator];
                                 secconcentrationAVG[time[iterator]] = concentration[iterator];
@@ -438,7 +438,8 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                                 //seriesB.resetData(aserieshoursB);
                                 minutewindow[minutetimeB[iterator]] = minutetimeB[iterator]; // minutetimeB[iterator-1]  iterator-1
 
-
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
                                 if (secondssize < 60) {               //iterator - (secondssize)
                                     for (int i = iterator - (secondssize); i < iterator+1; i++)        ////ITERATOR+1
                                     {                                                         ////
@@ -466,6 +467,25 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                 }
                             }
+                            else
+                            {
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////
+                                {                                                         ////
+
+                                    averagesum = averagesum + concentration[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+                                //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+                                //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));//mintuteconcentrationAVG[23] FFFFF
+                            }
+
+
                         }
                         //ENDING STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
                         //end of checking if you passed the iteration
@@ -1141,7 +1161,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aminutes[i] = new DataPoint(minutetime[i], mintuteconcentration[i]);       ////
 
-                    seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
+                    //seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1150,7 +1170,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     a[i] = new DataPoint(time[i], concentration[i]);
                     //graph.onDataChanged(true,true);
-                    series.appendData(a[i], true, arraysize + 40);
+                    //series.appendData(a[i], true, arraysize + 40);
                     //graph.onDataChanged(true,true);
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
@@ -1160,7 +1180,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     ahours[i] = new DataPoint(hourtime[i], hourconcentration[i]);       ////
 
-                    serieshours.appendData(ahours[i], true, hours + 3);    ////
+                    //serieshours.appendData(ahours[i], true, hours + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1176,7 +1196,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aday[i] = new DataPoint(daytime[i], dayconcenctration[i]);       ////
 
-                    seriesday.appendData(aday[i], true, days + 3);    ////
+                    //seriesday.appendData(aday[i], true, days + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1191,7 +1211,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aweek[i] = new DataPoint(weektime[i], weekconcenctration[i]);       ////
 
-                    seriesweek.appendData(aweek[i], true, weeks + 3);    ////
+                    //seriesweek.appendData(aweek[i], true, weeks + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1206,7 +1226,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     ayear[i] = new DataPoint(yeartime[i], yearsconcentration[i]);       ////
 
-                    seriesyear.appendData(ayear[i], true, years + 3);    ////
+                    //seriesyear.appendData(ayear[i], true, years + 3);    ////
                     graph.onDataChanged(true,true);
 
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
@@ -1595,13 +1615,13 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     int yearssize = 0;
 
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
-                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString()); //////////////////////////////////
-                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());     /////////////////////////////////
-                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());       /////////////////////////////////
-                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());   /////////////////////////////////
-                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());     ///////
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());                       //7-Seconds time
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());   //1-Concentration concentration
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString()); ///////////////6-Minute minute
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());     ////////////////5-Hour hour
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());       /////////////////4-Day day
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());   ///////////////////3-Month/ month
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());     ///////          //2-Year year
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];
@@ -1657,10 +1677,10 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
 
                     }
                     //controlling seconds and part of minutes arrays
-                    if(time[iterator] == 0) //checks if time index is 0
+                    if(iterator>0) //checks if time index is 0
                     {
                         if(iterator>0) {//iterator > 0 &&
-                            if ( time[iterator - 1] == 59) //makes sure last point was 59 and your higher then 0
+                            if ( minutetimeB[iterator - 1] != minutetimeB[iterator]) //makes sure last point was 59 and your higher then 0
                             {
                                 secondwindow[time[iterator]] = time[iterator];
                                 secconcentrationAVG[time[iterator]] = concentration[iterator];
@@ -1672,7 +1692,8 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                                 //seriesB.resetData(aserieshoursB);
                                 minutewindow[minutetimeB[iterator]] = minutetimeB[iterator]; // minutetimeB[iterator-1]  iterator-1
 
-
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
                                 if (secondssize < 60) {               //iterator - (secondssize)
                                     for (int i = iterator - (secondssize); i < iterator+1; i++)        ////ITERATOR+1
                                     {                                                         ////
@@ -1700,6 +1721,24 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                 }
                             }
+                            else
+                            {
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////
+                                {                                                         ////
+
+                                    averagesum = averagesum + concentration[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+                                //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+                                //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));//mintuteconcentrationAVG[23] FFFFF
+                            }
+
                         }
                         //ENDING STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
                         //end of checking if you passed the iteration
@@ -2373,7 +2412,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aminutes[i] = new DataPoint(minutetime[i], mintuteconcentration[i]);       ////
 
-                    seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
+                    //seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2382,7 +2421,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     a[i] = new DataPoint(time[i], concentration[i]);
 
-                    series.appendData(a[i], true, arraysize + 40);
+                    //series.appendData(a[i], true, arraysize + 40);
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2391,7 +2430,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     ahours[i] = new DataPoint(hourtime[i], hourconcentration[i]);       ////
 
-                    serieshours.appendData(ahours[i], true, hours + 3);    ////
+                    //serieshours.appendData(ahours[i], true, hours + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2407,7 +2446,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aday[i] = new DataPoint(daytime[i], dayconcenctration[i]);       ////
 
-                    seriesday.appendData(aday[i], true, days + 3);    ////
+                    //seriesday.appendData(aday[i], true, days + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2422,7 +2461,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aweek[i] = new DataPoint(weektime[i], weekconcenctration[i]);       ////
 
-                    seriesweek.appendData(aweek[i], true, weeks + 3);    ////
+                    //seriesweek.appendData(aweek[i], true, weeks + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2437,7 +2476,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     ayear[i] = new DataPoint(yeartime[i], yearsconcentration[i]);       ////
 
-                    seriesyear.appendData(ayear[i], true, years + 3);    ////
+                    //seriesyear.appendData(ayear[i], true, years + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }

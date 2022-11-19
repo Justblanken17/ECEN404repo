@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -58,6 +59,9 @@ public class Camera1 extends AppCompatActivity {
         //Button buttoncamera2 = (Button) findViewById(R.id.buttoncamera2);
         //Button buttoncamera3 = (Button) findViewById(R.id.buttoncamera1);
         //Button buttoncamera4 = (Button) findViewById(R.id.buttoncamera2);
+        stuff();
+
+
         buttonreferesh.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
             public void onClick(View view) {
@@ -84,80 +88,8 @@ public class Camera1 extends AppCompatActivity {
         });
 
 
-        lStorage = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 1/Images");
-        //lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
-        //lStorage3 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 3/Images");
-        //lStorage4 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 4/Images");
-        try {
-            final File lclfile = File.createTempFile("Images", "jpg");
-            lStorage.getFile(lclfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(lclfile.getAbsolutePath()); //getAbsolutePath
-                    image1.setImageBitmap(bitmap);
-                    //image2.setImageBitmap(bitmap);
-                    //image3.setImageBitmap(bitmap);
-                    //image4.setImageBitmap(bitmap);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
 
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        rootDatabaseref.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int t = 0;
-                int iterator = 0;
-                double c = 0;
 
-                double y;
-                int x;
-                x = -1;
-                int arraysize = 0;
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
-                {
-                    arraysize = arraysize + 1;
-                }
-                int[] time = new int[arraysize];
-                double[] concentration = new double[arraysize];
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
-                {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
-                    iterator = iterator + 1;
-                }
-                t = time[0];
-                c = concentration[arraysize-1];
-                if(c == 0)
-                {
-                    stateb.setText("Nitrogen Deficient - Check Sensors");
-                }
-                if(c == 1)
-                {
-                    stateb.setText("Healthy");
-                }
-                //stateb.setText(String.valueOf(c));
-                //GraphView graph = (GraphView) findViewById(R.id.graph1);
-                //series = new LineGraphSeries<DataPoint>();
-                //for(int i = 0; i < 100; i++) {
-                //    series.appendData(new DataPoint(time[i], concentration[i]), true, 100);
-
-                //}
-                //graph.addSeries(series);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         /*
         try {
             final File lclfile2 = File.createTempFile("Images", "jpg");
@@ -274,7 +206,87 @@ public class Camera1 extends AppCompatActivity {
         }
     }
     */
+      public void stuff(){
+          TextView stateb = findViewById(R.id.statetext);
+          DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 1");
+          StorageReference storrey = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 1/Images");
 
+          StorageReference lStorage = FirebaseStorage.getInstance().getReference().child("MCU 1/spnpic.jpg"); //
+          //lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
+          //lStorage3 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 3/Images");
+          //lStorage4 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 4/Images");
+          try {
+              final File lclfile = File.createTempFile("Images", "jpg");
+              lStorage.getFile(lclfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                  @Override
+                  public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                      Bitmap bitmap = BitmapFactory.decodeFile(lclfile.getAbsolutePath()); //getAbsolutePath
+                      image1.setImageBitmap(bitmap);
+                      //image2.setImageBitmap(bitmap);
+                      //image3.setImageBitmap(bitmap);
+                      //image4.setImageBitmap(bitmap);
+                  }
+              }).addOnFailureListener(new OnFailureListener() {
+                  @Override
+                  public void onFailure(@NonNull Exception e) {
+
+                  }
+              });
+
+
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+
+
+          rootDatabaseref.addValueEventListener(new ValueEventListener() {
+              @SuppressLint("SetTextI18n")
+              @Override
+              public void onDataChange(@NonNull DataSnapshot snapshot) {
+                  int t = 0;
+                  int iterator = 0;
+                  double c = 0;
+
+                  double y;
+                  int x;
+                  x = -1;
+                  int arraysize = 0;
+                  for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                      arraysize = arraysize + 1;
+                  }
+                  int[] time = new int[arraysize];
+                  double[] concentration = new double[arraysize];
+                  for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                      time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                      concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
+                      iterator = iterator + 1;
+                  }
+                  t = time[0];
+                  c = concentration[arraysize - 1];
+                  if (c == 0) {
+                      stateb.setText("Nitrogen Deficient - Check Sensors");
+                  }
+                  if (c == 1) {
+                      stateb.setText("Healthy");
+                  }
+                  //stateb.setText(String.valueOf(c));
+                  //GraphView graph = (GraphView) findViewById(R.id.graph1);
+                  //series = new LineGraphSeries<DataPoint>();
+                  //for(int i = 0; i < 100; i++) {
+                  //    series.appendData(new DataPoint(time[i], concentration[i]), true, 100);
+
+                  //}
+                  //graph.addSeries(series);
+
+              }
+
+              @Override
+              public void onCancelled(@NonNull DatabaseError error) {
+
+              }
+          });
+          updating();
+      }
     public void openActivityimage(){
         Intent intent = new Intent(this, Camera1.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
@@ -291,6 +303,19 @@ public class Camera1 extends AppCompatActivity {
         Intent intent = new Intent(this, camera1graph.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
+    private void updating()
+    {
+        final Handler han = new Handler();
+        final Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                stuff();
+            }
+        };
+        han.postDelayed(run, 10000);
+
+    }
+
 
 
 

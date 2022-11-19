@@ -21,30 +21,31 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
 public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private int indication = 0;
     private int indication2 = 0;
-    LineGraphSeries<DataPoint> seriessupersecond;
+    PointsGraphSeries<DataPoint> seriessupersecond;
     GraphView graphz;
     int arraysizesecondglobal1;
     //int max = 0;
     double max = 0;
     int second1max = 0;
-    LineGraphSeries<DataPoint> seriessuperminute1;
+    PointsGraphSeries<DataPoint> seriessuperminute1;
     int arraysizeglobalminute1;
     int arraysizeCHECKglobal;
     int minute1max = 0;
-    LineGraphSeries<DataPoint> seriesghour1;
+    PointsGraphSeries<DataPoint> seriesghour1;
     int arraysizeglobalhour1;
     int hour1max = 0;
-    LineGraphSeries<DataPoint> seriesgday1;
+    PointsGraphSeries<DataPoint> seriesgday1;
     int arraysizeglobalday1;
     int day1max = 0;
-    LineGraphSeries<DataPoint> seriesgweek1;
+    PointsGraphSeries<DataPoint> seriesgweek1;
     int arraysizeglobalweek1;
     int week1max = 0;
-    LineGraphSeries<DataPoint> seriesgyear1;
+    PointsGraphSeries<DataPoint> seriesgyear1;
     int arraysizeglobalyear1;
     int year1max = 0;
     LineGraphSeries<DataPoint> seriesgsecond2;
@@ -107,7 +108,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         graphz = (GraphView) findViewById(R.id.graphth);
         setContentView(R.layout.activity_mcu1oxygengraph);
-        seriessupersecond = new LineGraphSeries<DataPoint>();
+        seriessupersecond = new PointsGraphSeries<DataPoint>();
         //bull[0] = new DataPoint(0, 0);
         //seriessupersecond.appendData(bull[0], true, 2);
 
@@ -123,7 +124,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
         spinner.setAdapter(adapter);
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Oxygen").child("1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 4");
@@ -173,12 +174,12 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                 LineGraphSeries<DataPoint> seriesweek;
                 LineGraphSeries<DataPoint> seriesyear;
 
-                LineGraphSeries<DataPoint> seriesB;
-                LineGraphSeries<DataPoint> seriesminutesB;
-                LineGraphSeries<DataPoint> serieshoursB;
-                LineGraphSeries<DataPoint> seriesdayB;
-                LineGraphSeries<DataPoint> seriesweekB;
-                LineGraphSeries<DataPoint> seriesyearB;
+                PointsGraphSeries<DataPoint> seriesB;
+                PointsGraphSeries<DataPoint> seriesminutesB;
+                PointsGraphSeries<DataPoint> serieshoursB;
+                PointsGraphSeries<DataPoint> seriesdayB;
+                PointsGraphSeries<DataPoint> seriesweekB;
+                PointsGraphSeries<DataPoint> seriesyearB;
 
                 String data;// = snapshot.child();
                 Double z;// = Double.parseDouble(data);
@@ -287,12 +288,12 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
 
                 double averagesum = 0;
 
-                seriesB = new LineGraphSeries<DataPoint>();
-                seriesminutesB = new LineGraphSeries<DataPoint>();
-                serieshoursB = new LineGraphSeries<DataPoint>();
-                seriesdayB = new LineGraphSeries<DataPoint>();
-                seriesweekB = new LineGraphSeries<DataPoint>();
-                seriesyearB = new LineGraphSeries<DataPoint>();
+                seriesB = new PointsGraphSeries<DataPoint>();
+                seriesminutesB = new PointsGraphSeries<DataPoint>();
+                serieshoursB = new PointsGraphSeries<DataPoint>();
+                seriesdayB = new PointsGraphSeries<DataPoint>();
+                seriesweekB = new PointsGraphSeries<DataPoint>();
+                seriesyearB = new PointsGraphSeries<DataPoint>();
 
                 DataPoint[] aseriesB= new DataPoint[60];
                 DataPoint[] aseriesminutesB= new DataPoint[60];
@@ -312,13 +313,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
 
 
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
-                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString()); //////////////////////////////////
-                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());     /////////////////////////////////
-                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());       /////////////////////////////////
-                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());   /////////////////////////////////
-                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());                       //7-Seconds time
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());   //1-Concentration concentration
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString());              //6-Minute minute
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());                  //5-Hour hour
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());                    //4-Day day
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());                //3-Month month
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());                  //2-Year year
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];
@@ -373,10 +374,10 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
 
                     }
                     //controlling seconds and part of minutes arrays
-                    if(time[iterator] == 0) //checks if time index is 0
+                    if(iterator > 0) //checks if time index is 0
                     {
                         if(iterator>0) {//iterator > 0 &&
-                            if ( time[iterator - 1] == 59) //makes sure last point was 59 and your higher then 0
+                            if ( minutetimeB[iterator - 1] != minutetimeB[iterator]) //makes sure last point was 59 and your higher then 0
                             {
                                 secondwindow[time[iterator]] = time[iterator];
                                 secconcentrationAVG[time[iterator]] = concentration[iterator];
@@ -388,7 +389,8 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                 //seriesB.resetData(aserieshoursB);
                                 minutewindow[minutetimeB[iterator]] = minutetimeB[iterator]; // minutetimeB[iterator-1]  iterator-1
 
-
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
                                 if (secondssize < 60) {               //iterator - (secondssize)
                                     for (int i = iterator - (secondssize); i < iterator+1; i++)        ////
                                     {                                                         ////
@@ -415,6 +417,23 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                 }
+                            }
+                            else
+                            {
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////
+                                {                                                         ////
+
+                                    averagesum = averagesum + concentration[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+                                //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+                                //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));//mintuteconcentrationAVG[23] FFFFF
                             }
                         }
                         //ENDING STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -1095,7 +1114,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                     //protected(series.resetData(new DataPoint[] {}));
                     a[i] = new DataPoint(time[i], concentration[i]);
                     //graph.onDataChanged(true,true);
-                    series.appendData(a[i], true, arraysize + 40);
+                    //series.appendData(a[i], true, arraysize + 40);
                     //graph.onDataChanged(true,true);
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
@@ -2284,10 +2303,11 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("       Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessupersecond.setSize(2);
             graph.addSeries(seriessupersecond);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessupersecond;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessupersecond;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              seconds");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -2420,11 +2440,12 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("       Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessuperminute1.setSize(2);
             graph.addSeries(seriessuperminute1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessuperminute1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessuperminute1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              minutes");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -2436,16 +2457,16 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute1<10)
-            {
+            //if(arraysizeglobalminute1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalminute1-10);
-                graph.getViewport().setMaxX(arraysizeglobalminute1);
-            }
+                graph.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalminute1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalminute1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2547,11 +2568,11 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("       Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
-
+            seriesghour1.setSize(2);
             graph.addSeries(seriesghour1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesghour1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesghour1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              hours");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -2674,10 +2695,11 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("       Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgday1.setSize(2);
             graph.addSeries(seriesgday1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgday1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgday1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              days");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -2689,16 +2711,16 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday1<10)
-            {
+            //if(arraysizeglobalday1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalday1-10);
-                graph.getViewport().setMaxX(arraysizeglobalday1);
-            }
+                graph.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalday1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalday1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2800,11 +2822,12 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("       Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgweek1.setSize(2);
             graph.addSeries(seriesgweek1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgweek1;
-            lil.setThickness(2);
-            griLa.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil = seriesgweek1;
+            //lil.setThickness(2);
+            griLa.setHorizontalAxisTitle("              months");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
             griLa.setLabelVerticalWidth(43);
@@ -2815,16 +2838,16 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek1<10)
-            {
+            //if(arraysizeglobalweek1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalweek1-10);
-                graph.getViewport().setMaxX(arraysizeglobalweek1);
-            }
+                graph.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalweek1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalweek1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -2926,11 +2949,12 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("       Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgyear1.setSize(2);
             graph.addSeries(seriesgyear1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgyear1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgyear1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              years");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -2942,16 +2966,16 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear1<3)
-            {
-                graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalyear1-3);
-                graph.getViewport().setMaxX(arraysizeglobalyear1);
-            }
+            //if(arraysizeglobalyear1<3)
+            //{
+                graph.getViewport().setMinX(21);
+                graph.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalyear1-3);
+            //    graph.getViewport().setMaxX(arraysizeglobalyear1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -3084,10 +3108,11 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("         Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessupersecond.setSize(2);
             graph.addSeries(seriessupersecond);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessupersecond;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessupersecond;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              seconds");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3123,11 +3148,12 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("         Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessuperminute1.setSize(2);
             graph.addSeries(seriessuperminute1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessuperminute1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessuperminute1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              minutes");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3159,11 +3185,11 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("         Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
-
+            seriesghour1.setSize(2);
             graph.addSeries(seriesghour1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesghour1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesghour1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              hours");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3195,10 +3221,11 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("         Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgday1.setSize(2);
             graph.addSeries(seriesgday1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgday1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgday1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              days");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3213,7 +3240,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             if(arraysizeglobalday1<10)
             {
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
+                graph.getViewport().setMaxX(31);
             }
             else
             {
@@ -3230,10 +3257,11 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("         Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgweek1.setSize(2);
             graph.addSeries(seriesgweek1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgweek1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgweek1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              weeks");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3248,7 +3276,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             if(arraysizeglobalweek1<10)
             {
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
+                graph.getViewport().setMaxX(12);
             }
             else
             {
@@ -3265,11 +3293,12 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.setTitle("         Oxygen Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgyear1.setSize(2);
             graph.addSeries(seriesgyear1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgyear1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgyear1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              years");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3283,8 +3312,8 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             //graph.getViewport().setMaxX(10);
             if(arraysizeglobalyear1<3)
             {
-                graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(3);
+                graph.getViewport().setMinX(21);
+                graph.getViewport().setMaxX(31);
             }
             else
             {

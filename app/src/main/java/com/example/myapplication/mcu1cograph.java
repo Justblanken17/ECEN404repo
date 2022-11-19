@@ -125,7 +125,7 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
         spinner.setAdapter(adapter);
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Monoxide").child("Sensor 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Carbon Monoxide").child("1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Monoxide").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Monoxide").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Monoxide").child("Sensor 4");
@@ -313,13 +313,13 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
                     int monthssize = 0;
                     int yearssize = 0;
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
-                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString()); //////////////////////////////////
-                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());     /////////////////////////////////
-                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());       /////////////////////////////////
-                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());   /////////////////////////////////
-                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString()); //////////////////////////////////
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());     /////////////////////////////////
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());       /////////////////////////////////
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());   /////////////////////////////////
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];
@@ -1086,7 +1086,7 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
                     //protected(series.resetData(new DataPoint[] {}));
                     aminutes[i] = new DataPoint(minutetime[i], mintuteconcentration[i]);       ////
 
-                    seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
+                    //seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1095,7 +1095,7 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
                     //protected(series.resetData(new DataPoint[] {}));
                     a[i] = new DataPoint(time[i], concentration[i]);
                     //graph.onDataChanged(true,true);
-                    series.appendData(a[i], true, arraysize + 40);
+                    //series.appendData(a[i], true, arraysize + 40);
                     //graph.onDataChanged(true,true);
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
@@ -1105,7 +1105,7 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
                     //protected(series.resetData(new DataPoint[] {}));
                     ahours[i] = new DataPoint(hourtime[i], hourconcentration[i]);       ////
 
-                    serieshours.appendData(ahours[i], true, hours + 3);    ////
+                    //serieshours.appendData(ahours[i], true, hours + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1121,7 +1121,7 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
                     //protected(series.resetData(new DataPoint[] {}));
                     aday[i] = new DataPoint(daytime[i], dayconcenctration[i]);       ////
 
-                    seriesday.appendData(aday[i], true, days + 3);    ////
+                    //seriesday.appendData(aday[i], true, days + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1136,7 +1136,7 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
                     //protected(series.resetData(new DataPoint[] {}));
                     aweek[i] = new DataPoint(weektime[i], weekconcenctration[i]);       ////
 
-                    seriesweek.appendData(aweek[i], true, weeks + 3);    ////
+                    //seriesweek.appendData(aweek[i], true, weeks + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -1151,7 +1151,7 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
                     //protected(series.resetData(new DataPoint[] {}));
                     ayear[i] = new DataPoint(yeartime[i], yearsconcentration[i]);       ////
 
-                    seriesyear.appendData(ayear[i], true, years + 3);    ////
+                    //seriesyear.appendData(ayear[i], true, years + 3);    ////
                     graph.onDataChanged(true,true);
 
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));

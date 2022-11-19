@@ -31,7 +31,6 @@
                     android:id="@+id/spinner"
                     android:layout_width="250dp"
                     android:layout_height="35dp"
-                    android:background="@color/white"
                     android:contentDescription="@string/app_name"
                     android:dropDownSelector="@color/black"
                     android:minHeight="48dp"

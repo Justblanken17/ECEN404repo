@@ -39,7 +39,7 @@ public class mcu1co2 extends AppCompatActivity {
         Button buttonback = (Button) findViewById(R.id.backmcu1co2);
         Button buttongraph = (Button) findViewById(R.id.graphmcuco2);
         Button buttonhome = (Button) findViewById(R.id.homebutton);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Carbon Dioxide").child("1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");
@@ -91,8 +91,8 @@ public class mcu1co2 extends AppCompatActivity {
                 double[] concentration = new double[arraysize];
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration
                     iterator = iterator + 1;
                 }
                 t = time[0];
@@ -130,8 +130,8 @@ public class mcu1co2 extends AppCompatActivity {
                 double[] concentration = new double[arraysize];
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());//7-Seconds time
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());//1-Concentration concentration
                     iterator = iterator + 1;
                 }
                 t = time[0];

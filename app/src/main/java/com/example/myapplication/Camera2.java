@@ -81,7 +81,7 @@ public class Camera2 extends AppCompatActivity {
             }
         });
 
-        lStorage = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
+        lStorage = FirebaseStorage.getInstance().getReference().child("MCU 1/spnpic.jpg"); ///MCU 1/Camera 2/Images"
         //lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
         //lStorage3 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 3/Images");
         //lStorage4 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 4/Images");

@@ -30,8 +30,8 @@ public class mcu1temphumid extends AppCompatActivity {
         Button buttonback = (Button) findViewById(R.id.backmcu1temp);
         Button buttongraph = (Button) findViewById(R.id.graphmcutemphumid);
         Button buttonhome = (Button) findViewById(R.id.homebutton7);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 1");
-        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 2");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("Humidity 1");
+        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Temperature").child("1");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 3");
         //DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Ethylene").child("Sensor 4");
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
@@ -77,8 +77,8 @@ public class mcu1temphumid extends AppCompatActivity {
                 double[] concentration = new double[arraysize];
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds seconds
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration concentration
                     iterator = iterator + 1;
                 }
                 t = time[0];
@@ -110,8 +110,8 @@ public class mcu1temphumid extends AppCompatActivity {
                 double[] concentration = new double[arraysize];
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());
                     iterator = iterator + 1;
                 }
                 t = time[0];
