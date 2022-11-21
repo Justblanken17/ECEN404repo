@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
@@ -37,6 +39,14 @@ public class Camera2 extends AppCompatActivity {
     private ImageView image3;
     private ImageView image4;
     private ImageView fakeimage;
+    private int photonumber = 0;
+    private String filepath;
+    private String filepath2;
+    private String filepathappen;
+    public String filepathhappen2;
+    String[] filepathhappen2array = new String[1];
+    public String saveinhere;
+    private int stringlenght = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +61,13 @@ public class Camera2 extends AppCompatActivity {
         Button buttonhome = (Button) findViewById(R.id.homebutton8);
         Button buttongraph = (Button) findViewById(R.id.graphthing2);
         TextView stateb = findViewById(R.id.statetext2);
+        filepath = "MCU 1/Camera 2/";
+        filepath2 = "";
+        filepathappen = "";
+        filepathhappen2 = "";
+        //saveinhere = "";
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 2");
+        //stuff();
         //Button buttoncamera1 = (Button) findViewById(R.id.buttoncamera1);
         //Button buttoncamera2 = (Button) findViewById(R.id.buttoncamera2);
         //Button buttoncamera3 = (Button) findViewById(R.id.buttoncamera1);
@@ -81,30 +97,133 @@ public class Camera2 extends AppCompatActivity {
             }
         });
 
-        lStorage = FirebaseStorage.getInstance().getReference().child("MCU 1/spnpic.jpg"); ///MCU 1/Camera 2/Images"
+        lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2");
+        filepathhappen2 = "";
+        lStorage2.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onSuccess(ListResult listResult) {
+
+                String conversion1 = "";
+                String conversion2 = "";
+                String value = "";
+                char newvalue = ' ';
+                int sanitycheck = 0;
+                int placeholder = 6;
+                int binaryevalueation = 0;
+                for (StorageReference item : listResult.getItems())
+                {
+                    value = item.getName();
+                    if(value.length()>placeholder)
+                    {
+
+                        binaryevalueation = 1;
+
+                        while(value.charAt(placeholder) == '0' || value.charAt(placeholder) == '1' || value.charAt(placeholder) == '2' || value.charAt(placeholder) == '3' || value.charAt(placeholder) == '4' || value.charAt(placeholder) == '5' || value.charAt(placeholder) == '6' || value.charAt(placeholder) == '7' || value.charAt(placeholder) == '8' || value.charAt(placeholder) == '9') {
+                            conversion1 = conversion1 + value.charAt(placeholder);
+                            if (value.length() > placeholder + 1) {
+                                placeholder = placeholder + 1;
+
+                            }
+                        }
+                        if(!conversion1.equals("")) {
+                            if (Integer.valueOf(conversion1) > sanitycheck) {
+                                sanitycheck = Integer.valueOf(conversion1);
+                            }
+                        }
+
+                        //buttonback.setText(String.valueOf(sanitycheck));
+                        conversion1 = "";
+                        placeholder = 6;
+
+                    }
+                    else{
+                        binaryevalueation = 0;
+                    }
+                    //buttonback.setText(String.valueOf(sanitycheck));
+                    //newvalue = value.charAt(6);
+
+                    //buttonhome.setText(Character.toString(newvalue));
+                    filepathappen = item.getName();
+                    if(binaryevalueation == 1) {
+                        filepathhappen2 = "Images" + String.valueOf(sanitycheck) ;
+
+                    }
+                    else
+                    {
+                        filepathhappen2 = "Images";
+                    }
+
+                    //saveinHere(filepathhappen2);
+                    filepathhappen2array[0] = filepathhappen2;
+                    //buttonback.setText(filepathhappen2array[0]);
+                }
+                //buttonback.setText(filepathhappen2array[0]);
+                //buttonreferesh.setText(filepathhappen2array[0]);
+                //buttonreferesh.setText(String.valueOf(filepathappen));
+                filepath = filepathhappen2;
+
+                filepath2 = "MCU 1/Camera 2/"+ filepathhappen2;
+                //buttonback.setText(filepathhappen2);
+                //stateb.setText(filepath2);
+                //buttonback.setText(filepath2);
+               // stateb.setText(filepath2);
+                lStorage = FirebaseStorage.getInstance().getReference().child(filepath2);
+                filepath = "";
+                //lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
+                //lStorage3 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 3/Images");
+                //lStorage4 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 4/Images");
+                try {
+                    final File lclfile = File.createTempFile("Images", "jpg");
+                    lStorage.getFile(lclfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(lclfile.getAbsolutePath()); //getAbsolutePath
+                            image1.setImageBitmap(bitmap);
+                            //image2.setImageBitmap(bitmap);
+                            //image3.setImageBitmap(bitmap);
+                            //image4.setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+        //TextView stateb = findViewById(R.id.statetext2);
+        //DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 1");
+        StorageReference storrey = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
+
+        StorageReference lStorage = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
+        /////////////////////////CHECK AGAIN
+        //if(lStorage.child().listAll().)
+        //
         //lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
         //lStorage3 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 3/Images");
         //lStorage4 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 4/Images");
-        try {
-            final File lclfile = File.createTempFile("Images", "jpg");
-            lStorage.getFile(lclfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(lclfile.getAbsolutePath()); //getAbsolutePath
-                    image1.setImageBitmap(bitmap);
-                    //image2.setImageBitmap(bitmap);
-                    //image3.setImageBitmap(bitmap);
-                    //image4.setImageBitmap(bitmap);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
 
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -112,43 +231,43 @@ public class Camera2 extends AppCompatActivity {
                 if((snapshot.getChildrenCount()== 0)) {
                     return;
                 }
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
 
-                    int t = 0;
-                    int iterator = 0;
-                    double c = 0;
+                double y;
+                int x;
+                x = -1;
+                int arraysize = 0;
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[arraysize - 1];
+                if (c == 0) {
+                    stateb.setText("Nitrogen Deficient - Check Sensors");
+                }
+                if (c == 1) {
+                    stateb.setText("Healthy");
+                }
+                //stateb.setText(String.valueOf(c));
+                //GraphView graph = (GraphView) findViewById(R.id.graph1);
+                //series = new LineGraphSeries<DataPoint>();
+                //for(int i = 0; i < 100; i++) {
+                //    series.appendData(new DataPoint(time[i], concentration[i]), true, 100);
 
-                    double y;
-                    int x;
-                    x = -1;
-                    int arraysize = 0;
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        arraysize = arraysize + 1;
-                    }
-                    int[] time = new int[arraysize];
-                    double[] concentration = new double[arraysize];
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        if ((snapshot1.getValue() == "time") || (snapshot1.getValue() == "state")) {
-                            time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                            concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
-                            iterator = iterator + 1;
-                        }
-                    }
-                    t = time[0];
-                    c = concentration[arraysize - 1];
-                    if (c == 0) {
-                        stateb.setText("Nitrogen Deficient - Check Sensors");
-                    }
-                    if (c == 1) {
-                        stateb.setText("Healthy");
-                    }
-                    //stateb.setText(String.valueOf(c));
-                    //GraphView graph = (GraphView) findViewById(R.id.graph1);
-                    //series = new LineGraphSeries<DataPoint>();
-                    //for(int i = 0; i < 100; i++) {
-                    //    series.appendData(new DataPoint(time[i], concentration[i]), true, 100);
+                //}
+                //graph.addSeries(series);
+                //photonumber = photonumber + 1
+                stuff();
 
-                    //}
-                    //graph.addSeries(series);
 
             }
 
@@ -157,74 +276,9 @@ public class Camera2 extends AppCompatActivity {
 
             }
         });
-        /*
-        try {
-            final File lclfile2 = File.createTempFile("Images", "jpg");
-            lStorage2.getFile(lclfile2).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(lclfile2.getAbsolutePath());
-                    image2.setImageBitmap(bitmap);
-                    //image2.setImageBitmap(bitmap);
-                    //image3.setImageBitmap(bitmap);
-                    //image4.setImageBitmap(bitmap);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
+        //updating();
 
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            final File lclfile3 = File.createTempFile("Images", "jpg");
-            lStorage3.getFile(lclfile3).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(lclfile3.getAbsolutePath());
-                    image3.setImageBitmap(bitmap);
-                    //image2.setImageBitmap(bitmap);
-                    //image3.setImageBitmap(bitmap);
-                    //image4.setImageBitmap(bitmap);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
 
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            final File lclfile4 = File.createTempFile("Images", "jpg");
-            lStorage4.getFile(lclfile4).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(lclfile4.getAbsolutePath());
-                    image4.setImageBitmap(bitmap);
-                    //image2.setImageBitmap(bitmap);
-                    //image3.setImageBitmap(bitmap);
-                    //image4.setImageBitmap(bitmap);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-        //Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/growable-space-habitat.appspot.com/o/MCU%201%2FImages?alt=media&token=34adb9e1-9780-40d2-b4ea-c59aa8d081a9").into(image1);
-        //Glide.with(this).load("https://static.wixstatic.com/media/ea3599_6d9f1eb2433a4d08a1f4eea008cd46be~mv2.webp").into(image2);
-        //Glide.with(this).load("https://static.wixstatic.com/media/ea3599_32f97523a8524d779143794da7761a46~mv2.webp").into(image3);
-        //Glide.with(this).load("https://static.wixstatic.com/media/ea3599_e988211277c544a4b3bb26a63f384d64~mv2.webp").into(image4);
-        //https://firebasestorage.googleapis.com/v0/b/growable-space-habitat.appspot.com/o/MCU%201%2FImages.jpg?alt=media&token=b9991faa-7ad9-4185-a56c-69eff24bf646
 
     }
       /*class Connector extends AsyncTask<String, String, String> {
@@ -273,7 +327,169 @@ public class Camera2 extends AppCompatActivity {
         }
     }
     */
+      public void stuff(){
+          String urlstuff = "MCU 1/Camera 2/Images";
+          urlstuff = urlstuff + String.valueOf(photonumber);
+          Button buttonback = (Button) findViewById(R.id.buttonbsckimage2);
+          TextView stateb = findViewById(R.id.statetext2);
+          DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 2");
+          lStorage2.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
 
+              @Override
+              public void onSuccess(ListResult listResult) {
+
+                  String conversion1 = "";
+                  String conversion2 = "";
+                  String value = "";
+                  char newvalue = ' ';
+                  int sanitycheck = 0;
+                  int placeholder = 6;
+                  int binaryevaluation = 0;
+
+                  for (StorageReference item : listResult.getItems())
+                  {
+                      value = item.getName();
+                      if(value.length()>placeholder)
+                      {
+
+                          binaryevaluation = 1;
+
+                          while(value.charAt(placeholder) == '0' || value.charAt(placeholder) == '1' || value.charAt(placeholder) == '2' || value.charAt(placeholder) == '3' || value.charAt(placeholder) == '4' || value.charAt(placeholder) == '5' || value.charAt(placeholder) == '6' || value.charAt(placeholder) == '7' || value.charAt(placeholder) == '8' || value.charAt(placeholder) == '9') {
+                              conversion1 = conversion1 + value.charAt(placeholder);
+                              if (value.length() > placeholder + 1) {
+                                  placeholder = placeholder + 1;
+
+                              }
+                          }
+                          if(!conversion1.equals("")) {
+                              if (Integer.valueOf(conversion1) > sanitycheck) {
+                                  sanitycheck = Integer.valueOf(conversion1);
+                              }
+                          }
+                          //buttonback.setText(String.valueOf(sanitycheck));
+                          conversion1 = "";
+                          placeholder = 6;
+
+                      }
+                      else
+                      {
+                          binaryevaluation = 0;
+                      }
+                      //buttonback.setText(String.valueOf(sanitycheck));
+                      //newvalue = value.charAt(7);
+
+                      //buttonhome.setText(Character.toString(newvalue));
+                      filepathappen = item.getName();
+                      if(binaryevaluation == 1)
+                      {
+                          filepathhappen2 = "Images" + String.valueOf(sanitycheck);
+
+                      }
+                      else
+                      {
+                          filepathhappen2 = "Images";
+                      }
+                      //filepathhappen2 = "spinach" + String.valueOf(sanitycheck) + ".jpg";
+                      //saveinHere(filepathhappen2);
+                      filepathhappen2array[0] = filepathhappen2;
+                      //buttonback.setText(filepathhappen2array[0]);
+                  }
+                  //buttonback.setText(filepathhappen2array[0]);
+                  //buttonreferesh.setText(filepathhappen2array[0]);
+                  //buttonreferesh.setText(String.valueOf(filepathappen));
+                  filepath = filepathhappen2;
+
+                  filepath2 = "MCU 1/Camera 2/"+ filepathhappen2;
+                  //buttonback.setText(filepathhappen2);
+                  //stateb.setText(filepath2);
+                  //stateb.setText(filepath2);
+                  lStorage = FirebaseStorage.getInstance().getReference().child(filepath2);
+                  filepath = "";
+                  //lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
+                  //lStorage3 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 3/Images");
+                  //lStorage4 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 4/Images");
+                  try {
+                      final File lclfile = File.createTempFile("Images", "jpg");
+                      lStorage.getFile(lclfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                          @Override
+                          public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                              Bitmap bitmap = BitmapFactory.decodeFile(lclfile.getAbsolutePath()); //getAbsolutePath
+                              image1.setImageBitmap(bitmap);
+                              //image2.setImageBitmap(bitmap);
+                              //image3.setImageBitmap(bitmap);
+                              //image4.setImageBitmap(bitmap);
+                          }
+                      }).addOnFailureListener(new OnFailureListener() {
+                          @Override
+                          public void onFailure(@NonNull Exception e) {
+
+                          }
+                      });
+                  } catch (IOException e) {
+                      e.printStackTrace();
+                  }
+
+              }
+
+
+
+
+
+
+          });
+
+
+          rootDatabaseref.addValueEventListener(new ValueEventListener() {
+              @SuppressLint("SetTextI18n")
+              @Override
+              public void onDataChange(@NonNull DataSnapshot snapshot) {
+                  if((snapshot.getChildrenCount()== 0)) {
+                      return;
+                  }
+                  int t = 0;
+                  int iterator = 0;
+                  double c = 0;
+
+                  double y;
+                  int x;
+                  x = -1;
+                  int arraysize = 0;
+                  for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                      arraysize = arraysize + 1;
+                  }
+                  int[] time = new int[arraysize];
+                  double[] concentration = new double[arraysize];
+                  for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                      time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                      concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
+                      iterator = iterator + 1;
+                  }
+                  t = time[0];
+                  c = concentration[arraysize - 1];
+                  if (c == 0) {
+                      stateb.setText("Nitrogen Deficient - Check Sensors");
+                  }
+                  if (c == 1) {
+                      stateb.setText("Healthy");
+                  }
+                  //stateb.setText(String.valueOf(c));
+                  //GraphView graph = (GraphView) findViewById(R.id.graph1);
+                  //series = new LineGraphSeries<DataPoint>();
+                  //for(int i = 0; i < 100; i++) {
+                  //    series.appendData(new DataPoint(time[i], concentration[i]), true, 100);
+
+                  //}
+                  //graph.addSeries(series);
+
+              }
+
+              @Override
+              public void onCancelled(@NonNull DatabaseError error) {
+
+              }
+          });
+          //updating();
+      }
     public void openActivityimage(){
         Intent intent = new Intent(this, Camera2.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
@@ -289,6 +505,19 @@ public class Camera2 extends AppCompatActivity {
     public void openActivitygraph(){
         Intent intent = new Intent(this, camera2graph.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
+    }
+    private void updating()
+    {
+        final Handler han = new Handler();
+        final Runnable run = new Runnable() {
+            @Override
+            public void run() {
+
+                //stuff();
+            }
+        };
+        han.postDelayed(run, 10000);
+
     }
 
 }

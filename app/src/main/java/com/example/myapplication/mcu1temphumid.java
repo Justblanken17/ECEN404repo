@@ -61,6 +61,9 @@ public class mcu1temphumid extends AppCompatActivity {
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
                 int t = 0;
                 int iterator = 0;
                 double c = 0;
@@ -94,6 +97,9 @@ public class mcu1temphumid extends AppCompatActivity {
         rootDatabaseref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
                 int t = 0;
                 int iterator = 0;
                 double c = 0;

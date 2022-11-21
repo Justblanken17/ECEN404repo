@@ -21,48 +21,49 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
 public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private int indication = 0;
     private int indication2 = 0;
-    LineGraphSeries<DataPoint> seriessupersecond;
+    PointsGraphSeries<DataPoint> seriessupersecond;
     GraphView graphz;
     int arraysizesecondglobal1;
     //int max = 0;
     double max = 0;
     int second1max = 0;
-    LineGraphSeries<DataPoint> seriessuperminute1;
+    PointsGraphSeries<DataPoint> seriessuperminute1;
     int arraysizeglobalminute1;
     int arraysizeCHECKglobal;
     int minute1max = 0;
-    LineGraphSeries<DataPoint> seriesghour1;
+    PointsGraphSeries<DataPoint> seriesghour1;
     int arraysizeglobalhour1;
     int hour1max = 0;
-    LineGraphSeries<DataPoint> seriesgday1;
+    PointsGraphSeries<DataPoint> seriesgday1;
     int arraysizeglobalday1;
     int day1max = 0;
-    LineGraphSeries<DataPoint> seriesgweek1;
+    PointsGraphSeries<DataPoint> seriesgweek1;
     int arraysizeglobalweek1;
     int week1max = 0;
-    LineGraphSeries<DataPoint> seriesgyear1;
+    PointsGraphSeries<DataPoint> seriesgyear1;
     int arraysizeglobalyear1;
     int year1max = 0;
-    LineGraphSeries<DataPoint> seriesgsecond2;
+    PointsGraphSeries<DataPoint> seriesgsecond2;
     int arraysizeglobalsecond2;
     int second2max = 0;
-    LineGraphSeries<DataPoint> seriesgsuperminute2;
+    PointsGraphSeries<DataPoint> seriesgsuperminute2;
     int arraysizeglobalminute2;
     int minute2max = 0;
-    LineGraphSeries<DataPoint> seriesghour2;
+    PointsGraphSeries<DataPoint> seriesghour2;
     int arraysizeglobalhour2;
     int hour2max = 0;
-    LineGraphSeries<DataPoint> seriesgday2;
+    PointsGraphSeries<DataPoint> seriesgday2;
     int arraysizeglobalday2;
     int day2max = 0;
-    LineGraphSeries<DataPoint> seriesgweek2;
+    PointsGraphSeries<DataPoint> seriesgweek2;
     int arraysizeglobalweek2;
     int week2max = 0;
-    LineGraphSeries<DataPoint> seriesgyear2;
+    PointsGraphSeries<DataPoint> seriesgyear2;
     int arraysizeglobalyear2;
     int year2max = 0;
     LineGraphSeries<DataPoint> seriesgsecond3;
@@ -145,7 +146,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         graphz = (GraphView) findViewById(R.id.graphth);
         setContentView(R.layout.activity_mcu1temphumidgraph);
-        seriessupersecond = new LineGraphSeries<DataPoint>();
+        seriessupersecond = new PointsGraphSeries<DataPoint>();
         //bull[0] = new DataPoint(0, 0);
         //seriessupersecond.appendData(bull[0], true, 2);
 
@@ -215,12 +216,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                 LineGraphSeries<DataPoint> seriesyear;
                 /////////////////////////////////////////////////////////////////////////////////////
                 //////////////////////////////////////////////////////////////////////////////A
-                LineGraphSeries<DataPoint> seriesB;
-                LineGraphSeries<DataPoint> seriesminutesB;
-                LineGraphSeries<DataPoint> serieshoursB;
-                LineGraphSeries<DataPoint> seriesdayB;
-                LineGraphSeries<DataPoint> seriesweekB;
-                LineGraphSeries<DataPoint> seriesyearB;
+                PointsGraphSeries<DataPoint> seriesB;
+                PointsGraphSeries<DataPoint> seriesminutesB;
+                PointsGraphSeries<DataPoint> serieshoursB;
+                PointsGraphSeries<DataPoint> seriesdayB;
+                PointsGraphSeries<DataPoint> seriesweekB;
+                PointsGraphSeries<DataPoint> seriesyearB;
                 /////////////////////////////////////////////////////////////////////////////////////B
                 ///////////////////////////////////////////////////////////////////////////////////
                 String data;// = snapshot.child();
@@ -338,12 +339,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
 
                 double averagesum = 0;
 
-                seriesB = new LineGraphSeries<DataPoint>();
-                seriesminutesB = new LineGraphSeries<DataPoint>();
-                serieshoursB = new LineGraphSeries<DataPoint>();
-                seriesdayB = new LineGraphSeries<DataPoint>();
-                seriesweekB = new LineGraphSeries<DataPoint>();
-                seriesyearB = new LineGraphSeries<DataPoint>();
+                seriesB = new PointsGraphSeries<DataPoint>();
+                seriesminutesB = new PointsGraphSeries<DataPoint>();
+                serieshoursB = new PointsGraphSeries<DataPoint>();
+                seriesdayB = new PointsGraphSeries<DataPoint>();
+                seriesweekB = new PointsGraphSeries<DataPoint>();
+                seriesyearB = new PointsGraphSeries<DataPoint>();
 
                 DataPoint[] aseriesB= new DataPoint[60];
                 DataPoint[] aseriesminutesB= new DataPoint[60];
@@ -1471,12 +1472,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                 LineGraphSeries<DataPoint> seriesweek;
                 LineGraphSeries<DataPoint> seriesyear;
 
-                LineGraphSeries<DataPoint> seriesB;
-                LineGraphSeries<DataPoint> seriesminutesB;
-                LineGraphSeries<DataPoint> serieshoursB;
-                LineGraphSeries<DataPoint> seriesdayB;
-                LineGraphSeries<DataPoint> seriesweekB;
-                LineGraphSeries<DataPoint> seriesyearB;
+                PointsGraphSeries<DataPoint> seriesB;
+                PointsGraphSeries<DataPoint> seriesminutesB;
+                PointsGraphSeries<DataPoint> serieshoursB;
+                PointsGraphSeries<DataPoint> seriesdayB;
+                PointsGraphSeries<DataPoint> seriesweekB;
+                PointsGraphSeries<DataPoint> seriesyearB;
 
                 String data;// = snapshot.child();
                 Double z;// = Double.parseDouble(data);
@@ -1591,12 +1592,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
 
                 double averagesum = 0;
 
-                seriesB = new LineGraphSeries<DataPoint>();
-                seriesminutesB = new LineGraphSeries<DataPoint>();
-                serieshoursB = new LineGraphSeries<DataPoint>();
-                seriesdayB = new LineGraphSeries<DataPoint>();
-                seriesweekB = new LineGraphSeries<DataPoint>();
-                seriesyearB = new LineGraphSeries<DataPoint>();
+                seriesB = new PointsGraphSeries<DataPoint>();
+                seriesminutesB = new PointsGraphSeries<DataPoint>();
+                serieshoursB = new PointsGraphSeries<DataPoint>();
+                seriesdayB = new PointsGraphSeries<DataPoint>();
+                seriesweekB = new PointsGraphSeries<DataPoint>();
+                seriesyearB = new PointsGraphSeries<DataPoint>();
 
                 DataPoint[] aseriesB= new DataPoint[60];
                 DataPoint[] aseriesminutesB= new DataPoint[60];
@@ -3578,10 +3579,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessupersecond.setSize(2);
             graph.addSeries(seriessupersecond);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessupersecond;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessupersecond;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              seconds");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3593,26 +3595,27 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
 
-            if(arraysizeCHECKglobal<60)
-            {
+            //if(arraysizeCHECKglobal<60)
+            //{
                 graph.getViewport().setMinX(0);
                 graph.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeCHECKglobal-60);
-                graph.getViewport().setMaxX(arraysizeCHECKglobal);
-            }
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeCHECKglobal-60);
+            //    graph.getViewport().setMaxX(arraysizeCHECKglobal);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgsecond2.setSize(2);
             graph2.addSeries(seriesgsecond2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgsecond2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesgsecond2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              seconds");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -3626,16 +3629,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             //graph2.getViewport().setMaxX(arraysizeglobalsecond2 + 1);
             //graph2.getViewport().setMaxX(arraysizeglobalsecond2 + 1);
 
-            if(arraysizeglobalsecond2<60)
-            {
+            //if(arraysizeglobalsecond2<60)
+            //{
                 graph2.getViewport().setMinX(0);
                 graph2.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalsecond2-60);
-                graph2.getViewport().setMaxX(arraysizeglobalsecond2);
-            }
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalsecond2-60);
+            //    graph2.getViewport().setMaxX(arraysizeglobalsecond2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -3785,11 +3788,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessuperminute1.setSize(2);
             graph.addSeries(seriessuperminute1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessuperminute1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessuperminute1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              minutes");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3801,26 +3805,27 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute1<10)
-            {
+            //if(arraysizeglobalminute1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalminute1-10);
-                graph.getViewport().setMaxX(arraysizeglobalminute1);
-            }
+                graph.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalminute1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalminute1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgsuperminute2.setSize(2);
             graph2.addSeries(seriesgsuperminute2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgsuperminute2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesgsuperminute2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              minutes");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -3832,16 +3837,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute2<10)
-            {
+            //if(arraysizeglobalminute2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalminute2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalminute2);
-            }
+                graph2.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalminute2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalminute2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -3983,11 +3988,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
-
+            seriesghour1.setSize(2);
             graph.addSeries(seriesghour1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesghour1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesghour1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              hours");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -3999,26 +4004,27 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour1<10)
-            {
+            //if(arraysizeglobalhour1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalhour1-10);
-                graph.getViewport().setMaxX(arraysizeglobalhour1);
-            }
+                graph.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalhour1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalhour1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesghour2.setSize(2);
             graph2.addSeries(seriesghour2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesghour2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesghour2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              hours");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -4030,16 +4036,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour2<10)
-            {
+            //if(arraysizeglobalhour2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalhour2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalhour2);
-            }
+                graph2.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalhour2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalhour2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -4180,10 +4186,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgday1.setSize(2);
             graph.addSeries(seriesgday1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgday1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgday1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              days");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -4195,26 +4202,27 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday1<10)
-            {
+            //if(arraysizeglobalday1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalday1-10);
-                graph.getViewport().setMaxX(arraysizeglobalday1);
-            }
+                graph.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalday1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalday1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgday2.setSize(2);
             graph2.addSeries(seriesgday2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgday2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesgday2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              days");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -4226,16 +4234,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday2<10)
-            {
+            //if(arraysizeglobalday2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalday2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalday2);
-            }
+                graph2.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalday2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalday2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -4377,11 +4385,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgweek1.setSize(2);
             graph.addSeries(seriesgweek1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgweek1;
-            lil.setThickness(2);
-            griLa.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil = seriesgweek1;
+            //lil.setThickness(2);
+            griLa.setHorizontalAxisTitle("              months");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
             griLa.setLabelVerticalWidth(43);
@@ -4392,27 +4401,28 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek1<10)
-            {
+            //if(arraysizeglobalweek1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalweek1-10);
-                graph.getViewport().setMaxX(arraysizeglobalweek1);
-            }
+                graph.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalweek1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalweek1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgweek2.setSize(2);
             graph2.addSeries(seriesgweek2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgweek2;
-            lil2.setThickness(2);
-            griLa2.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil2 = seriesgweek2;
+            //lil2.setThickness(2);
+            griLa2.setHorizontalAxisTitle("              months");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
             griLa2.setLabelVerticalWidth(43);
@@ -4423,16 +4433,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek2<10)
-            {
+            //if(arraysizeglobalweek2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalweek1-10);
-                graph2.getViewport().setMaxX(arraysizeglobalweek1);
-            }
+                graph2.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //   graph2.getViewport().setMinX(arraysizeglobalweek1-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalweek1);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -4575,11 +4585,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgyear1.setSize(2);
             graph.addSeries(seriesgyear1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgyear1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgyear1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              years");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -4591,26 +4602,27 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear1<3)
-            {
-                graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalyear1-3);
-                graph.getViewport().setMaxX(arraysizeglobalyear1);
-            }
+            //if(arraysizeglobalyear1<3)
+            //{
+                graph.getViewport().setMinX(21);
+                graph.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalyear1-3);
+            //    graph.getViewport().setMaxX(arraysizeglobalyear1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgyear2.setSize(2);
             graph2.addSeries(seriesgyear2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgyear2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesgyear2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              years");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -4622,16 +4634,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear2<3)
-            {
-                graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalyear2-3);
-                graph2.getViewport().setMaxX(arraysizeglobalyear2);
-            }
+            //if(arraysizeglobalyear2<3)
+            //{
+                graph2.getViewport().setMinX(21);
+                graph2.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalyear2-3);
+            //    graph2.getViewport().setMaxX(arraysizeglobalyear2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -4791,10 +4803,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessupersecond.setSize(2);
             graph.addSeries(seriessupersecond);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessupersecond;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessupersecond;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              seconds");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -4806,16 +4819,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
 
-            if(arraysizeCHECKglobal<60)
-            {
+            //if(arraysizeCHECKglobal<60)
+            //{
                 graph.getViewport().setMinX(0);
                 graph.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeCHECKglobal-60);
-                graph.getViewport().setMaxX(arraysizeCHECKglobal);
-            }
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeCHECKglobal-60);
+            //    graph.getViewport().setMaxX(arraysizeCHECKglobal);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -4830,11 +4843,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriessuperminute1.setSize(2);
             graph.addSeries(seriessuperminute1);
 
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriessuperminute1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriessuperminute1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              minutes");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -4846,16 +4860,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute1<10)
-            {
+            //if(arraysizeglobalminute1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalminute1-10);
-                graph.getViewport().setMaxX(arraysizeglobalminute1);
-            }
+                graph.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalminute1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalminute1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -4866,11 +4880,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
-
+            seriesghour1.setSize(2);
             graph.addSeries(seriesghour1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesghour1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesghour1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              hours");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -4882,16 +4896,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour1<10)
-            {
+            //if(arraysizeglobalhour1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalhour1-10);
-                graph.getViewport().setMaxX(arraysizeglobalhour1);
-            }
+                graph.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalhour1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalhour1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -4902,10 +4916,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgday1.setSize(2);
             graph.addSeries(seriesgday1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgday1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgday1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              days");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -4917,16 +4932,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday1<10)
-            {
+            //if(arraysizeglobalday1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalday1-10);
-                graph.getViewport().setMaxX(arraysizeglobalday1);
-            }
+                graph.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalday1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalday1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -4937,11 +4952,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitle("         T/H Sensor 1");
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
+            seriesgweek1.setSize(2);
             graph.addSeries(seriesgweek1);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgweek1;
-            lil.setThickness(2);
-            griLa.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil = seriesgweek1;
+            //lil.setThickness(2);
+            griLa.setHorizontalAxisTitle("              months");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
             griLa.setLabelVerticalWidth(43);
@@ -4952,16 +4968,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek1<10)
-            {
+            //if(arraysizeglobalweek1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalweek1-10);
-                graph.getViewport().setMaxX(arraysizeglobalweek1);
-            }
+                graph.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalweek1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalweek1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -4973,10 +4989,10 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.setTitleTextSize(25);
             graph.removeAllSeries();
             graph.addSeries(seriesgyear1);
-
+            seriesgyear1.setSize(2);
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
-            LineGraphSeries lil = seriesgyear1;
-            lil.setThickness(2);
+            //LineGraphSeries lil = seriesgyear1;
+            //lil.setThickness(2);
             griLa.setHorizontalAxisTitle("              years");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
@@ -4988,16 +5004,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear1<3)
-            {
-                graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalyear1-3);
-                graph.getViewport().setMaxX(arraysizeglobalyear1);
-            }
+            //if(arraysizeglobalyear1<3)
+            //{
+                graph.getViewport().setMinX(21);
+                graph.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalyear1-3);
+            //    graph.getViewport().setMaxX(arraysizeglobalyear1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -5016,10 +5032,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgsecond2.setSize(2);
             graph2.addSeries(seriesgsecond2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgsecond2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesgsecond2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              seconds");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -5033,16 +5050,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             //graph2.getViewport().setMaxX(arraysizeglobalsecond2 + 1);
             //graph2.getViewport().setMaxX(arraysizeglobalsecond2 + 1);
 
-            if(arraysizeglobalsecond2<60)
-            {
+            //if(arraysizeglobalsecond2<60)
+            //{
                 graph2.getViewport().setMinX(0);
                 graph2.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalsecond2-60);
-                graph2.getViewport().setMaxX(arraysizeglobalsecond2);
-            }
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalsecond2-60);
+            //    graph2.getViewport().setMaxX(arraysizeglobalsecond2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -5061,10 +5078,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgsuperminute2.setSize(2);
             graph2.addSeries(seriesgsuperminute2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgsuperminute2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesgsuperminute2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              minutes");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -5076,16 +5094,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute2<10)
-            {
+            //if(arraysizeglobalminute2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalminute2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalminute2);
-            }
+                graph2.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalminute2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalminute2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -5099,10 +5117,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesghour2.setSize(2);
             graph2.addSeries(seriesghour2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesghour2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesghour2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              hours");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -5114,16 +5133,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour2<10)
-            {
+            //if(arraysizeglobalhour2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalhour2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalhour2);
-            }
+                graph2.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalhour2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalhour2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -5136,10 +5155,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgday2.setSize(2);
             graph2.addSeries(seriesgday2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgday2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesgday2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              days");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -5151,16 +5171,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday2<10)
-            {
+            //if(arraysizeglobalday2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalday2-10);
-                graph2.getViewport().setMaxX(arraysizeglobalday2);
-            }
+                graph2.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalday2-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalday2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -5172,11 +5192,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgweek2.setSize(2);
             graph2.addSeries(seriesgweek2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgweek2;
-            lil2.setThickness(2);
-            griLa2.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil2 = seriesgweek2;
+            //lil2.setThickness(2);
+            griLa2.setHorizontalAxisTitle("              months");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
             griLa2.setLabelVerticalWidth(43);
@@ -5187,16 +5208,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek2<10)
-            {
+            //if(arraysizeglobalweek2<10)
+            //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalweek1-10);
-                graph2.getViewport().setMaxX(arraysizeglobalweek1);
-            }
+                graph2.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalweek1-10);
+            //    graph2.getViewport().setMaxX(arraysizeglobalweek1);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 
@@ -5208,10 +5229,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.setTitle("         T/H Sensor 2");
             graph2.setTitleTextSize(25);
             graph2.removeAllSeries();
+            seriesgyear2.setSize(2);
             graph2.addSeries(seriesgyear2);
             GridLabelRenderer griLa2 = graph2.getGridLabelRenderer();
-            LineGraphSeries lil2 = seriesgyear2;
-            lil2.setThickness(2);
+            //LineGraphSeries lil2 = seriesgyear2;
+            //lil2.setThickness(2);
             griLa2.setHorizontalAxisTitle("              years");
             griLa2.setHorizontalAxisTitleTextSize(20);
             griLa2.setVerticalAxisTitle("%");
@@ -5223,16 +5245,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph2.getViewport().setXAxisBoundsManual(true);
             graph2.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear2<3)
-            {
-                graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph2.getViewport().setMinX(arraysizeglobalyear2-3);
-                graph2.getViewport().setMaxX(arraysizeglobalyear2);
-            }
+            //if(arraysizeglobalyear2<3)
+            //{
+                graph2.getViewport().setMinX(21);
+                graph2.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph2.getViewport().setMinX(arraysizeglobalyear2-3);
+            //    graph2.getViewport().setMaxX(arraysizeglobalyear2);
+            //}
             graph2.getViewport().setMinY(0);
             graph2.getViewport().setMaxY(max + .2*max);
 

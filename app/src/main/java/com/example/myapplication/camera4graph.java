@@ -163,6 +163,9 @@ public class camera4graph extends AppCompatActivity implements AdapterView.OnIte
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
                 PointsGraphSeries<DataPoint> series;
                 PointsGraphSeries<DataPoint> seriesminutes;
                 PointsGraphSeries<DataPoint> serieshours;
