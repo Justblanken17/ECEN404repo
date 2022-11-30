@@ -124,7 +124,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
         spinner.setAdapter(adapter);
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Oxygen").child("1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Oxygen").child("1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 4");
@@ -399,7 +399,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                         ////
                                         //buttonreferesh.setText(String.valueOf(secondssize));
                                     }
-                                    mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum / (secondssize + 1); //iterator-1
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //iterator-1
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                     //minutiteratorB = minutiteratorB + 1;
@@ -414,6 +414,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                         //buttonreferesh.setText(String.valueOf(secondssize));
                                     }
                                     mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum / 60; //iterator-1
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator];
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                 }
@@ -490,8 +491,8 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
 
                                 //seriesB.resetData(aserieshoursB);
                                 hourwindow[hourtimeB[iterator-1]] = hourtimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
-
-
+                                hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
+                                hourconcentrationAVG[hourtimeB[iterator]] = concentration[iterator];//ERROR
                                 if (minutessize < 60) {               //iterator - (secondssize)
                                     for (int i = 60 - (minutessize); i < 60; i++)        ////
                                     {                                                         ////
@@ -504,8 +505,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                         minutewindow[i] = -1;
                                         mintuteconcentrationAVG[i] = 0;
                                     }
-
-                                    hourconcentrationAVG[hourtimeB[iterator-1]] = averagesum / minutessize; //iterator-1
+                                    if(minutessize == 0)                                               /////////
+                                    {
+                                        hourconcentrationAVG[hourtimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+                                    else {
+                                        hourconcentrationAVG[hourtimeB[iterator - 1]] = averagesum / minutessize; //iterator-1
+                                    }
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
@@ -537,7 +543,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                     //buttonreferesh.setText(String.valueOf(secondssize));j
                                 }
                                 hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
-                                hourconcentrationAVG[hourtimeB[iterator]] = averagesum/minutessize;
+                                if(minutessize == 0)                                               /////////
+                                {
+                                    hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                                }
                                 //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                 //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                                 averagesum = 0;
@@ -558,7 +570,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                 //buttonreferesh.setText(String.valueOf(secondssize));j
                             }
                             hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
-                            hourconcentrationAVG[hourtimeB[iterator]] = averagesum/minutessize;
+                            if(minutessize == 0)                                               /////////
+                            {
+                                hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                            }
                             //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                             averagesum = 0;
 
@@ -579,7 +597,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                             //buttonreferesh.setText(String.valueOf(secondssize));
                         }
                         hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
-                        hourconcentrationAVG[hourtimeB[iterator]] = averagesum/minutessize;
+                        if(minutessize == 0)                                               /////////
+                        {
+                            hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                        }
                         //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
                         //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
                         averagesum = 0;
@@ -603,6 +627,8 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
 
                                 //seriesB.resetData(aserieshoursB);
                                 daywindow[daytimeB[iterator-1]] = daytimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
+                                daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                                dayconcenctrationAVG[daytimeB[iterator]] = concentration[iterator];
 
                                 //GO BACK
                                 if (hourssize < 24) {               //iterator - (secondssize)
@@ -617,8 +643,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                         hourwindow[i] = -1;
                                         hourconcentrationAVG[i] = 0;
                                     }
-
-                                    dayconcenctrationAVG[daytimeB[iterator-1]] = averagesum / hourssize; //iterator-1
+                                    if(hourssize == 0)                                               /////////
+                                    {
+                                        dayconcenctrationAVG[daytimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+                                    else {
+                                        dayconcenctrationAVG[daytimeB[iterator - 1]] = averagesum / hourssize; //iterator-1
+                                    }
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
@@ -650,7 +681,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                     //buttonreferesh.setText(String.valueOf(secondssize));j
                                 }
                                 daywindow[daytimeB[iterator]] = daytimeB[iterator];
-                                dayconcenctrationAVG[daytimeB[iterator]] = averagesum/hourssize;
+                                if(hourssize == 0)                                               /////////
+                                {
+                                    dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                                }
                                 //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                 //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                                 averagesum = 0;
@@ -672,7 +709,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                 //buttonreferesh.setText(String.valueOf(secondssize));j
                             }
                             daywindow[daytimeB[iterator]] = daytimeB[iterator];
-                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum/hourssize;
+                            if(hourssize == 0)                                               /////////
+                            {
+                                dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                            }
                             //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                             averagesum = 0;
 
@@ -696,7 +739,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                             //buttonreferesh.setText(String.valueOf(secondssize));
                         }
                         daywindow[daytimeB[iterator]] = daytimeB[iterator];
-                        dayconcenctrationAVG[daytimeB[iterator]] = averagesum/hourssize;
+                        if(hourssize == 0)                                               /////////
+                        {
+                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                        }
                         //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
                         //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
                         averagesum = 0;
@@ -704,8 +753,8 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                         //buttonback.setText(String.valueOf(hourconcentrationAVG[11]));
                     }
                     //checkpoint//849
-                    buttonreferesh.setText(String.valueOf(daywindow[3]));
-                    buttonback.setText(String.valueOf(daywindow[2]));
+                    //buttonreferesh.setText(String.valueOf(daywindow[3]));
+                    //buttonback.setText(String.valueOf(daywindow[2]));
 
                     //////////////////////////////////////////////////////////////////////////////////
                     //////////    day/month
@@ -721,7 +770,8 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
 
                                 //seriesB.resetData(aserieshoursB);
                                 monthwindow[monthtimeB[iterator-1]] = monthtimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
-
+                                monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                                weekconcenctrationAVG[monthtimeB[iterator]] = concentration[iterator];
                                 //CHANGE STUFF OVER HERE
                                 if (dayssize < daytimeB[iterator - 1]) {               //iterator - (secondssize)
                                     for (int i = daytimeB[iterator - 1] - (dayssize); i < daytimeB[iterator - 1] + 1; i++)        ////
@@ -731,12 +781,17 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                         ////
                                         //buttonreferesh.setText(String.valueOf(secondssize));
                                     }
-                                    for (int i = 1; i < daytimeB[iterator - 1] + 1; i++) {
+                                    for (int i = 2; i < daytimeB[iterator - 1] + 1; i++) {
                                         daywindow[i] = -1;
                                         dayconcenctrationAVG[i] = 0;
                                     }
-
-                                    weekconcenctrationAVG[monthtimeB[iterator-1]] = averagesum / dayssize; //iterator-1 COME BACK HERE!!!!!!
+                                    if(dayssize == 0)                                               /////////
+                                    {
+                                        weekconcenctrationAVG[monthtimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+                                    else {
+                                        weekconcenctrationAVG[monthtimeB[iterator - 1]] = averagesum / dayssize; //iterator-1 COME BACK HERE!!!!!!
+                                    }
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
@@ -768,7 +823,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                     //buttonreferesh.setText(String.valueOf(secondssize));j
                                 }
                                 monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
-                                weekconcenctrationAVG[monthtimeB[iterator]] = averagesum/dayssize;
+                                if(dayssize == 0)                                               /////////
+                                {
+                                    weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                                }
                                 //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                 //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                                 averagesum = 0;
@@ -790,7 +851,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                 //buttonreferesh.setText(String.valueOf(secondssize));j
                             }
                             monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
-                            weekconcenctrationAVG[monthtimeB[iterator]] = averagesum/dayssize;
+                            if(dayssize == 0)                                               /////////
+                            {
+                                weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                            }
                             //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                             averagesum = 0;
 
@@ -812,7 +879,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                             //buttonreferesh.setText(String.valueOf(secondssize));
                         }
                         monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
-                        weekconcenctrationAVG[monthtimeB[iterator]] = averagesum/dayssize;
+                        if(dayssize == 0)                                               /////////
+                        {
+                            weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                        }
                         //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
                         //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
                         averagesum = 0;
@@ -846,12 +919,17 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                         ////
                                         //buttonreferesh.setText(String.valueOf(secondssize));
                                     }
-                                    for (int i = 1; i < monthtimeB[iterator - 1] + 1; i++) {
+                                    for (int i = 2; i < monthtimeB[iterator - 1] + 1; i++) {
                                         monthwindow[i] = -1;
                                         weekconcenctrationAVG[i] = 0;
                                     }
-
-                                    yearsconcentrationAVG[yeartimeB[iterator-1]-2021] = averagesum / monthssize; //iterator-1 COME BACK HERE!!!!!!
+                                    if(monthssize == 0)                                               /////////
+                                    {
+                                        yearsconcentrationAVG[yeartimeB[iterator-1]-2021]  = averagesum;     /////////////
+                                    }
+                                    else {
+                                        yearsconcentrationAVG[yeartimeB[iterator - 1] - 2021] = averagesum / monthssize; //iterator-1 COME BACK HERE!!!!!!
+                                    }
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
@@ -883,7 +961,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                     //buttonreferesh.setText(String.valueOf(secondssize));j
                                 }
                                 yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
-                                yearsconcentrationAVG[yeartimeB[iterator]-2021] = averagesum/monthssize;
+                                if(monthssize == 0)                                               /////////
+                                {
+                                    yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                                }
+                                else {
+                                    yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                                }
                                 //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
                                 //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                                 averagesum = 0;
@@ -905,7 +989,13 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                                 //buttonreferesh.setText(String.valueOf(secondssize));j
                             }
                             yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
-                            yearsconcentrationAVG[yeartimeB[iterator]-2021] = averagesum/monthssize;
+                            if(monthssize == 0)                                               /////////
+                            {
+                                yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                            }
+                            else {
+                                yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                            }
                             //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
                             averagesum = 0;
 
@@ -927,7 +1017,26 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
                             //buttonreferesh.setText(String.valueOf(secondssize));
                         }
                         yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
-                        yearsconcentrationAVG[yeartimeB[iterator]-2021] = averagesum/monthssize;
+                        if(monthssize == 0)                                               /////////
+                        {
+                            yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                        }
+                        else {
+                            yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                        }
+
+                        if(iterator>0)
+                        {
+                            if(monthtimeB[iterator-1] != monthtimeB[iterator])
+                            {
+                                yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / (monthssize+1);
+                                //buttonreferesh.setText(String.valueOf(averagesum));
+                                //buttonreferesh.setText(String.valueOf(averagesum));
+                                //buttonback.setText(String.valueOf(weekconcenctrationAVG[12]));
+                                //buttonback.setText(String.valueOf(yearsconcentrationAVG[1]));
+
+                            }
+                        }
                         //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
                         //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
                         averagesum = 0;

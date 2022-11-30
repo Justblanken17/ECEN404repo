@@ -52,11 +52,11 @@ public class Camera1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera1);
         filepathhappen2array[0] = "";
-        image1 = (ImageView)findViewById(R.id.imageView);
+        image1 = (ImageView)findViewById(R.id.imageView);    //access picture from imageview
         //image2 = (ImageView)findViewById(R.id.imageView16);
         //image3 = (ImageView)findViewById(R.id.imageView17);
         //image4 = (ImageView)findViewById(R.id.imageView18);
-        Button buttonreferesh = (Button) findViewById(R.id.buttonrefreshimage2);
+        Button buttonreferesh = (Button) findViewById(R.id.buttonrefreshimage2); //creates 4 buttons
         Button buttonback = (Button) findViewById(R.id.buttonbsckimage2);
         Button buttonhome = (Button) findViewById(R.id.Homebutton10);
         Button buttongraph = (Button) findViewById(R.id.graphthing);
@@ -67,7 +67,7 @@ public class Camera1 extends AppCompatActivity {
         filepathhappen2 = "";
         //saveinhere = "";
 
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 1"); //
 
         //Button buttoncamera1 = (Button) findViewById(R.id.buttoncamera1);
         //Button buttoncamera2 = (Button) findViewById(R.id.buttoncamera2);
@@ -103,9 +103,9 @@ public class Camera1 extends AppCompatActivity {
 
 
         //lStorage = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 1/Images");
-        lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 1");
+        lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 1"); //path to image storage
         filepathhappen2 = "";
-        lStorage2.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+        lStorage2.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {//used to list values in the section
 
             @SuppressLint("SetTextI18n")
             @Override
@@ -115,19 +115,19 @@ public class Camera1 extends AppCompatActivity {
                 String conversion2 = "";
                 String value = "";
                 char newvalue = ' ';
-                int sanitycheck = 0;
-                int placeholder = 6;
+                int sanitycheck = 0; //used for sorting
+                int placeholder = 6;//used as index to chack the numbering
                 int binaryevalueation = 0;
-                for (StorageReference item : listResult.getItems())
+                for (StorageReference item : listResult.getItems()) //iterates through list of images
                 {
-                    value = item.getName();
-                    if(value.length()>placeholder)
+                    value = item.getName(); //gets an image at the current iteration
+                    if(value.length()>placeholder) //checks if image actually has numbering
                     {
 
                         binaryevalueation = 1;
 
-                        while(value.charAt(placeholder) == '0' || value.charAt(placeholder) == '1' || value.charAt(placeholder) == '2' || value.charAt(placeholder) == '3' || value.charAt(placeholder) == '4' || value.charAt(placeholder) == '5' || value.charAt(placeholder) == '6' || value.charAt(placeholder) == '7' || value.charAt(placeholder) == '8' || value.charAt(placeholder) == '9') {
-                            conversion1 = conversion1 + value.charAt(placeholder);
+                        while(value.charAt(placeholder) == '0' || value.charAt(placeholder) == '1' || value.charAt(placeholder) == '2' || value.charAt(placeholder) == '3' || value.charAt(placeholder) == '4' || value.charAt(placeholder) == '5' || value.charAt(placeholder) == '6' || value.charAt(placeholder) == '7' || value.charAt(placeholder) == '8' || value.charAt(placeholder) == '9') { //checks if numbering is in place
+                            conversion1 = conversion1 + value.charAt(placeholder); //appending string to include value of number
                             if (value.length() > placeholder + 1) {
                                 placeholder = placeholder + 1;
 
@@ -135,12 +135,12 @@ public class Camera1 extends AppCompatActivity {
                         }
                         if(!conversion1.equals("")) {
                             if (Integer.valueOf(conversion1) > sanitycheck) {
-                                sanitycheck = Integer.valueOf(conversion1);
+                                sanitycheck = Integer.valueOf(conversion1); //get numerical value of string
                             }
                         }
 
                         //buttonback.setText(String.valueOf(sanitycheck));
-                        conversion1 = "";
+                        conversion1 = ""; //resetting values
                         placeholder = 6;
 
                     }
@@ -151,17 +151,17 @@ public class Camera1 extends AppCompatActivity {
                     //newvalue = value.charAt(6);
 
                     //buttonhome.setText(Character.toString(newvalue));
-                    filepathappen = item.getName();
+                    filepathappen = item.getName(); //gets name of the file
                     if(binaryevalueation == 1) {
-                        filepathhappen2 = "Images" + String.valueOf(sanitycheck) ;
+                        filepathhappen2 = "Images" + String.valueOf(sanitycheck) ; // appends string value of number
 
                     }
                     else
                     {
-                        filepathhappen2 = "Images";
+                        filepathhappen2 = "Images"; // if no number available
                     }
 
-                    saveinHere(filepathhappen2);
+                    saveinHere(filepathhappen2); //putting value in function in code, no longer code in use
                     filepathhappen2array[0] = filepathhappen2;
                     //buttonback.setText(filepathhappen2array[0]);
                 }
@@ -170,22 +170,22 @@ public class Camera1 extends AppCompatActivity {
                 //buttonreferesh.setText(String.valueOf(filepathappen));
                 filepath = filepathhappen2;
 
-                filepath2 = "MCU 1/Camera 1/"+ filepathhappen2;
+                filepath2 = "MCU 1/Camera 1/"+ filepathhappen2; //appending value to filepath
                 //buttonback.setText(filepathhappen2);
                 //stateb.setText(filepath2);
                 //buttonback.setText(filepath2);
-                lStorage = FirebaseStorage.getInstance().getReference().child(filepath2);
+                lStorage = FirebaseStorage.getInstance().getReference().child(filepath2); //acessing value in filepath
                 filepath = "";
                 //lStorage2 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 2/Images");
                 //lStorage3 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 3/Images");
                 //lStorage4 = FirebaseStorage.getInstance().getReference().child("MCU 1/Camera 4/Images");
                 try {
-                    final File lclfile = File.createTempFile("Images", "jpg");
-                    lStorage.getFile(lclfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    final File lclfile = File.createTempFile("Images", "jpg"); //creates a file with zero biytes
+                    lStorage.getFile(lclfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() { //activity done if file is gotten successfully
                         @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            Bitmap bitmap = BitmapFactory.decodeFile(lclfile.getAbsolutePath()); //getAbsolutePath
-                            image1.setImageBitmap(bitmap);
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) { //done if getfile is successfull
+                            Bitmap bitmap = BitmapFactory.decodeFile(lclfile.getAbsolutePath()); //creating an image from a matrix of dots that correspons to a pixel
+                            image1.setImageBitmap(bitmap); //value of image is inserted on image variable
                             //image2.setImageBitmap(bitmap);
                             //image3.setImageBitmap(bitmap);
                             //image4.setImageBitmap(bitmap);
@@ -210,11 +210,11 @@ public class Camera1 extends AppCompatActivity {
         });
 
 
-        rootDatabaseref.addValueEventListener(new ValueEventListener() {
+        rootDatabaseref.addValueEventListener(new ValueEventListener() { //used for looking at changes in database
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if((snapshot.getChildrenCount()== 0)) {
+                if((snapshot.getChildrenCount()== 0)) { //error handlings, making sure list isnt empty
                     return;
                 }
                 int t = 0;
@@ -225,27 +225,27 @@ public class Camera1 extends AppCompatActivity {
                 int x;
                 x = -1;
                 int arraysize = 0;
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                for(DataSnapshot snapshot1 : snapshot.getChildren()) //getting size of array with iteration
                 {
                     arraysize = arraysize + 1;
                 }
                 int[] time = new int[arraysize];
-                double[] concentration = new double[arraysize];
+                double[] concentration = new double[arraysize]; // array to carry value of concentration
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
                     time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString()); //put values from database into array
                     iterator = iterator + 1;
                 }
                 t = time[0];
-                c = concentration[arraysize-1];
-                if(c == 0)
+                c = concentration[arraysize-1]; //value of conentration is included
+                if(c == 0) //if 0, means nitrogeen defficient
                 {
-                    stateb.setText("Nitrogen Deficient - Check Sensors");
+                    stateb.setText("Nitrogen Deficient - Check Sensors"); // changes text accordingly
                 }
-                if(c == 1)
+                if(c == 1) // 1, healthy
                 {
-                    stateb.setText("Healthy");
+                    stateb.setText("Healthy"); //set text to be healthy
                 }
                 //stateb.setText(String.valueOf(c));
                 //GraphView graph = (GraphView) findViewById(R.id.graph1);
@@ -256,7 +256,7 @@ public class Camera1 extends AppCompatActivity {
                 //}
                 //graph.addSeries(series);
                 //photonumber = photonumber + 1
-                stuff();
+                stuff(); //go to function to update pictures
 
             }
 
@@ -271,6 +271,7 @@ public class Camera1 extends AppCompatActivity {
     }
 
       public void stuff(){
+        // section used for updating camera pictures, functionally the same as main body except without call in stuff()
           String urlstuff = "MCU 1/Camera 1/Images";
           urlstuff = urlstuff + String.valueOf(photonumber);
           Button buttonback = (Button) findViewById(R.id.buttonbsckimage2);
@@ -280,7 +281,7 @@ public class Camera1 extends AppCompatActivity {
 
               @Override
               public void onSuccess(ListResult listResult) {
-
+                    //used fo
                   String conversion1 = "";
                   String conversion2 = "";
                   String value = "";
@@ -325,13 +326,14 @@ public class Camera1 extends AppCompatActivity {
                       filepathappen = item.getName();
                       if(binaryevaluation == 1)
                       {
-                          filepathhappen2 = "Images" + String.valueOf(sanitycheck);
+                          filepathhappen2 = "Images" + String.valueOf(sanitycheck) + ".jpg"; //change
 
                       }
                       else
                       {
                           filepathhappen2 = "Images";
                       }
+
                       //filepathhappen2 = "spinach" + String.valueOf(sanitycheck) + ".jpg";
                       saveinHere(filepathhappen2);
                       filepathhappen2array[0] = filepathhappen2;

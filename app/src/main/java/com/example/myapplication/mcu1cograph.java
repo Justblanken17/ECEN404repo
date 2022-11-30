@@ -125,7 +125,7 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
         spinner.setAdapter(adapter);
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Carbon Monoxide").child("1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Monoxide").child("Sensor 1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Monoxide").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Monoxide").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Monoxide").child("Sensor 4");
@@ -313,13 +313,13 @@ public class mcu1cograph extends AppCompatActivity implements AdapterView.OnItem
                     int monthssize = 0;
                     int yearssize = 0;
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());
-                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString()); //////////////////////////////////
-                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());     /////////////////////////////////
-                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());       /////////////////////////////////
-                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());   /////////////////////////////////
-                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString()); //////////////////////////////////
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());     /////////////////////////////////
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());       /////////////////////////////////
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());   /////////////////////////////////
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];

@@ -30,20 +30,21 @@ public class mcu1co2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_mcu1co2);
-        TextView Co21 = findViewById(R.id.CO21);
-        TextView Co22 = findViewById(R.id.CO22);
-        TextView Co23 = findViewById(R.id.CO23);
-        TextView Co24 = findViewById(R.id.CO24);
+        TextView Co21 = findViewById(R.id.CO21); //Utilizing a textbox
+        TextView Co22 = findViewById(R.id.CO22);  //Utilizing a textbox
+        TextView Co23 = findViewById(R.id.CO23);   //Utilizing a textbox
+        TextView Co24 = findViewById(R.id.CO24);  //Utilizing a textbox
         //TextView warning = findViewById(R.id.testing);
-        Button buttonreferesh = (Button) findViewById(R.id.refreshmcu1co2);
-        Button buttonback = (Button) findViewById(R.id.backmcu1co2);
-        Button buttongraph = (Button) findViewById(R.id.graphmcuco2);
-        Button buttonhome = (Button) findViewById(R.id.homebutton);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Carbon Dioxide").child("1");
+        Button buttonreferesh = (Button) findViewById(R.id.refreshmcu1co2); //Utilizing a button
+        Button buttonback = (Button) findViewById(R.id.backmcu1co2);        //Utilizing a button
+        Button buttongraph = (Button) findViewById(R.id.graphmcuco2);       //Utilizing a button
+        Button buttonhome = (Button) findViewById(R.id.homebutton);         //Utilizing a button
+        //next 4 lines create reference that access information at a specific portion on the database
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Carbon Dioxide").child("1"); //("MCU Test").child("Carbon Dioxide").child("1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");
-
+        //next 16 lines are for setting action to occur when button is pressed, this buttons direct to a speficed method
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
             public void onClick(View view) {
@@ -68,11 +69,12 @@ public class mcu1co2 extends AppCompatActivity {
                 openActivityhome();
             }
         });
+        //.addValueEventlistener acts on changes detected in the specified portion of the database
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             //@SuppressLint("SetTextI18n")
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if((snapshot.getChildrenCount()== 0)) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) { //actions that occur on a datachange
+                if((snapshot.getChildrenCount()== 0)) { //error handling; exits the program if the area accessed is empty
                     return;
                 }
                 int t = 0;
@@ -83,31 +85,32 @@ public class mcu1co2 extends AppCompatActivity {
                 int x;
                 x = -1;
                 int arraysize = 0;
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                for(DataSnapshot snapshot1 : snapshot.getChildren()) //iterating through list of data incase
                 {
                     arraysize = arraysize + 1;
                 }
-                int[] time = new int[arraysize];
-                double[] concentration = new double[arraysize];
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                int[] time = new int[arraysize]; //used to iterate through second values, not necessary for this activity
+                double[] concentration = new double[arraysize]; //array for list of conenctration values
+                for(DataSnapshot snapshot1 : snapshot.getChildren())  //iterates through data, and puts concentration, second values in corresponding arrray
                 {
-                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds                 accessing info from seconds
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration        accessing info from concentration
                     iterator = iterator + 1;
                 }
                 t = time[0];
-                c = concentration[arraysize-1];
-                Co21.setText(String.valueOf(c));
+                c = concentration[arraysize-1]; //gets value of most recent concentration value
+                Co21.setText(String.valueOf(c)); //sets text to that value
                 //String data = snapshot.getValue().toString();
                 //double z = Double.parseDouble(data);
                 //flowv1.setText(String.valueOf(z));
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) { //function error handling
 
             }
         });
+        //rootDatabaseref2-4.addValue do the same function
         rootDatabaseref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -219,10 +222,12 @@ public class mcu1co2 extends AppCompatActivity {
 
 
     }
+    // opens mcu1co2 activity
     public void openActivityrefresh(){
         Intent intent = new Intent(this, mcu1co2.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);
     }
+
     public void openActivitymain(){
         Intent intent = new Intent(this, Recycleviewtest.class); //causes the subordinate activity file to be opened, redirects to new layout
         startActivity(intent);

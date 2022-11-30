@@ -33,7 +33,7 @@ public class mcu1oxygen extends AppCompatActivity {
         Button buttonback = (Button) findViewById(R.id.backmcu3);
         Button buttongraph = (Button) findViewById(R.id.graphmcu);
         Button buttonhome = (Button) findViewById(R.id.homebutton4);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Oxygen").child("1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Oxygen").child("1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 2");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 4");
