@@ -164,8 +164,8 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
         spinner.setOnItemSelectedListener(this);
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("Humidity 1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Temperature").child("1");
-        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("Humidity 1");
-        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Temperature").child("1");
+        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Humidity").child("Humidity 1");
+        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Temperature").child("1");
         DatabaseReference rootDatabaseref5 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Humidity 2");
         DatabaseReference rootDatabaseref6 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Humidity 3");
         //DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");
@@ -6676,7 +6676,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             //if(arraysizeglobalweek1<10)
             //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(12);
+                graph.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -6708,7 +6708,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             //if(arraysizeglobalweek2<10)
             //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(12);
+                graph2.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -7247,7 +7247,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             //if(arraysizeglobalweek1<10)
             //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(12);
+                graph.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -7487,7 +7487,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             //if(arraysizeglobalweek2<10)
             //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(12);
+                graph2.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -7727,7 +7727,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             //if(arraysizeglobalweek3<10)
             //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(31);
+                graph3.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -7967,7 +7967,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             //if(arraysizeglobalweek4<10)
             //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(12);
+                graph4.getViewport().setMaxX(13);
             //}
             //else
             //{

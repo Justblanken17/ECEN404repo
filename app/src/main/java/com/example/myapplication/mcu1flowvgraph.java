@@ -126,8 +126,8 @@ public class mcu1flowvgraph extends AppCompatActivity implements AdapterView.OnI
         spinner.setOnItemSelectedListener(this);
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Flow").child("1"); //.child("MCU Test").child("Water Flow").child("1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Level").child("1");
-        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Flow").child("1"); //.child("MCU Test").child("Water Flow").child("1");
-        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Level").child("1");
+        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Water Flow").child("1"); //.child("MCU Test").child("Water Flow").child("1");
+        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Water Level").child("1");
 
         //DatabaseReference rootDatabaserefmin = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1");
         //DatabaseReference rootDatabaserefmin2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 2");
@@ -5809,7 +5809,7 @@ public class mcu1flowvgraph extends AppCompatActivity implements AdapterView.OnI
             //if(arraysizeglobalweek1<10)
             //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(12);
+                graph.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -5841,7 +5841,7 @@ public class mcu1flowvgraph extends AppCompatActivity implements AdapterView.OnI
             //if(arraysizeglobalweek2<10)
             //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(12);
+                graph2.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -6259,7 +6259,7 @@ public class mcu1flowvgraph extends AppCompatActivity implements AdapterView.OnI
             //if(arraysizeglobalweek1<10)
             //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(12);
+                graph.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -6500,7 +6500,7 @@ public class mcu1flowvgraph extends AppCompatActivity implements AdapterView.OnI
             //if(arraysizeglobalweek2<10)
             //{
                 graph2.getViewport().setMinX(0);
-                graph2.getViewport().setMaxX(12);
+                graph2.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -6729,7 +6729,7 @@ public class mcu1flowvgraph extends AppCompatActivity implements AdapterView.OnI
             //if(arraysizeglobalweek1<10)
             //{
             graph.getViewport().setMinX(0);
-            graph.getViewport().setMaxX(12);
+            graph.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -6970,7 +6970,7 @@ public class mcu1flowvgraph extends AppCompatActivity implements AdapterView.OnI
             //if(arraysizeglobalweek2<10)
             //{
             graph2.getViewport().setMinX(0);
-            graph2.getViewport().setMaxX(12);
+            graph2.getViewport().setMaxX(13);
             //}
             //else
             //{

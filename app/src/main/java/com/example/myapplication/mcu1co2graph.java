@@ -125,7 +125,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
         spinner.setSelection(0,false); //default value on spinner (seconds)
         spinner.setOnItemSelectedListener(this); //triggers action when item is selected
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Carbon Dioxide").child("1"); // Accesses portion of database        "MCU Test").child("Carbon Dioxide").child("1");                                 .child("MCU Test").child("Carbon Dioxide").child("1");
-        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Carbon Dioxide").child("1");//Accesses portion of database
+        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Carbon Dioxide").child("1");//Accesses portion of database
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 3");//Accesses portion of database
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");//Access portion of database
         //these are seconds, create an array for j
@@ -462,7 +462,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                             }
                         }
                         //ENDING STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                        //end of checking if you passed the iteration
+                        //end of checking if you passed the iteration greater then zero
                         else
                         {
                             secondwindow[time[iterator]] = time[iterator];   //simpyi appending the second time window
@@ -481,7 +481,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                             averagesum = 0;
                             //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));
                         }
-                    }
+                    }//if i isnt greater then zero
                     else
                     {
                         secondwindow[time[iterator]] = time[iterator];      //appending second window and concentration
@@ -504,7 +504,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[59]));
                     ///////////////CHANGE  TO MINUTES/HOURS
 
-                    if(minutetimeB[iterator] == 0) //checks if time index is 0, indicates window has rese
+                    if(minutetimeB[iterator] == 0) //checks if time index is 0, indicates window has reset
                     {
                         if(iterator>0) {//iterator > 0 &&
                             if ( minutetimeB[iterator - 1] == 59) //makes sure last point was 59 and your higher then 0
@@ -543,7 +543,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                                     //minutiteratorB = minutiteratorB + 1;
 
 
-                                } else {
+                                } else { //size isnt greater then zero
                                     for (int i = 0; i < 60; i++)        ////averaging values again, here its known that there a 60 entries inside
                                     {                                                         ////
 
@@ -556,7 +556,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                                     averagesum = 0;
                                     //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
                                 }
-                            }
+                            }//else when your not on an edge case
                             else
                             {
                                 for(int i = 0; i < 60; i++)        ////60 - (minutessize)    60
@@ -606,11 +606,11 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
 
                             //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
                         }
-                    }
+                    }//if iterator isnt equal to zero
                     ///////////////CHANGE  TO MINUTES/HOURS
 
                     else
-                    {
+                    {//
                         //secondwindow[time[iterator]] = time[iterator];
                         //secconcentrationAVG[time[iterator]] = concentration[iterator];
                         for(int i = 0; i < 60; i++)        ////averagin the value again
@@ -683,11 +683,11 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                                     //minutiteratorB = minutiteratorB + 1;
 
 
-                                } else {            //computes average if it was a full window
+                                } else {            //computes average if it wasnt taken at full window
                                     for (int i = 0; i < 24; i++)        ////
                                     {                                                         ////
 
-                                        averagesum = averagesum + hourconcentrationAVG[i];           ////averaging up hours
+                                        averagesum = averagesum + hourconcentrationAVG[i];           ////averaging up hours over the entire window
                                         ////
                                         //buttonreferesh.setText(String.valueOf(secondssize));
                                     }
@@ -719,9 +719,9 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                                 averagesum = 0;
 
                             }
-                        }
+                        } //if iterator isnt greater then zero
 
-                        else
+                        else//
                         {
 
                             for(int i = 0; i < hourwindow.length; i++)        ////////checking if i is not greater then zero
@@ -771,7 +771,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
                             dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////getting concentration value from average
                         }
                         else {
-                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize; //average value
                         }
                         //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
                         //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
@@ -4738,7 +4738,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             //if(arraysizeglobalyear3<3)
             //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(31);
+                graph3.getViewport().setMaxX(12);
             //}
             //else
             //{
@@ -4924,7 +4924,7 @@ public class mcu1co2graph extends AppCompatActivity implements AdapterView.OnIte
             //if(arraysizeglobalweek4<10)
             //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(12);
+                graph4.getViewport().setMaxX(13);
             //}
             //else
             //{

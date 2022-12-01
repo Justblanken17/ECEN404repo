@@ -31,8 +31,8 @@ public class mcu1flowv extends AppCompatActivity {
         Button buttonhome = (Button) findViewById(R.id.homebutton6);
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Flow").child("1"); //ce().child("MCU Test").child("Water Flow").child("1")
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Level").child("1");
-        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Flow").child("1"); //ce().child("MCU Test").child("Water Flow").child("1")
-        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Level").child("1");
+        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Water Flow").child("1"); //ce().child("MCU Test").child("Water Flow").child("1")
+        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Water Level").child("1");
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
             public void onClick(View view) {

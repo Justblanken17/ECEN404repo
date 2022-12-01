@@ -124,7 +124,7 @@ public class camera3graph extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 3");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Camera States").child("State 3");
         //DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Level").child("Sensor 1");
 
         //DatabaseReference rootDatabaserefmin = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1");
@@ -311,13 +311,13 @@ public class camera3graph extends AppCompatActivity implements AdapterView.OnIte
                     int monthssize = 0;
                     int yearssize = 0;
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
-                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString());            //6-Minute
-                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());                //5-Hour
-                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());                  //4-Day
-                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());              //3-Month
-                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString());            //6-Minute
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());                //5-Hour
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());                  //4-Day
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());              //3-Month
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());
 
 
                     if(concentration[iterator] > max)
@@ -1520,7 +1520,7 @@ public class camera3graph extends AppCompatActivity implements AdapterView.OnIte
             //if(arraysizeglobalweek1<10)
             //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(12);
+                graph.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -1777,7 +1777,7 @@ public class camera3graph extends AppCompatActivity implements AdapterView.OnIte
             //if(arraysizeglobalweek1<10)
             //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(12);
+                graph.getViewport().setMaxX(13);
             //}
             //else
             //{

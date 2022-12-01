@@ -125,7 +125,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
         DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Oxygen").child("1");
-        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Oxygen").child("1");
+        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Oxygen").child("1");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Oxygen").child("Sensor 4");
         //DatabaseReference rootDatabaserefmin = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1");
@@ -3991,7 +3991,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             //if(arraysizeglobalweek1<10)
             //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(12);
+                graph.getViewport().setMaxX(13);
             //}
             //else
             //{
@@ -4040,7 +4040,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
             LineGraphSeries lil3 = seriesgweek3;
             lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            griLa3.setHorizontalAxisTitle("              months");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("%");
             griLa3.setLabelVerticalWidth(43);
@@ -4054,7 +4054,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             if(arraysizeglobalweek3<10)
             {
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
+                graph3.getViewport().setMaxX(13);
             }
             else
             {
@@ -4071,7 +4071,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
             LineGraphSeries lil4 = seriesgweek4;
             lil4.setThickness(2);
-            griLa4.setHorizontalAxisTitle("              weeks");
+            griLa4.setHorizontalAxisTitle("              months");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("%");
             griLa4.setLabelVerticalWidth(43);
@@ -4085,7 +4085,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             if(arraysizeglobalweek4<10)
             {
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
+                graph4.getViewport().setMaxX(13);
             }
             else
             {
@@ -4169,7 +4169,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
             LineGraphSeries lil3 = seriesgyear3;
             lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            griLa3.setHorizontalAxisTitle("              years");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("%");
             griLa3.setLabelVerticalWidth(43);
@@ -4414,7 +4414,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             GridLabelRenderer griLa = graph.getGridLabelRenderer();
             //LineGraphSeries lil = seriesgweek1;
             //lil.setThickness(2);
-            griLa.setHorizontalAxisTitle("              weeks");
+            griLa.setHorizontalAxisTitle("              months");
             griLa.setHorizontalAxisTitleTextSize(20);
             griLa.setVerticalAxisTitle("%");
             griLa.setLabelVerticalWidth(43);
@@ -4425,16 +4425,16 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek1<10)
-            {
+            //if(arraysizeglobalweek1<10)
+            //{
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(12);
-            }
-            else
-            {
-                graph.getViewport().setMinX(arraysizeglobalweek1-10);
-                graph.getViewport().setMaxX(arraysizeglobalweek1);
-            }
+                graph.getViewport().setMaxX(13);
+            //}
+            //else
+            //{
+            //    graph.getViewport().setMinX(arraysizeglobalweek1-10);
+            //    graph.getViewport().setMaxX(arraysizeglobalweek1);
+            //}
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(max + .2*max);
 
@@ -4891,7 +4891,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
             LineGraphSeries lil3 = seriesgweek3;
             lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            griLa3.setHorizontalAxisTitle("              months");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("%");
             griLa3.setLabelVerticalWidth(43);
@@ -4928,7 +4928,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
             LineGraphSeries lil3 = seriesgyear3;
             lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            griLa3.setHorizontalAxisTitle("              months");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("%");
             griLa3.setLabelVerticalWidth(43);
@@ -5114,7 +5114,7 @@ public class mcu1oxygengraph extends AppCompatActivity implements AdapterView.On
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
             LineGraphSeries lil4 = seriesgweek4;
             lil4.setThickness(2);
-            griLa4.setHorizontalAxisTitle("              weeks");
+            griLa4.setHorizontalAxisTitle("              months");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("%");
             griLa4.setLabelVerticalWidth(43);

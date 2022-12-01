@@ -110,7 +110,7 @@
         android:layout_marginStart="251dp"
         android:layout_marginTop="184dp"
         android:background="#FBBABA"
-        android:text="60-75%"
+        android:text="15.5-23.8C"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -134,7 +134,7 @@
         android:layout_marginStart="251dp"
         android:layout_marginTop="212dp"
         android:background="#FBBABA"
-        android:text="15.5-23.8C"
+        android:text="60-75%"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

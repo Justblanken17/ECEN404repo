@@ -64,7 +64,7 @@
                         android:layout_marginStart="100dp"
                         android:layout_marginTop="70dp"
                         android:background="#FFFEFE"
-                        android:text="0 = Healthy, 1 = Nitrogen Deficient"
+                        android:text="1 = Healthy, 0 = Nitrogen Deficient"
                         android:textColor="#000000"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"

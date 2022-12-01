@@ -34,28 +34,28 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
     //int max = 0;
     double max = 0;
     int second1max = 0;
-    PointsGraphSeries<DataPoint> seriessuperminute1;
+    PointsGraphSeries<DataPoint> seriessuperminute1;  //global graphing series used to update from functions for seconds
     PointsGraphSeries<DataPoint> seriessuperminute1a;
     int arraysizeglobalminute1;
     int arraysizeCHECKglobal;
     int minute1max = 0;
-    PointsGraphSeries<DataPoint> seriesghour1;
+    PointsGraphSeries<DataPoint> seriesghour1; ////global graphing series used to update from functions for hours
     PointsGraphSeries<DataPoint> seriesghour1a;
     int arraysizeglobalhour1;
     int hour1max = 0;
-    PointsGraphSeries<DataPoint> seriesgday1;
+    PointsGraphSeries<DataPoint> seriesgday1;   ////global graphing series used to update from functions for days
     PointsGraphSeries<DataPoint> seriesgday1a;
     int arraysizeglobalday1;
     int day1max = 0;
-    PointsGraphSeries<DataPoint> seriesgweek1;
+    PointsGraphSeries<DataPoint> seriesgweek1;  ////global graphing series used to update from functions for weeks
     PointsGraphSeries<DataPoint> seriesgweek1a;
     int arraysizeglobalweek1;
     int week1max = 0;
-    PointsGraphSeries<DataPoint> seriesgyear1;
+    PointsGraphSeries<DataPoint> seriesgyear1;  ////global graphing series used to update from functions for years
     PointsGraphSeries<DataPoint> seriesgyear1a;
     int arraysizeglobalyear1;
     int year1max = 0;
-    PointsGraphSeries<DataPoint> seriesgsecond2;
+    PointsGraphSeries<DataPoint> seriesgsecond2;  //additional series added incase , ignore these invactive values
     int arraysizeglobalsecond2;
     int second2max = 0;
     PointsGraphSeries<DataPoint> seriesgsuperminute2;
@@ -113,27 +113,27 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        graphz = (GraphView) findViewById(R.id.graphth);
+        graphz = (GraphView) findViewById(R.id.graphth); //didnt end up sing this
 
         setContentView(R.layout.activity_camera1graph);
-        seriessupersecond = new LineGraphSeries<DataPoint>();
-        seriessuperseconda = new PointsGraphSeries<DataPoint>();
+        seriessupersecond = new LineGraphSeries<DataPoint>(); //instantiating point graph value
+        seriessuperseconda = new PointsGraphSeries<DataPoint>();//instantiating point graph value so it isnt null
         //bull[0] = new DataPoint(0, 0);
         //seriessupersecond.appendData(bull[0], true, 2);
 
-        Button buttonreferesh = (Button) findViewById(R.id.refreshmcu9);
-        Button buttonback = (Button) findViewById(R.id.backmcu10);
+        Button buttonreferesh = (Button) findViewById(R.id.refreshmcu9);  //declare refresh button
+        Button buttonback = (Button) findViewById(R.id.backmcu10); //declare back button
         //Button buttonseconds = (Button) findViewById(R.id.secondstab);
         //Button buttonminutes = (Button) findViewById(R.id.minutestab);
 
-        Spinner spinner = findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinner); //declare spinner or drop down button
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.period, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(0,false);
-        spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("State").child("Camera 1");
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.period, android.R.layout.simple_spinner_item);//create adapter that takes period values
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//makes adapter a drop down
+        spinner.setAdapter(adapter); //spinner/dropter is set to the adapter
+        spinner.setSelection(0,false); //makes default values 0 or seconds
+        spinner.setOnItemSelectedListener(this); //to trigger a change when the drop down is changed
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Camera States").child("State 1");//
         //DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Water Level").child("Sensor 1");
 
         //DatabaseReference rootDatabaserefmin = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 1");
@@ -148,13 +148,13 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View view) {
                 openActivitymain();
-            }
+            }// when button is clicked, open activity main
         });
         buttonreferesh.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
             public void onClick(View view) {
                 openActivityrefresh();
-            }
+            }//when button is clicked, open refresh
         });
         /*
         buttonseconds.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
@@ -171,20 +171,20 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
         //});
         rootDatabaseref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if((snapshot.getChildrenCount()== 0)) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {//checking if there was a change in data
+                if((snapshot.getChildrenCount()== 0)) { //error handling,
                     return;
                 }
                 LineGraphSeries<DataPoint> series;
-                PointsGraphSeries<DataPoint> seriesa;
-                PointsGraphSeries<DataPoint> seriesminutes;
-                PointsGraphSeries<DataPoint> serieshours;
+                PointsGraphSeries<DataPoint> seriesa;//point graph series's for seconds-
+                PointsGraphSeries<DataPoint> seriesminutes;  //minutes
+                PointsGraphSeries<DataPoint> serieshours; //hours, days, weeks ,years
                 PointsGraphSeries<DataPoint> seriesday;
                 PointsGraphSeries<DataPoint> seriesweek;
                 PointsGraphSeries<DataPoint> seriesyear;
 
                 PointsGraphSeries<DataPoint> seriesB;
-                PointsGraphSeries<DataPoint> seriesminutesB;
+                PointsGraphSeries<DataPoint> seriesminutesB;  //point graph series's for seconds, minutes, hours, days, weeks, years
                 PointsGraphSeries<DataPoint> serieshoursB;
                 PointsGraphSeries<DataPoint> seriesdayB;
                 PointsGraphSeries<DataPoint> seriesweekB;
@@ -200,31 +200,31 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
                 int x;
                 //x = -1;
                 int arraysize = 0;
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                for(DataSnapshot snapshot1 : snapshot.getChildren())//for loop for data snap shots
                 {
-                    arraysize = arraysize + 1;
+                    arraysize = arraysize + 1; //checking the array size
                 }
                 int[] time = new int[arraysize];
-                double minutediv = arraysize/60;                ///////////
-                double hourdiv = arraysize/3600;
+                double minutediv = arraysize/60;                ///////////variables inactive in code
+                double hourdiv = arraysize/3600;                //used for finding out size of certain arrays
                 double daydiv = arraysize/43200;
                 double weekdiv = arraysize/302400;
                 double yeardiv = arraysize/15768000;
 
-                double minutesdoub = Math.floor(minutediv);     ///////////
-                double hoursdoub = Math.floor(hourdiv);     ///////////
+                double minutesdoub = Math.floor(minutediv);     ///////////changes variables in previous lines
+                double hoursdoub = Math.floor(hourdiv);     /////////// to whole numbers so they can turn into integers
                 double daydouble = Math.floor(daydiv);
                 double weekdouble = Math.floor(weekdiv);
                 double yearsdouble = Math.floor(yeardiv);
 
                 int minutes = (int)minutesdoub;
-                int hours = (int)hoursdoub;                 //////////
+                int hours = (int)hoursdoub;                 //////////turned into integers
                 int days = (int)daydouble;
                 int weeks = (int)weekdouble;
                 int years = (int)yearsdouble;
 
                 int[] minutetime = new int[minutes];
-                int[] hourtime = new int[hours];            //////////
+                int[] hourtime = new int[hours];            //////////use previous integers to make new data
                 int[] daytime = new int[days];
                 int[] weektime = new int[weeks];
                 int[] yeartime = new int[years];
@@ -233,19 +233,19 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
                 int parsetogetsizes = 0;
 
                 int[] minutetimeB = new int[arraysize];
-                int[] hourtimeB = new int[arraysize];            //////////
+                int[] hourtimeB = new int[arraysize];            //////////checks array size and adds values
                 int[] daytimeB = new int[arraysize];
                 int[] monthtimeB = new int[arraysize];
                 int[] yeartimeB = new int[arraysize];
 
                 int[] secondwindow = new int[60];
                 int[] minutewindow = new int[60];
-                for(int i = 0; i < 60; i++)
-                {
+                for(int i = 0; i < 60; i++)                /////// the follow couple of lines are used to reset the window
+                {                                          ////// values
                     secondwindow[i] = -1;
                     minutewindow[i] = -1;
                 }
-                int[] hourwindow = new int[24];            //////////
+                int[] hourwindow = new int[24];            //////////the next couple lines are used
                 for(int i = 0; i < 24; i++)
                 {
                     hourwindow[i] = -1;
@@ -270,7 +270,7 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
 
                 }
                 double [] secconcentrationAVG = new double[60];
-                double[] mintuteconcentrationAVG = new double[60]; ////// hold average values for each unit
+                double[] mintuteconcentrationAVG = new double[60]; ////// hold average values for each unit of minutes, hours, seconds, days, months, years
                 double[] hourconcentrationAVG = new double[24]; ////// hold average
                 double[] dayconcenctrationAVG = new double[32]; //
                 double[] weekconcenctrationAVG = new double[13];
@@ -323,13 +323,13 @@ public class camera1graph extends AppCompatActivity implements AdapterView.OnIte
                     int monthssize = 0;
                     int yearssize = 0;
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("state").getValue().toString());
-                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("minute").getValue().toString());            //6-Minute
-                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("hour").getValue().toString());                //5-Hour
-                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("day").getValue().toString());                  //4-Day
-                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("month").getValue().toString());              //3-Month
-                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("year").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString());            //6-Minute
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());                //5-Hour
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());                  //4-Day
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());              //3-Month
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];

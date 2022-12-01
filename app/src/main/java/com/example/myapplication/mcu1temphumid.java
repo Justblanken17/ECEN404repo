@@ -31,10 +31,10 @@ public class mcu1temphumid extends AppCompatActivity {
         Button buttonback = (Button) findViewById(R.id.backmcu1temp);
         Button buttongraph = (Button) findViewById(R.id.graphmcutemphumid);
         Button buttonhome = (Button) findViewById(R.id.homebutton7);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("Humidity 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("1");
         DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Temperature").child("1");
-        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("Humidity 1");
-        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Temperature").child("1");
+        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Humidity").child("1");
+        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Temperature").child("1");
         //DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Ethylene").child("Sensor 4");
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
