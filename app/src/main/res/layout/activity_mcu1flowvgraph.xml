@@ -62,6 +62,24 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/graph3th"
+                    android:layout_width="300dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="64dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/graph4th"
+                    android:layout_width="300dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="94dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <LinearLayout
                     android:layout_width="410dp"
                     android:layout_height="70dp"

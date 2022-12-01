@@ -6,6 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".mcu1temphumid">
 
+    <TextView
+        android:id="@+id/sens279"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="Sensor 4:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/temp16"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens280"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="Expected Range:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/range158"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="15.5-23.8C"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/homebutton7"
         android:layout_width="115dp"

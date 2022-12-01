@@ -23,14 +23,16 @@ public class mcu1flowv extends AppCompatActivity {
         setContentView(R.layout.activity_mcu1flowv);
         TextView flowv1 = findViewById(R.id.flowv1);
         TextView flowv2 = findViewById(R.id.flowv12);
-        //TextView flowv3 = findViewById(R.id.flowv3);
-        //TextView flowv4 = findViewById(R.id.flowv4);
+        TextView flowv3 = findViewById(R.id.flowv9);
+        TextView flowv4 = findViewById(R.id.flowv10);
         Button buttonreferesh = (Button) findViewById(R.id.refreshmcu1maxflu);
         Button buttonback = (Button) findViewById(R.id.backmcu1maxfl);
         Button buttongraph = (Button) findViewById(R.id.graphmcuflowv1);
         Button buttonhome = (Button) findViewById(R.id.homebutton6);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Water Flow").child("1"); //ce().child("MCU Test").child("Water Flow").child("1")
-        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Water Level").child("1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Flow").child("1"); //ce().child("MCU Test").child("Water Flow").child("1")
+        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Level").child("1");
+        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Flow").child("1"); //ce().child("MCU Test").child("Water Flow").child("1")
+        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Water Level").child("1");
         buttonback.setOnClickListener(new View.OnClickListener() { //this section will allow the button to perform the method call when the button is pressed
             @Override
             public void onClick(View view) {
@@ -123,6 +125,82 @@ public class mcu1flowv extends AppCompatActivity {
                 t = time[0];
                 c = concentration[0];
                 flowv2.setText(String.valueOf(c));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        rootDatabaseref3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
+
+                double y;
+                int x;
+                x = -1;
+                int arraysize = 0;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[arraysize-1];
+                flowv3.setText(String.valueOf(c));
+                //String data = snapshot.getValue().toString();
+                //double z = Double.parseDouble(data);
+                //flowv1.setText(String.valueOf(z));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        rootDatabaseref4.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
+                int t = 0;
+                int iterator = 0;
+                double c = 0;
+
+                double y;
+                int arraysize = 0;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    arraysize = arraysize + 1;
+                }
+                int[] time = new int[arraysize];
+                double[] concentration = new double[arraysize];
+                int x;
+                x = -1;
+                for(DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration
+                    iterator = iterator + 1;
+                }
+                t = time[0];
+                c = concentration[0];
+                flowv4.setText(String.valueOf(c));
             }
 
             @Override

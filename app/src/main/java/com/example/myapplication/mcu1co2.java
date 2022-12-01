@@ -40,8 +40,8 @@ public class mcu1co2 extends AppCompatActivity {
         Button buttongraph = (Button) findViewById(R.id.graphmcuco2);       //Utilizing a button
         Button buttonhome = (Button) findViewById(R.id.homebutton);         //Utilizing a button
         //next 4 lines create reference that access information at a specific portion on the database
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Carbon Dioxide").child("1"); //("MCU Test").child("Carbon Dioxide").child("1");
-        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 2");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Carbon Dioxide").child("1"); //("MCU Test").child("Carbon Dioxide").child("1");
+        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Carbon Dioxide").child("1");
         DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 3");
         DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");
         //next 16 lines are for setting action to occur when button is pressed, this buttons direct to a speficed method
@@ -114,6 +114,9 @@ public class mcu1co2 extends AppCompatActivity {
         rootDatabaseref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) { //error handling; exits the program if the area accessed is empty
+                    return;
+                }
                 //String data = snapshot.getValue().toString();
                 //Double z = Double.parseDouble(data);
                 //Co22.setText(String.valueOf(z));
@@ -133,8 +136,8 @@ public class mcu1co2 extends AppCompatActivity {
                 double[] concentration = new double[arraysize];
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());//7-Seconds time
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());//1-Concentration concentration
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());//7-Seconds time
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());//1-Concentration concentration
                     iterator = iterator + 1;
                 }
                 t = time[0];

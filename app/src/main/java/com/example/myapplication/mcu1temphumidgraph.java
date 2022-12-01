@@ -66,40 +66,40 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
     PointsGraphSeries<DataPoint> seriesgyear2;
     int arraysizeglobalyear2;
     int year2max = 0;
-    LineGraphSeries<DataPoint> seriesgsecond3;
+    PointsGraphSeries<DataPoint> seriesgsecond3;
     int arraysizeglobalsecond3;
     int second3max = 0;
-    LineGraphSeries<DataPoint> seriesgsuperminute3;
+    PointsGraphSeries<DataPoint> seriesgsuperminute3;
     int arraysizeglobalminute3;
     int minute3max = 0;
-    LineGraphSeries<DataPoint> seriesghour3;
+    PointsGraphSeries<DataPoint> seriesghour3;
     int arraysizeglobalhour3;
     int hour3max = 0;
-    LineGraphSeries<DataPoint> seriesgday3;
+    PointsGraphSeries<DataPoint> seriesgday3;
     int arraysizeglobalday3;
     int day3max = 0;
-    LineGraphSeries<DataPoint> seriesgweek3;
+    PointsGraphSeries<DataPoint> seriesgweek3;
     int arraysizeglobalweek3;
     int week3max = 0;
-    LineGraphSeries<DataPoint> seriesgyear3;
+    PointsGraphSeries<DataPoint> seriesgyear3;
     int arraysizeglobalyear3;
     int year3max = 0;
-    LineGraphSeries<DataPoint> seriesgsecond4;
+    PointsGraphSeries<DataPoint> seriesgsecond4;
     int arraysizeglobalsecond4;
     int second4max = 0;
-    LineGraphSeries<DataPoint> seriesgsuperminute4;
+    PointsGraphSeries<DataPoint> seriesgsuperminute4;
     int arraysizeglobalminute4;
     int minute4max = 0;
-    LineGraphSeries<DataPoint> seriesghour4;
+    PointsGraphSeries<DataPoint> seriesghour4;
     int arraysizeglobalhour4;
     int hour4max = 0;
-    LineGraphSeries<DataPoint> seriesgday4;
+    PointsGraphSeries<DataPoint> seriesgday4;
     int arraysizeglobalday4;
     int day4max = 0;
-    LineGraphSeries<DataPoint> seriesgweek4;
+    PointsGraphSeries<DataPoint> seriesgweek4;
     int arraysizeglobalweek4;
     int week4max = 0;
-    LineGraphSeries<DataPoint> seriesgyear4;
+    PointsGraphSeries<DataPoint> seriesgyear4;
     int arraysizeglobalyear4;
     int year4max;
 
@@ -162,10 +162,10 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
         spinner.setAdapter(adapter);
         spinner.setSelection(0,false);
         spinner.setOnItemSelectedListener(this);
-        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Humidity").child("Humidity 1");
-        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test2").child("Temperature").child("1");
-        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Sensor 3");
-        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Humidity 1");
+        DatabaseReference rootDatabaseref = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("Humidity 1");
+        DatabaseReference rootDatabaseref2 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Temperature").child("1");
+        DatabaseReference rootDatabaseref3 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Humidity").child("Humidity 1");
+        DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU Test").child("Temperature").child("1");
         DatabaseReference rootDatabaseref5 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Humidity 2");
         DatabaseReference rootDatabaseref6 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Temperature and Humidity").child("Humidity 3");
         //DatabaseReference rootDatabaseref4 = FirebaseDatabase.getInstance().getReference().child("MCU 1").child("Carbon Dioxide").child("Sensor 4");
@@ -2769,18 +2769,31 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
         rootDatabaseref3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
                 LineGraphSeries<DataPoint> series;
                 LineGraphSeries<DataPoint> seriesminutes;
                 LineGraphSeries<DataPoint> serieshours;
                 LineGraphSeries<DataPoint> seriesday;
                 LineGraphSeries<DataPoint> seriesweek;
                 LineGraphSeries<DataPoint> seriesyear;
+                /////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////A
+                PointsGraphSeries<DataPoint> seriesB;
+                PointsGraphSeries<DataPoint> seriesminutesB;
+                PointsGraphSeries<DataPoint> serieshoursB;
+                PointsGraphSeries<DataPoint> seriesdayB;
+                PointsGraphSeries<DataPoint> seriesweekB;
+                PointsGraphSeries<DataPoint> seriesyearB;
+                /////////////////////////////////////////////////////////////////////////////////////B
+                ///////////////////////////////////////////////////////////////////////////////////
                 String data;// = snapshot.child();
                 Double z;// = Double.parseDouble(data);
-                //double max = 0;
                 // oxyg1.setText(S tring.valueOf(z));
                 int t = 0;
                 int iterator = 0;
+                //double max = 0;
                 double c = 0;
                 double y;
                 int x;
@@ -2815,6 +2828,65 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                 int[] weektime = new int[weeks];
                 int[] yeartime = new int[years];
 
+                ////////////////////////////////////////////////////
+                /////////////////////////////////////////////////
+                int parsetogetsizes = 0;
+
+                int[] minutetimeB = new int[arraysize];
+                int[] hourtimeB = new int[arraysize];            //////////
+                int[] daytimeB = new int[arraysize];
+                int[] monthtimeB = new int[arraysize];
+                int[] yeartimeB = new int[arraysize];
+
+                int[] secondwindow = new int[60];
+                int[] minutewindow = new int[60];
+                for(int i = 0; i < 60; i++)
+                {
+                    secondwindow[i] = -1;
+                    minutewindow[i] = -1;
+                }
+                int[] hourwindow = new int[24];            //////////
+                for(int i = 0; i < 24; i++)
+                {
+                    hourwindow[i] = -1;
+
+                }
+                int[] daywindow = new int[32];
+                for(int i = 0; i < 32; i++)
+                {
+                    daywindow[i] = -1;
+
+                }
+                int[] monthwindow = new int[13];
+                for(int i = 0; i < 13; i++)
+                {
+                    monthwindow[i] = -1;
+
+                }
+                int[] yearwindow = new int[10];
+                for(int i = 0; i < 10; i++)
+                {
+                    yearwindow[i] = -1;
+
+                }
+                double [] secconcentrationAVG = new double[60];
+                double[] mintuteconcentrationAVG = new double[60]; ////// hold average values for each unit
+                double[] hourconcentrationAVG = new double[24]; ////// hold average
+                double[] dayconcenctrationAVG = new double[32]; //
+                double[] weekconcenctrationAVG = new double[13];
+                double[] yearsconcentrationAVG = new double[10];
+                int iteratorB = 0;
+                int minutiteratorB = 0;      ///////
+                int houriteratorB = 0;      ///////
+                int dayiteratorB = 0;
+                int weekiteratorB = 0;
+                int yeariteratorB = 0;
+
+                //put sizes back here if it doesnt work
+                /////////////////////////////////////////////////////
+                ///////////////////////////////////
+
+
 
                 double[] concentration = new double[arraysize];
                 double[] mintuteconcentration = new double[minutes]; //////
@@ -2830,15 +2902,779 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                 int yeariterator = 0;
 
                 double averagesum = 0;
+
+                seriesB = new PointsGraphSeries<DataPoint>();
+                seriesminutesB = new PointsGraphSeries<DataPoint>();
+                serieshoursB = new PointsGraphSeries<DataPoint>();
+                seriesdayB = new PointsGraphSeries<DataPoint>();
+                seriesweekB = new PointsGraphSeries<DataPoint>();
+                seriesyearB = new PointsGraphSeries<DataPoint>();
+
+                DataPoint[] aseriesB= new DataPoint[60];
+                DataPoint[] aseriesminutesB= new DataPoint[60];
+                DataPoint[] aserieshoursB= new DataPoint[24];
+                DataPoint[] aseriesdayB= new DataPoint[32];
+                DataPoint[] aseriesweekB= new DataPoint[13];
+                DataPoint[] aseriesyearB= new DataPoint[10];
+
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
+                    int secondssize = 0; //tells how much stuff is in a window
+                    int minutessize = 0;
+                    int hourssize = 0;
+                    int dayssize = 0;
+                    int monthssize = 0;
+                    int yearssize = 0;
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());                       //7-Seconds time
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());   //1-Concentration concentration
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString()); ///////////////6-Minute minute
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());     /////////////////5-Hour hour
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());       //////////////////4-Day day
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());   //////////////////3-Month month
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());     ///////////////////2-Year year
+
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];
                     }
+
+                    //////////////////////////////////////////////
+                    /////////////////////////////////////////////
+                    for(int i = 0; i < 60; i++)
+                    {
+                        if(secondwindow[i] != -1)
+                        {
+                            secondssize = secondssize + 1;
+                        }
+                        if(minutewindow[i] != -1)
+                        {
+                            minutessize = minutessize + 1;
+                        }
+                    }
+
+                    for(int i = 0; i < 24; i++)
+                    {
+                        if(hourwindow[i] != -1)
+                        {
+                            hourssize = hourssize + 1;
+                        }
+
+                    }
+
+                    for(int i = 0; i < 32; i++)
+                    {
+                        if(daywindow[i] != -1)
+                        {
+                            dayssize = dayssize + 1;
+                        }
+
+                    }
+
+                    for(int i = 0; i < 13; i++)
+                    {
+                        if(monthwindow[i] != -1 )
+                        {
+                            monthssize = monthssize + 1;
+                        }
+                    }
+
+                    for(int i = 0; i < 10; i++)
+                    {
+                        if(yearwindow[i] != -1)
+                        {
+                            yearssize = yearssize + 1;
+                        }
+
+                    }
+                    //controlling seconds and part of minutes arrays
+                    if(iterator > 0) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( minutetimeB[iterator - 1] != minutetimeB[iterator]) //makes sure last point was 59 and your higher then 0
+                            {
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                //reset all other values
+                                for (int i = 1; i < 60; i++) {
+                                    secondwindow[i] = -1;
+                                    secconcentrationAVG[i] = 0;
+                                }
+                                //seriesB.resetData(aserieshoursB);
+                                minutewindow[minutetimeB[iterator]] = minutetimeB[iterator]; // minutetimeB[iterator-1]  iterator-1
+
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                if (secondssize < 60) {               //iterator - (secondssize)
+                                    for (int i = iterator - (secondssize); i < iterator+1; i++)        ////ITERATOR+1
+                                    {                                                         ////
+
+                                        averagesum = averagesum + concentration[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator];
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = iterator - (secondssize); i < iterator+1; i++)        ////ITERATOR+1
+                                    {                                                         ////
+
+                                        averagesum = averagesum + concentration[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum / 60; //iterator-1
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //TAKE OUT IF WRONG
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                }
+                            }
+                            else
+                            {
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////
+                                {                                                         ////
+
+                                    averagesum = averagesum + concentration[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+                                //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+                                //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));//mintuteconcentrationAVG[23] FFFFF
+                            }
+
+
+                        }
+                        //ENDING STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                        //end of checking if you passed the iteration
+                        else
+                        {
+                            secondwindow[time[iterator]] = time[iterator];
+                            secconcentrationAVG[time[iterator]] = concentration[iterator];
+                            for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////ITERATOR+1
+                            {                                                         ////
+
+                                averagesum = averagesum + concentration[i];           ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                            mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                        }
+                    }
+                    else
+                    {
+                        secondwindow[time[iterator]] = time[iterator];
+                        secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////
+                        {                                                         ////
+
+                            averagesum = averagesum + concentration[i];           ////
+                            ////
+                            //buttonreferesh.setText(String.valueOf(secondssize));j
+                        }
+                        minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                        mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+                        //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));//mintuteconcentrationAVG[23] FFFFF
+                    }
+                    //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                    //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[59]));
+                    ///////////////CHANGE  TO MINUTES/HOURS
+
+                    if(minutetimeB[iterator] == 0) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( minutetimeB[iterator - 1] == 59) //makes sure last point was 59 and your higher then 0
+                            {
+                                //minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                //mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //get back over here
+                                //reset all other values
+
+                                //seriesB.resetData(aserieshoursB);
+                                hourwindow[hourtimeB[iterator-1]] = hourtimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
+                                hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];          ///ERROR
+                                hourconcentrationAVG[hourtimeB[iterator]] = concentration[iterator];//ERROR
+
+                                if (minutessize < 60) {               //iterator - (secondssize)
+                                    for (int i = 60 - (minutessize); i < 60; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + mintuteconcentrationAVG[i];           ///////BOOK MARK!
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    for (int i = 1; i < 60; i++) {
+                                        minutewindow[i] = -1;
+                                        mintuteconcentrationAVG[i] = 0;
+                                    }
+                                    if(minutessize == 0)                                               /////////
+                                    {
+                                        hourconcentrationAVG[hourtimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+
+                                    else {
+                                        hourconcentrationAVG[hourtimeB[iterator - 1]] = averagesum / minutessize; //iterator-1
+                                    }
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                    //buttonreferesh.setText(String.valueOf(iterator));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = 0; i < 60; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + mintuteconcentrationAVG[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    hourconcentrationAVG[hourtimeB[iterator-1]] = averagesum / 60; //iterator-1
+
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                }
+                            }
+                            else
+                            {
+                                for(int i = 0; i < 60; i++)        ////60 - (minutessize)    60
+                                {                                                         ////
+
+                                    averagesum = averagesum + mintuteconcentrationAVG[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
+                                if(minutessize == 0)                                               /////////
+                                {
+                                    hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                                }
+                                //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+
+                            }
+                        }
+
+                        //ENDING STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                        //end of checking if you passed the iteration
+                        else
+                        {
+
+                            for(int i = 0; i < 60; i++)        ////////60 - (minutessize)    60
+                            {                                                         ////
+
+                                averagesum = averagesum + mintuteconcentrationAVG[i];           ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
+                            if(minutessize == 0)                                               /////////
+                            {
+                                hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                            }
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
+                        }
+                    }
+                    ///////////////CHANGE  TO MINUTES/HOURS
+
+                    else
+                    {
+                        //secondwindow[time[iterator]] = time[iterator];
+                        //secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = 0; i < 60; i++)        ////
+                        {                                                         ////
+
+                            averagesum = averagesum + mintuteconcentrationAVG[i];           ////
+                            ////
+                            //buttonreferesh.setText(String.valueOf(secondssize));
+                        }
+                        hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
+                        if(minutessize == 0)                                               /////////
+                        {
+                            hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                        }
+                        //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonreferesh.setText(String.valueOf(iterator));
+                        //buttonback.setText(String.valueOf(hourconcentrationAVG[11]));
+                    }
+                    //buttonreferesh.setText(String.valueOf(iterator));
+                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                    //buttonback.setText(String.valueOf(hourconcentrationAVG[11]));
+                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12]));
+                    //////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////Hours/Days
+                    if(hourtimeB[iterator] == 0) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( hourtimeB[iterator - 1] == 23) //makes sure last point was 59 and your higher then 0
+                            {
+                                //minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                //mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //get back over here
+                                //reset all other values
+
+                                //seriesB.resetData(aserieshoursB);
+                                daywindow[daytimeB[iterator-1]] = daytimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
+                                daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                                dayconcenctrationAVG[daytimeB[iterator]] = concentration[iterator];
+
+                                //GO BACK
+                                if (hourssize < 24) {               //iterator - (secondssize)
+                                    for (int i = 24 - (hourssize); i < 24; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + hourconcentrationAVG[i];           ///////BOOK MARK!
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    for (int i = 1; i < 24; i++) {
+                                        hourwindow[i] = -1;
+                                        hourconcentrationAVG[i] = 0;
+                                    }
+                                    if(hourssize == 0)                                               /////////
+                                    {
+                                        dayconcenctrationAVG[daytimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+                                    else {
+                                        dayconcenctrationAVG[daytimeB[iterator - 1]] = averagesum / hourssize; //iterator-1
+                                    }
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                    //buttonreferesh.setText(String.valueOf(iterator));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = 0; i < 24; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + hourconcentrationAVG[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    dayconcenctrationAVG[daytimeB[iterator-1]] = averagesum /24; //iterator-1
+
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                }
+                            }
+                            else
+                            {
+                                for(int i = 0; i < hourwindow.length; i++)        ////hourssize
+                                {                                                         ////
+
+                                    averagesum = averagesum + hourconcentrationAVG[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                                if(hourssize == 0)                                               /////////
+                                {
+                                    dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                                }
+                                //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+
+                            }
+                        }
+
+                        else
+                        {
+
+                            for(int i = 0; i < hourwindow.length; i++)        ////////60 - (minutessize)    60
+                            {                                                         ////
+
+                                if(hourwindow[i] != -1) {
+                                    averagesum = averagesum + hourconcentrationAVG[i];           ////
+                                    ////
+                                }         ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                            if(hourssize == 0)                                               /////////
+                            {
+                                dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                            }
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
+                        }
+                    }
+
+
+                    else
+                    {
+                        //secondwindow[time[iterator]] = time[iterator];
+                        //secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = 0; i < hourwindow.length; i++)        ////
+                        {                                                         ////
+
+                            if(hourwindow[i] != -1) {
+                                averagesum = averagesum + hourconcentrationAVG[i];           ////
+                                ////
+                            }           ////
+                            ////
+                            //buttonreferesh.setText(String.valueOf(secondssize));
+                        }
+                        daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                        if(hourssize == 0)                                               /////////
+                        {
+                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                        }
+                        //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonreferesh.setText(String.valueOf(iterator));
+                        //buttonback.setText(String.valueOf(hourconcentrationAVG[11]));
+                    }
+                    //checkpoint//849
+                    //buttonreferesh.setText(String.valueOf(daywindow[3]));
+                    //buttonback.setText(String.valueOf(daywindow[2]));
+
+                    //////////////////////////////////////////////////////////////////////////////////
+                    //////////    day/month
+
+                    if(daytimeB[iterator] == 1) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( (daytimeB[iterator - 1] == 29) || (daytimeB[iterator - 1] == 30) || (daytimeB[iterator - 1] == 31)) //makes sure last point was 59 and your higher then 0
+                            {
+                                //minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                //mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //get back over here
+                                //reset all other values
+
+                                //seriesB.resetData(aserieshoursB);
+                                monthwindow[monthtimeB[iterator-1]] = monthtimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
+                                monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                                weekconcenctrationAVG[monthtimeB[iterator]] = concentration[iterator];
+
+                                //CHANGE STUFF OVER HERE
+                                if (dayssize < daytimeB[iterator - 1]) {               //iterator - (secondssize)
+                                    for (int i = daytimeB[iterator - 1] - (dayssize); i < daytimeB[iterator - 1] + 1; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + dayconcenctrationAVG[i];           ///////BOOK MARK!
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    for (int i = 2; i < daytimeB[iterator - 1] + 1; i++) {
+                                        daywindow[i] = -1;
+                                        dayconcenctrationAVG[i] = 0;
+                                    }
+                                    if(dayssize == 0)                                               /////////
+                                    {
+                                        weekconcenctrationAVG[monthtimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+                                    else {
+                                        weekconcenctrationAVG[monthtimeB[iterator - 1]] = averagesum / dayssize; //iterator-1 COME BACK HERE!!!!!!
+                                    }
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                    //buttonreferesh.setText(String.valueOf(iterator));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = 1; i < daytimeB[iterator - 1] + 1; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + dayconcenctrationAVG[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    weekconcenctrationAVG[monthtimeB[iterator-1]] = averagesum /daytimeB[iterator - 1]; //iterator-1
+
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                }
+                            }
+                            else
+                            {
+                                for(int i = 1; i < daytimeB[iterator - 1] + 1; i++)        ////60 - (minutessize)    60
+                                {                                                         ////
+
+                                    averagesum = averagesum + dayconcenctrationAVG[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                                if(dayssize == 0)                                               /////////
+                                {
+                                    weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                                }
+                                //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+
+                            }
+                        }
+
+                        else
+                        {
+
+                            for(int i = 1; i < daywindow.length; i++)        ////////60 - (minutessize)    60
+                            {                                                         ////
+
+                                if(daywindow[i] != -1) {
+                                    averagesum = averagesum + dayconcenctrationAVG[i];           ////
+                                    ////
+                                }          ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                            if(dayssize == 0)                                               /////////
+                            {
+                                weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                            }
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
+                        }
+                    }
+
+
+                    else
+                    {
+                        //secondwindow[time[iterator]] = time[iterator];
+                        //secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = 1; i < daywindow.length; i++)         ////dayssize
+                        {                                                         ////
+                            if(daywindow[i] != -1) {
+                                averagesum = averagesum + dayconcenctrationAVG[i];           ////
+                                ////
+                            }
+                            //buttonreferesh.setText(String.valueOf(secondssize));
+                        }
+                        monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                        if(dayssize == 0)                                               /////////
+                        {
+                            weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                        }
+                        //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonreferesh.setText(String.valueOf(iterator));
+                        //buttonback.setText(String.valueOf(dayssize));
+                        //buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[11]));
+                    }
+                    buttonback.setText(String.valueOf(dayconcenctrationAVG[2]));
+                    buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[11]));
+                    //buttonback.setText(String.valueOf(weekconcenctrationAVG[11]));
+
+                    ////////////////////////////////////////MONTH TO YEAR//////////////////////////////////////
+                    if(monthtimeB[iterator] == 1) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( (monthtimeB[iterator - 1] == 12) ) //makes sure last point was 59 and your higher then 0
+                            {
+                                //minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                //mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //get back over here
+                                //reset all other values
+
+                                //seriesB.resetData(aserieshoursB);
+                                yearwindow[yeartimeB[iterator-1]-2021] = yeartimeB[iterator-1]-2000; // minutetimeB[iterator-1]  iterator-1
+
+                                //CHANGE STUFF OVER HERE
+                                if (monthssize < 12) {               //iterator - (secondssize)
+                                    for (int i = monthtimeB[iterator - 1] - (monthssize); i < monthtimeB[iterator - 1] + 1; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + weekconcenctrationAVG[i];           ///////BOOK MARK!
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    for (int i = 2; i < monthtimeB[iterator - 1] + 1; i++) {
+                                        monthwindow[i] = -1;
+                                        weekconcenctrationAVG[i] = 0;
+                                    }
+                                    if(monthssize == 0)                                               /////////
+                                    {
+                                        yearsconcentrationAVG[yeartimeB[iterator-1]-2021]  = averagesum;     /////////////
+                                    }
+                                    else {
+                                        yearsconcentrationAVG[yeartimeB[iterator - 1] - 2021] = averagesum / monthssize; //iterator-1 COME BACK HERE!!!!!!
+                                    }
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                    //buttonreferesh.setText(String.valueOf(iterator));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = 1; i < monthtimeB[iterator - 1] + 1; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + weekconcenctrationAVG[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    yearsconcentrationAVG[yeartimeB[iterator-1]-2021] = averagesum /12; //iterator-1
+
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                }
+                            }
+                            else
+                            {
+                                for(int i = 1; i < monthtimeB[iterator - 1] + 1; i++)        ////60 - (minutessize)    60
+                                {                                                         ////
+
+                                    averagesum = averagesum + weekconcenctrationAVG[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
+                                if(monthssize == 0)                                               /////////
+                                {
+                                    yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                                }
+                                else {
+                                    yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                                }
+                                //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+
+                            }
+                        }
+
+                        else
+                        {
+
+                            for(int i = 1; i < monthwindow.length; i++)        ////////60 - (minutessize)    60
+                            {                                                         ////
+
+                                if(monthwindow[i] != -1) {
+                                    averagesum = averagesum + weekconcenctrationAVG[i];           ////
+                                    ////
+                                }          ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
+                            if(monthssize == 0)                                               /////////
+                            {
+                                yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                            }
+                            else {
+                                yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                            }
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
+                        }
+                    }
+
+
+                    else
+                    {
+                        //secondwindow[time[iterator]] = time[iterator];
+                        //secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = 1; i < monthwindow.length; i++)         ////dayssize
+                        {                                                         ////
+                            if(monthwindow[i] != -1) {
+                                averagesum = averagesum + weekconcenctrationAVG[i];           ////
+                                ////
+                            }
+                            //buttonreferesh.setText(String.valueOf(secondssize));
+                        }
+                        yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
+                        if(monthssize == 0)                                               /////////
+                        {
+                            yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                        }
+                        else {
+                            yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                        }
+                        if(iterator>0)
+                        {
+                            if(monthtimeB[iterator-1] != monthtimeB[iterator])
+                            {
+                                yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / (monthssize+1);
+                                //buttonreferesh.setText(String.valueOf(averagesum));
+                                //buttonreferesh.setText(String.valueOf(averagesum));
+                                //buttonback.setText(String.valueOf(weekconcenctrationAVG[12]));
+                                //buttonback.setText(String.valueOf(yearsconcentrationAVG[1]));
+
+                            }
+                        }
+                        //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonreferesh.setText(String.valueOf(iterator));
+                        //buttonback.setText(String.valueOf(dayssize));
+                        //buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[11]));
+                    }
+                    //buttonback.setText(String.valueOf(monthwindow[12]));
+                    //buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[12]));
+                    buttonback.setText(String.valueOf(yearsconcentrationAVG[1]));
+                    buttonreferesh.setText(String.valueOf(yearsconcentrationAVG[2]));
+                    //buttonreferesh.setText(String.valueOf(yearsconcentrationAVG[12]));
+                    ////////////////////////////////////////MONTH TO YEAR//////////////////////////////////////
+                    ///////////////////////////////////////////// NEW STUFF2
+                    ////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////
+                    //////////////////////////////
+
+
+
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
                         minutetime[minutiterator] = minutiterator ;                ////
@@ -2908,11 +3744,88 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     iterator = iterator + 1;
                 }
 
+                ///////////////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////////////////////////
+                int whilecheck = 0;
+                for(int i = 0; i < 60; i++)
+                {
+
+                    if(secondwindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesB[whilecheck] = new DataPoint(secondwindow[i], secconcentrationAVG[i] );
+                        seriesB.appendData( aseriesB[whilecheck], true, 100);
+                        whilecheck = whilecheck + 1;
+                    }
+                }
+
+                int whilecheck2 = 0;
+                for(int i = 0; i < 60; i++)
+                {
+
+                    if(minutewindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesminutesB[whilecheck2] = new DataPoint(minutewindow[i], mintuteconcentrationAVG[i] );
+                        seriesminutesB.appendData( aseriesminutesB[whilecheck2], true, 100);
+                        whilecheck2 = whilecheck2 + 1;
+                    }
+                }
+
+                int whilecheck3 = 0;
+                for(int i = 0; i < 24; i++)
+                {
+
+                    if(hourwindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aserieshoursB[whilecheck3] = new DataPoint(hourwindow[i], hourconcentrationAVG[i] );
+                        serieshoursB.appendData( aserieshoursB[whilecheck3], true, 100);
+                        whilecheck3 = whilecheck3 + 1;
+                    }
+                }
+                int whilecheck4 = 0;
+                for(int i = 0; i < 32; i++)
+                {
+
+                    if(daywindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesdayB[whilecheck4] = new DataPoint(daywindow[i], dayconcenctrationAVG[i] );
+                        seriesdayB.appendData( aseriesdayB[whilecheck4], true, 100);
+                        whilecheck4 = whilecheck4 + 1;
+                    }
+                }
+
+                int whilecheck5 = 0;
+                for(int i = 0; i < 13; i++)
+                {
+
+                    if(monthwindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesweekB[whilecheck5] = new DataPoint(monthwindow[i], weekconcenctrationAVG[i] );
+                        seriesweekB.appendData( aseriesweekB[whilecheck5], true, 100);
+                        whilecheck5 = whilecheck5 + 1;
+                    }
+                }
+
+                int whilecheck6 = 0;
+                for(int i = 0; i < 10; i++)
+                {
+
+                    if(yearwindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesyearB[whilecheck6] = new DataPoint(yearwindow[i], yearsconcentrationAVG[i] );
+                        seriesyearB.appendData( aseriesyearB[whilecheck6], true, 100);
+                        whilecheck6 = whilecheck6 + 1;
+                    }
+                }
+
+
+                ////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////
+
                 t = time[0];
                 c = concentration[0];
                 //oxyg1.setText(String.valueOf(c));
-                GraphView graph = (GraphView) findViewById(R.id.graph3th); /////////////////////////////////////////
-
+                GraphView graph = (GraphView) findViewById(R.id.graphth);
+                //GraphView graph2 = (GraphView) findViewById(R.id.graph);
                 series = new LineGraphSeries<DataPoint>();
                 seriesminutes = new LineGraphSeries<DataPoint>();
                 serieshours = new LineGraphSeries<DataPoint>();
@@ -2924,7 +3837,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aminutes[i] = new DataPoint(minutetime[i], mintuteconcentration[i]);       ////
 
-                    seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
+                    //seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2932,8 +3845,9 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                 for(int i = 0; i < arraysize; i++) {
                     //protected(series.resetData(new DataPoint[] {}));
                     a[i] = new DataPoint(time[i], concentration[i]);
-
-                    series.appendData(a[i], true, arraysize + 40);
+                    //graph.onDataChanged(true,true);
+                    //series.appendData(a[i], true, arraysize + 40);
+                    //graph.onDataChanged(true,true);
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2942,7 +3856,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     ahours[i] = new DataPoint(hourtime[i], hourconcentration[i]);       ////
 
-                    serieshours.appendData(ahours[i], true, hours + 3);    ////
+                    //serieshours.appendData(ahours[i], true, hours + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2958,7 +3872,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aday[i] = new DataPoint(daytime[i], dayconcenctration[i]);       ////
 
-                    seriesday.appendData(aday[i], true, days + 3);    ////
+                    //seriesday.appendData(aday[i], true, days + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2973,7 +3887,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aweek[i] = new DataPoint(weektime[i], weekconcenctration[i]);       ////
 
-                    seriesweek.appendData(aweek[i], true, weeks + 3);    ////
+                    //seriesweek.appendData(aweek[i], true, weeks + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -2988,49 +3902,243 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     ayear[i] = new DataPoint(yeartime[i], yearsconcentration[i]);       ////
 
-                    seriesyear.appendData(ayear[i], true, years + 3);    ////
+                    //seriesyear.appendData(ayear[i], true, years + 3);    ////
+                    graph.onDataChanged(true,true);
+
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
-                seriesgsecond3 = series;
 
-                seriesgsuperminute3 = seriesminutes;
-                seriesghour3 = serieshours;
-                seriesgday3 = seriesday;
-                seriesgweek3 = seriesweek;
-                seriesgyear3 = seriesyear;
-
+                seriesgsecond3 = seriesB;
+                seriesgsuperminute3 = seriesminutesB;
+                seriesghour3 = serieshoursB;
+                seriesgday3 = seriesdayB;
+                seriesgweek3 = seriesweekB;
+                seriesgyear3 = seriesyearB;
+                //arraysizeCHECKglobal = arraysize;
                 arraysizeglobalsecond3 = arraysize;
                 arraysizeglobalminute3 = minutes;
                 arraysizeglobalhour3 = hours;
                 arraysizeglobalday3 = days;
                 arraysizeglobalweek3 = weeks;
                 arraysizeglobalyear3 = years;
+                graph = (GraphView) findViewById(R.id.graph3th);
                 opentesting3();
 
-            }
+                /*
+                if(indication == 2)
+                {
+                    graph.setTitle("         CO2 Sensor 1");
+                    graph.setTitleTextSize(25);
+                    graph.removeAllSeries();
 
+                    graph.addSeries(seriesghour1);
+                    GridLabelRenderer griLa = graph.getGridLabelRenderer();
+                    LineGraphSeries lil = seriesghour1;
+                    lil.setThickness(2);
+                    griLa.setHorizontalAxisTitle("              hours");
+                    griLa.setHorizontalAxisTitleTextSize(20);
+                    griLa.setVerticalAxisTitle("ppm");
+                    griLa.setLabelVerticalWidth(43);
+                    griLa.setLabelVerticalWidth(55);
+                    //griLa.setH;
+                    griLa.setVerticalAxisTitleTextSize(20);
+                    graph.getViewport().setXAxisBoundsManual(true);
+                    graph.getViewport().setYAxisBoundsManual(true);
+                    if(hours<10)
+                    {
+                        graph.getViewport().setMinX(0);
+                        graph.getViewport().setMaxX(10);
+                    }
+                    else
+                    {
+                        graph.getViewport().setMinX(hours-10);
+                        graph.getViewport().setMaxX(hours);
+                    }
+                    graph.getViewport().setMaxY(max + .2*max);
+                    graph.getViewport().setMinY(0);
+                }
+
+                if(indication == 3)
+                {
+                    graph.setTitle("         CO2 Sensor 1");
+                    graph.setTitleTextSize(25);
+                    graph.removeAllSeries();
+                    graph.addSeries(seriesgday1);
+                    GridLabelRenderer griLa = graph.getGridLabelRenderer();
+                    LineGraphSeries lil = seriesgday1;
+                    lil.setThickness(2);
+                    griLa.setHorizontalAxisTitle("              days");
+                    griLa.setHorizontalAxisTitleTextSize(20);
+                    griLa.setVerticalAxisTitle("ppm");
+                    griLa.setLabelVerticalWidth(43);
+                    griLa.setLabelVerticalWidth(55);
+                    //griLa.setH;
+                    griLa.setVerticalAxisTitleTextSize(20);
+                    graph.getViewport().setXAxisBoundsManual(true);
+                    graph.getViewport().setYAxisBoundsManual(true);
+                    if(days<10)
+                    {
+                        graph.getViewport().setMinX(0);
+                        graph.getViewport().setMaxX(10);
+                    }
+                    else
+                    {
+                        graph.getViewport().setMinX(days-10);
+                        graph.getViewport().setMaxX(days);
+                    }
+                    graph.getViewport().setMaxY(max + .2*max);
+                    graph.getViewport().setMinY(0);
+                }
+
+                if(indication == 4)
+                {
+                    graph.setTitle("         CO2 Sensor 1");
+                    graph.setTitleTextSize(25);
+                    graph.removeAllSeries();
+                    graph.addSeries(seriesgweek1);
+                    GridLabelRenderer griLa = graph.getGridLabelRenderer();
+                    LineGraphSeries lil = seriesgweek1;
+                    lil.setThickness(2);
+                    griLa.setHorizontalAxisTitle("              weeks");
+                    griLa.setHorizontalAxisTitleTextSize(20);
+                    griLa.setVerticalAxisTitle("ppm");
+                    griLa.setLabelVerticalWidth(43);
+                    griLa.setLabelVerticalWidth(55);
+                    //griLa.setH;
+                    griLa.setVerticalAxisTitleTextSize(20);
+                    graph.getViewport().setXAxisBoundsManual(true);
+                    graph.getViewport().setYAxisBoundsManual(true);
+                    if(weeks<10)
+                    {
+                        graph.getViewport().setMinX(0);
+                        graph.getViewport().setMaxX(10);
+                    }
+                    else
+                    {
+                        graph.getViewport().setMinX(weeks-10);
+                        graph.getViewport().setMaxX(weeks);
+                    }
+                    graph.getViewport().setMaxY(max + .2*max);
+                    graph.getViewport().setMinY(0);
+                }
+
+
+                if(indication == 5)
+                {
+                    graph.setTitle("         CO2 Sensor 1");
+                    graph.setTitleTextSize(25);
+                    graph.removeAllSeries();
+                    graph.addSeries(seriesgyear1);
+
+                    GridLabelRenderer griLa = graph.getGridLabelRenderer();
+                    LineGraphSeries lil = seriesgyear1;
+                    lil.setThickness(2);
+                    griLa.setHorizontalAxisTitle("              years");
+                    griLa.setHorizontalAxisTitleTextSize(20);
+                    griLa.setVerticalAxisTitle("ppm");
+                    griLa.setLabelVerticalWidth(43);
+                    griLa.setLabelVerticalWidth(55);
+                    //griLa.setH;
+                    griLa.setVerticalAxisTitleTextSize(20);
+                    graph.getViewport().setXAxisBoundsManual(true);
+                    graph.getViewport().setYAxisBoundsManual(true);
+                    if(years<10)
+                    {
+                        graph.getViewport().setMinX(0);
+                        graph.getViewport().setMaxX(10);
+                    }
+                    else
+                    {
+                        graph.getViewport().setMinX(years-3);
+                        graph.getViewport().setMaxX(years);
+                    }
+                    graph.getViewport().setMaxY(max + .2*max);
+                    graph.getViewport().setMinY(0);
+
+                }
+                */
+
+                //series = null;
+                //series = new LineGraphSeries<DataPoint>(a);
+                //ge = String.valueOf(series.findDataPointAtX(1));
+                //cra.setText(ge);// "         CO2 Sensor 1"
+
+                ///////////////////////////////////////////////////////////////
+                /*
+                graph.setTitle("         CO2 Sensor 1");
+                graph.setTitleTextSize(25);
+                graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+                //graph.getGridLabelRenderer().setNumVerticalLabels(4);
+                graph.removeAllSeries();
+                graph.addSeries(seriessupersecond);
+                //graph.setVisibility(View.GONE);
+                GridLabelRenderer griLa = graph.getGridLabelRenderer();
+                LineGraphSeries lil = series;
+                lil.setThickness(2);
+                griLa.setHorizontalAxisTitle("              Seconds");
+                griLa.setHorizontalAxisTitleTextSize(20);
+                griLa.setVerticalAxisTitle("ppm");
+                griLa.setLabelVerticalWidth(43);
+                //griLa.setH;
+                griLa.setVerticalAxisTitleTextSize(20);
+                graph.getViewport().setXAxisBoundsManual(true);
+                graph.getViewport().setYAxisBoundsManual(true);
+                if(arraysize<60)
+                {
+                    graph.getViewport().setMinX(0);
+                    graph.getViewport().setMaxX(60);
+                }
+                else
+                {
+                    graph.getViewport().setMinX(arraysize-60);
+                    graph.getViewport().setMaxX(arraysize);
+                }
+                graph.getViewport().setMaxX(arraysize);
+                graph.getViewport().setMaxY(max + .2*max);
+                graph.getViewport().setMinY(0);
+
+                 */
+                /////////////////////////////////////////////////////////////////
+
+                //graph.getViewport().setMaxY(max);
+                //graph.getViewport().setMaxX(arraysize);
+
+
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
         rootDatabaseref4.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((snapshot.getChildrenCount()== 0)) {
+                    return;
+                }
                 LineGraphSeries<DataPoint> series;
                 LineGraphSeries<DataPoint> seriesminutes;
                 LineGraphSeries<DataPoint> serieshours;
                 LineGraphSeries<DataPoint> seriesday;
                 LineGraphSeries<DataPoint> seriesweek;
                 LineGraphSeries<DataPoint> seriesyear;
+
+                PointsGraphSeries<DataPoint> seriesB;
+                PointsGraphSeries<DataPoint> seriesminutesB;
+                PointsGraphSeries<DataPoint> serieshoursB;
+                PointsGraphSeries<DataPoint> seriesdayB;
+                PointsGraphSeries<DataPoint> seriesweekB;
+                PointsGraphSeries<DataPoint> seriesyearB;
+
                 String data;// = snapshot.child();
                 Double z;// = Double.parseDouble(data);
-                //double max = 0;
                 // oxyg1.setText(S tring.valueOf(z));
                 int t = 0;
                 int iterator = 0;
+                //double max = 0;
                 double c = 0;
                 double y;
                 int x;
@@ -3065,6 +4173,63 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                 int[] weektime = new int[weeks];
                 int[] yeartime = new int[years];
 
+                ////////////////////////////////////////////////////
+                /////////////////////////////////////////////////
+                int parsetogetsizes = 0;
+
+                int[] minutetimeB = new int[arraysize];
+                int[] hourtimeB = new int[arraysize];            //////////
+                int[] daytimeB = new int[arraysize];
+                int[] monthtimeB = new int[arraysize];
+                int[] yeartimeB = new int[arraysize];
+
+                int[] secondwindow = new int[60];
+                int[] minutewindow = new int[60];
+                for(int i = 0; i < 60; i++)
+                {
+                    secondwindow[i] = -1;
+                    minutewindow[i] = -1;
+                }
+                int[] hourwindow = new int[24];            //////////
+                for(int i = 0; i < 24; i++)
+                {
+                    hourwindow[i] = -1;
+
+                }
+                int[] daywindow = new int[32];
+                for(int i = 0; i < 32; i++)
+                {
+                    daywindow[i] = -1;
+
+                }
+                int[] monthwindow = new int[13];
+                for(int i = 0; i < 13; i++)
+                {
+                    monthwindow[i] = -1;
+
+                }
+                int[] yearwindow = new int[10];
+                for(int i = 0; i < 10; i++)
+                {
+                    yearwindow[i] = -1;
+
+                }
+                double [] secconcentrationAVG = new double[60];
+                double[] mintuteconcentrationAVG = new double[60]; ////// hold average values for each unit
+                double[] hourconcentrationAVG = new double[24]; ////// hold average
+                double[] dayconcenctrationAVG = new double[32]; //
+                double[] weekconcenctrationAVG = new double[13];
+                double[] yearsconcentrationAVG = new double[10];
+                int iteratorB = 0;
+                int minutiteratorB = 0;      ///////
+                int houriteratorB = 0;      ///////
+                int dayiteratorB = 0;
+                int weekiteratorB = 0;
+                int yeariteratorB = 0;
+
+                //put sizes back here if it doesnt work
+                /////////////////////////////////////////////////////
+                ///////////////////////////////////
 
                 double[] concentration = new double[arraysize];
                 double[] mintuteconcentration = new double[minutes]; //////
@@ -3080,15 +4245,774 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                 int yeariterator = 0;
 
                 double averagesum = 0;
+
+                seriesB = new PointsGraphSeries<DataPoint>();
+                seriesminutesB = new PointsGraphSeries<DataPoint>();
+                serieshoursB = new PointsGraphSeries<DataPoint>();
+                seriesdayB = new PointsGraphSeries<DataPoint>();
+                seriesweekB = new PointsGraphSeries<DataPoint>();
+                seriesyearB = new PointsGraphSeries<DataPoint>();
+
+                DataPoint[] aseriesB= new DataPoint[60];
+                DataPoint[] aseriesminutesB= new DataPoint[60];
+                DataPoint[] aserieshoursB= new DataPoint[24];
+                DataPoint[] aseriesdayB= new DataPoint[32];
+                DataPoint[] aseriesweekB= new DataPoint[13];
+                DataPoint[] aseriesyearB= new DataPoint[10];
+
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
+                    int secondssize = 0; //tells how much stuff is in a window
+                    int minutessize = 0;
+                    int hourssize = 0;
+                    int dayssize = 0;
+                    int monthssize = 0;
+                    int yearssize = 0;
 
-                    time[iterator] = Integer.parseInt(snapshot1.child("time").getValue().toString());
-                    concentration[iterator] = Double.parseDouble(snapshot1.child("concentration").getValue().toString());
+
+                    time[iterator] = Integer.parseInt(snapshot1.child("7-Seconds").getValue().toString());                       //7-Seconds time
+                    concentration[iterator] = Double.parseDouble(snapshot1.child("1-Concentration").getValue().toString());   //1-Concentration concentration
+                    minutetimeB[iterator] = Integer.parseInt(snapshot1.child("6-Minute").getValue().toString()); ///////////////6-Minute minute
+                    hourtimeB[iterator] = Integer.parseInt(snapshot1.child("5-Hour").getValue().toString());     ////////////////5-Hour hour
+                    daytimeB[iterator] = Integer.parseInt(snapshot1.child("4-Day").getValue().toString());       /////////////////4-Day day
+                    monthtimeB[iterator] = Integer.parseInt(snapshot1.child("3-Month").getValue().toString());   ///////////////////3-Month/ month
+                    yeartimeB[iterator] = Integer.parseInt(snapshot1.child("2-Year").getValue().toString());     ///////          //2-Year year
                     if(concentration[iterator] > max)
                     {
                         max = concentration[iterator];
                     }
+
+                    //////////////////////////////////////////////A
+                    //////////////////////////////////////////////
+                    /////////////////////////////////////////////
+                    for(int i = 0; i < 60; i++)
+                    {
+                        if(secondwindow[i] != -1)
+                        {
+                            secondssize = secondssize + 1;
+                        }
+                        if(minutewindow[i] != -1)
+                        {
+                            minutessize = minutessize + 1;
+                        }
+                    }
+
+                    for(int i = 0; i < 24; i++)
+                    {
+                        if(hourwindow[i] != -1)
+                        {
+                            hourssize = hourssize + 1;
+                        }
+
+                    }
+
+                    for(int i = 0; i < 32; i++)
+                    {
+                        if(daywindow[i] != -1)
+                        {
+                            dayssize = dayssize + 1;
+                        }
+
+                    }
+
+                    for(int i = 0; i < 13; i++)
+                    {
+                        if(monthwindow[i] != -1 )
+                        {
+                            monthssize = monthssize + 1;
+                        }
+                    }
+
+                    for(int i = 0; i < 10; i++)
+                    {
+                        if(yearwindow[i] != -1)
+                        {
+                            yearssize = yearssize + 1;
+                        }
+
+                    }
+                    //controlling seconds and part of minutes arrays
+                    if(iterator>0) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( minutetimeB[iterator - 1] != minutetimeB[iterator]) //makes sure last point was 59 and your higher then 0
+                            {
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                //reset all other values
+                                for (int i = 1; i < 60; i++) {
+                                    secondwindow[i] = -1;
+                                    secconcentrationAVG[i] = 0;
+                                }
+                                //seriesB.resetData(aserieshoursB);
+                                minutewindow[minutetimeB[iterator]] = minutetimeB[iterator]; // minutetimeB[iterator-1]  iterator-1
+
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                if (secondssize < 60) {               //iterator - (secondssize)
+                                    for (int i = iterator - (secondssize); i < iterator+1; i++)        ////ITERATOR+1
+                                    {                                                         ////
+
+                                        averagesum = averagesum + concentration[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //iterator-1
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = iterator - (secondssize); i < iterator+1; i++)        ////ITERATOR+1
+                                    {                                                         ////
+
+                                        averagesum = averagesum + concentration[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum / 60; //iterator-1
+                                    mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator];
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                }
+                            }
+                            else
+                            {
+                                secondwindow[time[iterator]] = time[iterator];
+                                secconcentrationAVG[time[iterator]] = concentration[iterator];
+                                for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////
+                                {                                                         ////
+
+                                    averagesum = averagesum + concentration[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+                                //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+                                //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));//mintuteconcentrationAVG[23] FFFFF
+                            }
+
+                        }
+                        //ENDING STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                        //end of checking if you passed the iteration
+                        else
+                        {
+                            secondwindow[time[iterator]] = time[iterator];
+                            secconcentrationAVG[time[iterator]] = concentration[iterator];
+                            for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////ITERATOR+1
+                            {                                                         ////
+
+                                averagesum = averagesum + concentration[i];           ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                            mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                        }
+                    }
+                    else
+                    {
+                        secondwindow[time[iterator]] = time[iterator];
+                        secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = iterator - (secondssize); i< iterator+1 ; i++)        ////
+                        {                                                         ////
+
+                            averagesum = averagesum + concentration[i];           ////
+                            ////
+                            //buttonreferesh.setText(String.valueOf(secondssize));j
+                        }
+                        minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                        mintuteconcentrationAVG[minutetimeB[iterator]] = averagesum/(secondssize + 1);
+                        //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));//mintuteconcentrationAVG[23] FFFFF
+                    }
+                    //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                    //buttonback.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[59]));
+                    ///////////////CHANGE  TO MINUTES/HOURS
+
+                    if(minutetimeB[iterator] == 0) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( minutetimeB[iterator - 1] == 59) //makes sure last point was 59 and your higher then 0
+                            {
+                                //minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                //mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //get back over here
+                                //reset all other values
+
+                                //seriesB.resetData(aserieshoursB);
+                                hourwindow[hourtimeB[iterator-1]] = hourtimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
+                                hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];          ///ERROR
+                                hourconcentrationAVG[hourtimeB[iterator]] = concentration[iterator];//ERROR
+
+                                if (minutessize < 60) {               //iterator - (secondssize)
+                                    for (int i = 60 - (minutessize); i < 60; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + mintuteconcentrationAVG[i];           ///////BOOK MARK!
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    for (int i = 1; i < 60; i++) {
+                                        minutewindow[i] = -1;
+                                        mintuteconcentrationAVG[i] = 0;
+                                    }
+                                    if(minutessize == 0)                                               /////////
+                                    {
+                                        hourconcentrationAVG[hourtimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+                                    else {
+                                        hourconcentrationAVG[hourtimeB[iterator - 1]] = averagesum / minutessize; //iterator-1
+                                    }
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                    //buttonreferesh.setText(String.valueOf(iterator));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = 0; i < 60; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + mintuteconcentrationAVG[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    hourconcentrationAVG[hourtimeB[iterator-1]] = averagesum / 60; //iterator-1
+
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                }
+                            }
+                            else
+                            {
+                                for(int i = 0; i < 60; i++)        ////60 - (minutessize)    60
+                                {                                                         ////
+
+                                    averagesum = averagesum + mintuteconcentrationAVG[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
+                                if(minutessize == 0)                                               /////////
+                                {
+                                    hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                                }
+                                //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+
+                            }
+                        }
+
+                        //ENDING STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                        //end of checking if you passed the iteration
+                        else
+                        {
+
+                            for(int i = 0; i < 60; i++)        ////////60 - (minutessize)    60
+                            {                                                         ////
+
+                                averagesum = averagesum + mintuteconcentrationAVG[i];           ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
+                            if(minutessize == 0)                                               /////////
+                            {
+                                hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                            }
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
+                        }
+                    }
+                    ///////////////CHANGE  TO MINUTES/HOURS
+
+                    else
+                    {
+                        //secondwindow[time[iterator]] = time[iterator];
+                        //secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = 0; i < 60; i++)        ////
+                        {                                                         ////
+
+                            averagesum = averagesum + mintuteconcentrationAVG[i];           ////
+                            ////
+                            //buttonreferesh.setText(String.valueOf(secondssize));
+                        }
+                        hourwindow[hourtimeB[iterator]] = hourtimeB[iterator];
+                        if(minutessize == 0)                                               /////////
+                        {
+                            hourconcentrationAVG[hourtimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            hourconcentrationAVG[hourtimeB[iterator]] = averagesum / minutessize;
+                        }
+                        //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonreferesh.setText(String.valueOf(iterator));
+                        //buttonback.setText(String.valueOf(hourconcentrationAVG[11]));
+                    }
+                    //buttonreferesh.setText(String.valueOf(iterator));
+                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                    //buttonback.setText(String.valueOf(hourconcentrationAVG[11]));
+                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12]));
+                    //////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////Hours/Days
+                    if(hourtimeB[iterator] == 0) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( hourtimeB[iterator - 1] == 23) //makes sure last point was 59 and your higher then 0
+                            {
+                                //minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                //mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //get back over here
+                                //reset all other values
+
+                                //seriesB.resetData(aserieshoursB);
+                                daywindow[daytimeB[iterator-1]] = daytimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
+                                daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                                dayconcenctrationAVG[daytimeB[iterator]] = concentration[iterator];
+
+                                //GO BACK
+                                if (hourssize < 24) {               //iterator - (secondssize)
+                                    for (int i = 24 - (hourssize); i < 24; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + hourconcentrationAVG[i];           ///////BOOK MARK!
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    for (int i = 1; i < 24; i++) {
+                                        hourwindow[i] = -1;
+                                        hourconcentrationAVG[i] = 0;
+                                    }
+                                    if(hourssize == 0)                                               /////////
+                                    {
+                                        dayconcenctrationAVG[daytimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+                                    else {
+                                        dayconcenctrationAVG[daytimeB[iterator - 1]] = averagesum / hourssize; //iterator-1
+                                    }
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                    //buttonreferesh.setText(String.valueOf(iterator));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = 0; i < 24; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + hourconcentrationAVG[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    dayconcenctrationAVG[daytimeB[iterator-1]] = averagesum /24; //iterator-1
+
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                }
+                            }
+                            else
+                            {
+                                for(int i = 0; i < hourwindow.length; i++)        ////hourssize
+                                {                                                         ////
+
+                                    averagesum = averagesum + hourconcentrationAVG[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                                if(hourssize == 0)                                               /////////
+                                {
+                                    dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                                }
+                                //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+
+                            }
+                        }
+
+                        else
+                        {
+
+                            for(int i = 0; i < hourwindow.length; i++)        ////////60 - (minutessize)    60
+                            {                                                         ////
+
+                                if(hourwindow[i] != -1) {
+                                    averagesum = averagesum + hourconcentrationAVG[i];           ////
+                                    ////
+                                }         ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                            if(hourssize == 0)                                               /////////
+                            {
+                                dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                            }
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
+                        }
+                    }
+
+
+                    else
+                    {
+                        //secondwindow[time[iterator]] = time[iterator];
+                        //secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = 0; i < hourwindow.length; i++)        ////
+                        {                                                         ////
+
+                            if(hourwindow[i] != -1) {
+                                averagesum = averagesum + hourconcentrationAVG[i];           ////
+                                ////
+                            }           ////
+                            ////
+                            //buttonreferesh.setText(String.valueOf(secondssize));
+                        }
+                        daywindow[daytimeB[iterator]] = daytimeB[iterator];
+                        if(hourssize == 0)                                               /////////
+                        {
+                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            dayconcenctrationAVG[daytimeB[iterator]] = averagesum / hourssize;
+                        }
+                        //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonreferesh.setText(String.valueOf(iterator));
+                        //buttonback.setText(String.valueOf(hourconcentrationAVG[11]));
+                    }
+                    //checkpoint//849
+                    //buttonreferesh.setText(String.valueOf(daywindow[3]));
+                    //buttonback.setText(String.valueOf(daywindow[2]));
+
+                    //////////////////////////////////////////////////////////////////////////////////
+                    //////////    day/month
+
+                    if(daytimeB[iterator] == 1) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( (daytimeB[iterator - 1] == 29) || (daytimeB[iterator - 1] == 30) || (daytimeB[iterator - 1] == 31)) //makes sure last point was 59 and your higher then 0
+                            {
+                                //minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                //mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //get back over here
+                                //reset all other values
+
+                                //seriesB.resetData(aserieshoursB);
+                                monthwindow[monthtimeB[iterator-1]] = monthtimeB[iterator-1]; // minutetimeB[iterator-1]  iterator-1
+                                monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                                weekconcenctrationAVG[monthtimeB[iterator]] = concentration[iterator];
+                                //CHANGE STUFF OVER HERE
+                                if (dayssize < daytimeB[iterator - 1]) {               //iterator - (secondssize)
+                                    for (int i = daytimeB[iterator - 1] - (dayssize); i < daytimeB[iterator - 1] + 1; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + dayconcenctrationAVG[i];           ///////BOOK MARK!
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    for (int i = 2; i < daytimeB[iterator - 1] + 1; i++) {
+                                        daywindow[i] = -1;
+                                        dayconcenctrationAVG[i] = 0;
+                                    }
+                                    if(dayssize == 0)                                               /////////
+                                    {
+                                        weekconcenctrationAVG[monthtimeB[iterator-1]] = averagesum;     /////////////
+                                    }
+                                    else {
+                                        weekconcenctrationAVG[monthtimeB[iterator - 1]] = averagesum / dayssize; //iterator-1 COME BACK HERE!!!!!!
+                                    }
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                    //buttonreferesh.setText(String.valueOf(iterator));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = 1; i < daytimeB[iterator - 1] + 1; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + dayconcenctrationAVG[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    weekconcenctrationAVG[monthtimeB[iterator-1]] = averagesum /daytimeB[iterator - 1]; //iterator-1
+
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                }
+                            }
+                            else
+                            {
+                                for(int i = 1; i < daytimeB[iterator - 1] + 1; i++)        ////60 - (minutessize)    60
+                                {                                                         ////
+
+                                    averagesum = averagesum + dayconcenctrationAVG[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                                if(dayssize == 0)                                               /////////
+                                {
+                                    weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                                }
+                                else {
+                                    weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                                }
+                                //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+
+                            }
+                        }
+
+                        else
+                        {
+
+                            for(int i = 1; i < daywindow.length; i++)        ////////60 - (minutessize)    60
+                            {                                                         ////
+
+                                if(daywindow[i] != -1) {
+                                    averagesum = averagesum + dayconcenctrationAVG[i];           ////
+                                    ////
+                                }          ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                            if(dayssize == 0)                                               /////////
+                            {
+                                weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                            }
+                            else {
+                                weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                            }
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
+                        }
+                    }
+
+
+                    else
+                    {
+                        //secondwindow[time[iterator]] = time[iterator];
+                        //secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = 1; i < daywindow.length; i++)         ////dayssize
+                        {                                                         ////
+                            if(daywindow[i] != -1) {
+                                averagesum = averagesum + dayconcenctrationAVG[i];           ////
+                                ////
+                            }
+                            //buttonreferesh.setText(String.valueOf(secondssize));
+                        }
+                        monthwindow[monthtimeB[iterator]] = monthtimeB[iterator];
+                        if(dayssize == 0)                                               /////////
+                        {
+                            weekconcenctrationAVG[monthtimeB[iterator]] = averagesum;     /////////////
+                        }
+                        else {
+                            weekconcenctrationAVG[monthtimeB[iterator]] = averagesum / dayssize;
+                        }
+                        //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonreferesh.setText(String.valueOf(iterator));
+                        //buttonback.setText(String.valueOf(dayssize));
+                        //buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[11]));
+                    }
+                    buttonback.setText(String.valueOf(dayconcenctrationAVG[2]));
+                    buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[11]));
+                    //buttonback.setText(String.valueOf(weekconcenctrationAVG[11]));
+
+                    ////////////////////////////////////////MONTH TO YEAR//////////////////////////////////////
+                    if(monthtimeB[iterator] == 1) //checks if time index is 0
+                    {
+                        if(iterator>0) {//iterator > 0 &&
+                            if ( (monthtimeB[iterator - 1] == 12) ) //makes sure last point was 59 and your higher then 0
+                            {
+                                //minutewindow[minutetimeB[iterator]] = minutetimeB[iterator];
+                                //mintuteconcentrationAVG[minutetimeB[iterator]] = concentration[iterator]; //get back over here
+                                //reset all other values
+
+                                //seriesB.resetData(aserieshoursB);
+                                yearwindow[yeartimeB[iterator-1]-2021] = yeartimeB[iterator-1]-2000; // minutetimeB[iterator-1]  iterator-1
+
+                                //CHANGE STUFF OVER HERE
+                                if (monthssize < 12) {               //iterator - (secondssize)
+                                    for (int i = monthtimeB[iterator - 1] - (monthssize); i < monthtimeB[iterator - 1] + 1; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + weekconcenctrationAVG[i];           ///////BOOK MARK!
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    for (int i = 2; i < monthtimeB[iterator - 1] + 1; i++) {
+                                        monthwindow[i] = -1;
+                                        weekconcenctrationAVG[i] = 0;
+                                    }
+                                    if(monthssize == 0)                                               /////////
+                                    {
+                                        yearsconcentrationAVG[yeartimeB[iterator-1]-2021]  = averagesum;     /////////////
+                                    }
+                                    else {
+                                        yearsconcentrationAVG[yeartimeB[iterator - 1] - 2021] = averagesum / monthssize; //iterator-1 COME BACK HERE!!!!!!
+                                    }
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[12])); THIS ONE FIXS IT
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                    //buttonreferesh.setText(String.valueOf(iterator));
+                                    //minutiteratorB = minutiteratorB + 1;
+
+
+                                } else {
+                                    for (int i = 1; i < monthtimeB[iterator - 1] + 1; i++)        ////
+                                    {                                                         ////
+
+                                        averagesum = averagesum + weekconcenctrationAVG[i];           ////
+                                        ////
+                                        //buttonreferesh.setText(String.valueOf(secondssize));
+                                    }
+                                    yearsconcentrationAVG[yeartimeB[iterator-1]-2021] = averagesum /12; //iterator-1
+
+                                    averagesum = 0;
+                                    //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[22]));
+                                }
+                            }
+                            else
+                            {
+                                for(int i = 1; i < monthtimeB[iterator - 1] + 1; i++)        ////60 - (minutessize)    60
+                                {                                                         ////
+
+                                    averagesum = averagesum + weekconcenctrationAVG[i];           ////
+                                    ////
+                                    //buttonreferesh.setText(String.valueOf(secondssize));j
+                                }
+                                yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
+                                if(monthssize == 0)                                               /////////
+                                {
+                                    yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                                }
+                                else {
+                                    yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                                }
+                                //buttonreferesh.setText(String.valueOf(mintuteconcentrationAVG[0]));
+                                //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                                averagesum = 0;
+
+                            }
+                        }
+
+                        else
+                        {
+
+                            for(int i = 1; i < monthwindow.length; i++)        ////////60 - (minutessize)    60
+                            {                                                         ////
+
+                                if(monthwindow[i] != -1) {
+                                    averagesum = averagesum + weekconcenctrationAVG[i];           ////
+                                    ////
+                                }          ////
+                                ////
+                                //buttonreferesh.setText(String.valueOf(secondssize));j
+                            }
+                            yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
+                            if(monthssize == 0)                                               /////////
+                            {
+                                yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                            }
+                            else {
+                                yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                            }
+                            //buttonback.setText(String.valueOf(secondssize)); //mintuteconcentrationAVG[23]
+                            averagesum = 0;
+
+                            //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23]));
+                        }
+                    }
+
+
+                    else
+                    {
+                        //secondwindow[time[iterator]] = time[iterator];
+                        //secconcentrationAVG[time[iterator]] = concentration[iterator];
+                        for(int i = 1; i < monthwindow.length; i++)         ////dayssize
+                        {                                                         ////
+                            if(monthwindow[i] != -1) {
+                                averagesum = averagesum + weekconcenctrationAVG[i];           ////
+                                ////
+                            }
+                            //buttonreferesh.setText(String.valueOf(secondssize));
+                        }
+                        yearwindow[yeartimeB[iterator]-2021] = yeartimeB[iterator]-2000;
+                        if(monthssize == 0)                                               /////////
+                        {
+                            yearsconcentrationAVG[yeartimeB[iterator]-2021]  = averagesum;     /////////////
+                        }
+                        else {
+                            yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / monthssize;
+                        }
+                        if(iterator>0)
+                        {
+                            if(monthtimeB[iterator-1] != monthtimeB[iterator])
+                            {
+                                yearsconcentrationAVG[yeartimeB[iterator] - 2021] = averagesum / (monthssize+1);
+                                //buttonreferesh.setText(String.valueOf(averagesum));
+                                //buttonreferesh.setText(String.valueOf(averagesum));
+                                //buttonback.setText(String.valueOf(weekconcenctrationAVG[12]));
+                                //buttonback.setText(String.valueOf(yearsconcentrationAVG[1]));
+
+                            }
+                        }
+                        //buttonreferesh.setText(String.valueOf(hourconcentrationAVG[11]));
+                        //buttonback.setText(String.valueOf(mintuteconcentrationAVG[23])); //mintuteconcentrationAVG[23]
+                        averagesum = 0;
+                        //buttonreferesh.setText(String.valueOf(iterator));
+                        //buttonback.setText(String.valueOf(dayssize));
+                        //buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[11]));
+                    }
+                    //buttonback.setText(String.valueOf(monthwindow[12]));
+                    //buttonreferesh.setText(String.valueOf(weekconcenctrationAVG[12]));
+                    buttonback.setText(String.valueOf(yearsconcentrationAVG[1]));
+                    buttonreferesh.setText(String.valueOf(yearsconcentrationAVG[2]));
+                    //buttonreferesh.setText(String.valueOf(yearsconcentrationAVG[12]));
+                    ////////////////////////////////////////MONTH TO YEAR//////////////////////////////////////
+                    ///////////////////////////////////////////// NEW STUFF2
+                    ////////////////////////
+
+
                     if((iterator+1)%60==0)                                        /////
                     {                                                             /////
                         minutetime[minutiterator] = minutiterator ;                ////
@@ -3158,10 +5082,88 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     iterator = iterator + 1;
                 }
 
+                ///////////////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////////////////////////
+                int whilecheck = 0;
+                for(int i = 0; i < 60; i++)
+                {
+
+                    if(secondwindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesB[whilecheck] = new DataPoint(secondwindow[i], secconcentrationAVG[i] );
+                        seriesB.appendData( aseriesB[whilecheck], true, 100);
+                        whilecheck = whilecheck + 1;
+                    }
+                }
+
+                int whilecheck2 = 0;
+                for(int i = 0; i < 60; i++)
+                {
+
+                    if(minutewindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesminutesB[whilecheck2] = new DataPoint(minutewindow[i], mintuteconcentrationAVG[i] );
+                        seriesminutesB.appendData( aseriesminutesB[whilecheck2], true, 100);
+                        whilecheck2 = whilecheck2 + 1;
+                    }
+                }
+
+                int whilecheck3 = 0;
+                for(int i = 0; i < 24; i++)
+                {
+
+                    if(hourwindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aserieshoursB[whilecheck3] = new DataPoint(hourwindow[i], hourconcentrationAVG[i] );
+                        serieshoursB.appendData( aserieshoursB[whilecheck3], true, 100);
+                        whilecheck3 = whilecheck3 + 1;
+                    }
+                }
+                int whilecheck4 = 0;
+                for(int i = 0; i < 32; i++)
+                {
+
+                    if(daywindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesdayB[whilecheck4] = new DataPoint(daywindow[i], dayconcenctrationAVG[i] );
+                        seriesdayB.appendData( aseriesdayB[whilecheck4], true, 100);
+                        whilecheck4 = whilecheck4 + 1;
+                    }
+                }
+
+                int whilecheck5 = 0;
+                for(int i = 0; i < 13; i++)
+                {
+
+                    if(monthwindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesweekB[whilecheck5] = new DataPoint(monthwindow[i], weekconcenctrationAVG[i] );
+                        seriesweekB.appendData( aseriesweekB[whilecheck5], true, 100);
+                        whilecheck5 = whilecheck5 + 1;
+                    }
+                }
+
+                int whilecheck6 = 0;
+                for(int i = 0; i < 10; i++)
+                {
+
+                    if(yearwindow[i] != -1)
+                    {                   //secondwindow[i]
+                        aseriesyearB[whilecheck6] = new DataPoint(yearwindow[i], yearsconcentrationAVG[i] );
+                        seriesyearB.appendData( aseriesyearB[whilecheck6], true, 100);
+                        whilecheck6 = whilecheck6 + 1;
+                    }
+                }
+
+
+                ////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////
+
+
                 t = time[0];
                 c = concentration[0];
-                //oxyg1.setText(String.valueOf(c));
-                GraphView graph = (GraphView) findViewById(R.id.graph4th); /////////////////////////////////////////
+
+                //GraphView graph = (GraphView) findViewById(R.id.graph12); /////////////////////////
 
                 series = new LineGraphSeries<DataPoint>();
                 seriesminutes = new LineGraphSeries<DataPoint>();
@@ -3174,7 +5176,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aminutes[i] = new DataPoint(minutetime[i], mintuteconcentration[i]);       ////
 
-                    seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
+                    //seriesminutes.appendData(aminutes[i], true, minutes + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -3183,7 +5185,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     a[i] = new DataPoint(time[i], concentration[i]);
 
-                    series.appendData(a[i], true, arraysize + 40);
+                    //series.appendData(a[i], true, arraysize + 40);
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -3192,7 +5194,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     ahours[i] = new DataPoint(hourtime[i], hourconcentration[i]);       ////
 
-                    serieshours.appendData(ahours[i], true, hours + 3);    ////
+                    //serieshours.appendData(ahours[i], true, hours + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -3208,7 +5210,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aday[i] = new DataPoint(daytime[i], dayconcenctration[i]);       ////
 
-                    seriesday.appendData(aday[i], true, days + 3);    ////
+                    //seriesday.appendData(aday[i], true, days + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -3223,7 +5225,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     aweek[i] = new DataPoint(weektime[i], weekconcenctration[i]);       ////
 
-                    seriesweek.appendData(aweek[i], true, weeks + 3);    ////
+                    //seriesweek.appendData(aweek[i], true, weeks + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
@@ -3238,17 +5240,17 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                     //protected(series.resetData(new DataPoint[] {}));
                     ayear[i] = new DataPoint(yeartime[i], yearsconcentration[i]);       ////
 
-                    seriesyear.appendData(ayear[i], true, years + 3);    ////
+                    //seriesyear.appendData(ayear[i], true, years + 3);    ////
                     //g = Double.parseDouble(String.valueOf(series.findDataPointAtX(time[i])));
 
                 }
-                seriesgsecond4 = series;
+                seriesgsecond4 = seriesB;
 
-                seriesgsuperminute4 = seriesminutes;
-                seriesghour4 = serieshours;
-                seriesgday4 = seriesday;
-                seriesgweek4 = seriesweek;
-                seriesgyear4 = seriesyear;
+                seriesgsuperminute4 = seriesminutesB;
+                seriesghour4 = serieshoursB;
+                seriesgday4 = seriesdayB;
+                seriesgweek4 = seriesweekB;
+                seriesgyear4 = seriesyearB;
 
                 arraysizeglobalsecond4 = arraysize;
                 arraysizeglobalminute4 = minutes;
@@ -3257,14 +5259,56 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
                 arraysizeglobalweek4 = weeks;
                 arraysizeglobalyear4 = years;
                 opentesting4();
+                //series = null;
+                //series = new LineGraphSeries<DataPoint>(a);
+                //ge = String.valueOf(series.findDataPointAtX(1));
+                //cra.setText(ge);
 
+                //graph.getGridLabelRenderer().setNumVerticalLabels(4);
+                ////////////////////////////////////////////////////////////////////////
+                /*
+                graph.setTitle("         CO2 Sensor 2");
+                graph.setTitleTextSize(25);
+                graph.removeAllSeries();
+                graph.addSeries(series);
+                graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+                GridLabelRenderer griLa = graph.getGridLabelRenderer();
+                LineGraphSeries lil = series;
+                lil.setThickness(2);
+                griLa.setHorizontalAxisTitle("              Seconds");
+                griLa.setHorizontalAxisTitleTextSize(20);
+                griLa.setVerticalAxisTitle("ppm");
+                griLa.setLabelVerticalWidth(43);
+                //griLa.setH;
+                griLa.setVerticalAxisTitleTextSize(20);
+                graph.getViewport().setXAxisBoundsManual(true);
+                graph.getViewport().setYAxisBoundsManual(true);
+                int newparmter = 0;
+                int newarray = arraysize;
+                if(arraysize<60)
+                {
+                    graph.getViewport().setMinX(0);
+                    graph.getViewport().setMaxX(60);
+                }
+                else
+                {
+                    graph.getViewport().setMinX(arraysize-60);
+                    graph.getViewport().setMaxX(arraysize);
+                }
+                graph.getViewport().setMaxY(max + .2*max);
+                graph.getViewport().setMinY(0);
+
+                 */
+                ////////////////////////////////////////////////////////////
             }
+
 
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
 
         rootDatabaseref5.addValueEventListener(new ValueEventListener() {
@@ -3865,10 +5909,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgsecond3.setSize(2);
             graph3.addSeries(seriesgsecond3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgsecond3;
-            lil3.setThickness(2);
+            //LineGraphSeries lil3 = seriesgsecond3;
+            //lil3.setThickness(2);
             griLa3.setHorizontalAxisTitle("              second");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
@@ -3882,16 +5927,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalsecond3<60)
-            {
+            //if(arraysizeglobalsecond3<60)
+            //{
                 graph3.getViewport().setMinX(0);
                 graph3.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalsecond3-60);
-                graph3.getViewport().setMaxX(arraysizeglobalsecond3);
-            }
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalsecond3-60);
+            //    graph3.getViewport().setMaxX(arraysizeglobalsecond3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -3900,10 +5945,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgsecond4.setSize(2);
             graph4.addSeries(seriesgsecond4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgsecond4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesgsecond4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              second");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -3917,16 +5963,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setMaxX(arraysizeglobalsecond4 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalsecond4<60)
-            {
+            //if(arraysizeglobalsecond4<60)
+            //{
                 graph4.getViewport().setMinX(0);
                 graph4.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalsecond4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalsecond4);
-            }
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalsecond4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalsecond4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -4073,10 +6119,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgsuperminute3.setSize(2);
             graph3.addSeries(seriesgsuperminute3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgsuperminute3;
-            lil3.setThickness(2);
+            //LineGraphSeries lil3 = seriesgsuperminute3;
+            //lil3.setThickness(2);
             griLa3.setHorizontalAxisTitle("              minutes");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
@@ -4088,16 +6135,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute3<10)
-            {
+            //if(arraysizeglobalminute3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalminute3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalminute3);
-            }
+                graph3.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalminute3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalminute3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -4105,10 +6152,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgsuperminute4.setSize(2);
             graph4.addSeries(seriesgsuperminute4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgsuperminute4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesgsuperminute4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              minutes");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -4122,16 +6170,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setMaxX(arraysizeglobalminute4 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalminute4<60)
-            {
+            //if(arraysizeglobalminute4<60)
+            //{
                 graph4.getViewport().setMinX(0);
                 graph4.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalminute4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalminute4);
-            }
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalminute4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalminute4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -4272,10 +6320,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesghour3.setSize(2);
             graph3.addSeries(seriesghour3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesghour3;
-            lil3.setThickness(2);
+            //LineGraphSeries lil3 = seriesghour3;
+            //lil3.setThickness(2);
             griLa3.setHorizontalAxisTitle("              hours");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
@@ -4287,26 +6336,27 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour3<10)
-            {
+            //if(arraysizeglobalhour3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalhour3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalhour3);
-            }
+                graph3.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalhour3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalhour3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesghour4.setSize(2);
             graph4.addSeries(seriesghour4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesghour4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesghour4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              hours");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -4320,16 +6370,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setMaxX(arraysizeglobalhour4 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalhour4<60)
-            {
-                graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalhour4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalhour4);
-            }
+            //if(arraysizeglobalhour4<60)
+            //{
+               graph4.getViewport().setMinX(0);
+                graph4.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalhour4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalhour4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -4470,10 +6520,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgday3.setSize(2);
             graph3.addSeries(seriesgday3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgday3;
-            lil3.setThickness(2);
+            //LineGraphSeries lil3 = seriesgday3;
+            //lil3.setThickness(2);
             griLa3.setHorizontalAxisTitle("              days");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
@@ -4485,26 +6536,27 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday3<10)
-            {
+            //if(arraysizeglobalday3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalday3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalday3);
-            }
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalday3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalday3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgday4.setSize(2);
             graph4.addSeries(seriesgday4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgday4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesgday4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              day");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -4518,16 +6570,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setMaxX(arraysizeglobalday4 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalday4<60)
-            {
+            //if(arraysizeglobalday4<60)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalday4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalday4);
-            }
+                graph4.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalday4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalday4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -4669,11 +6721,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgweek3.setSize(2);
             graph3.addSeries(seriesgweek3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgweek3;
-            lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil3 = seriesgweek3;
+            //lil3.setThickness(2);
+            griLa3.setHorizontalAxisTitle("              months");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
             griLa3.setLabelVerticalWidth(43);
@@ -4684,27 +6737,28 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek3<10)
-            {
+            //if(arraysizeglobalweek3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalweek3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalweek3);
-            }
+                graph3.getViewport().setMaxX(13);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalweek3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalweek3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgweek4.setSize(2);
             graph4.addSeries(seriesgweek4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgweek4;
-            lil4.setThickness(2);
-            griLa4.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil4 = seriesgweek4;
+            //lil4.setThickness(2);
+            griLa4.setHorizontalAxisTitle("              months");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
             griLa4.setLabelVerticalWidth(43);
@@ -4717,16 +6771,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setMaxX(arraysizeglobalweek4 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalweek4<60)
-            {
+            //if(arraysizeglobalweek4<60)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalweek4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalweek4);
-            }
+                graph4.getViewport().setMaxX(13);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalweek4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalweek4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -4870,11 +6924,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgyear3.setSize(2);
             graph3.addSeries(seriesgyear3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgyear3;
-            lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil3 = seriesgyear3;
+            //lil3.setThickness(2);
+            griLa3.setHorizontalAxisTitle("              years");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
             griLa3.setLabelVerticalWidth(43);
@@ -4885,16 +6940,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear3<3)
-            {
-                graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalyear3-3);
-                graph3.getViewport().setMaxX(arraysizeglobalyear3);
-            }
+            //if(arraysizeglobalyear3<3)
+            //{
+                graph3.getViewport().setMinX(21);
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalyear3-3);
+            //    graph3.getViewport().setMaxX(arraysizeglobalyear3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -4902,10 +6957,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgyear4.setSize(2);
             graph4.addSeries(seriesgyear4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgyear4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesgyear4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              year");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -4919,16 +6975,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setMaxX(arraysizeglobalyear4 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalyear4<60)
-            {
-                graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalyear4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalyear4);
-            }
+            //if(arraysizeglobalyear4<60)
+            //{
+                graph4.getViewport().setMinX(21);
+                graph4.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalyear4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalyear4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -4998,7 +7054,7 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
 
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         //adapterView.setSelection(i);
-        if((seriessupersecond == null) || (seriessuperminute1 == null) || (seriesghour1 == null) || (seriesgday1 == null) || (seriesgweek1 == null) || (seriesgyear1 == null) || (seriesgsecond2 == null) || (seriesgsuperminute2 == null) || (seriesghour2 == null) || (seriesgday2 == null) || (seriesgweek2 == null) || (seriesgyear2 == null))
+        if((seriessupersecond == null) || (seriessuperminute1 == null) || (seriesghour1 == null) || (seriesgday1 == null) || (seriesgweek1 == null) || (seriesgyear1 == null) || (seriesgsecond2 == null) || (seriesgsuperminute2 == null) || (seriesghour2 == null) || (seriesgday2 == null) || (seriesgweek2 == null) || (seriesgyear2 == null) || (seriesgsecond3 == null) || (seriesgsuperminute3 == null) || (seriesghour3 == null) || (seriesgday3 == null) || (seriesgweek3 == null) || (seriesgyear3 == null) || (seriesgsecond4 == null) || (seriesgsuperminute4 == null) || (seriesghour4 == null) || (seriesgday4 == null) || (seriesgweek4 == null) || (seriesgyear4 == null))
         {return;}
             indication = i;
         openActivityminutes();
@@ -5494,10 +7550,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgsecond3.setSize(2);
             graph3.addSeries(seriesgsecond3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgsecond3;
-            lil3.setThickness(2);
+            //LineGraphSeries lil3 = seriesgsecond3;
+            //lil3.setThickness(2);
             griLa3.setHorizontalAxisTitle("              second");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
@@ -5511,16 +7568,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalsecond3<60)
-            {
+            //if(arraysizeglobalsecond3<60)
+            //{
                 graph3.getViewport().setMinX(0);
                 graph3.getViewport().setMaxX(60);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalsecond3-60);
-                graph3.getViewport().setMaxX(arraysizeglobalsecond3);
-            }
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalsecond3-60);
+            //    graph3.getViewport().setMaxX(arraysizeglobalsecond3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -5537,10 +7594,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgsuperminute3.setSize(2);
             graph3.addSeries(seriesgsuperminute3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgsuperminute3;
-            lil3.setThickness(2);
+            //LineGraphSeries lil3 = seriesgsuperminute3;
+            //lil3.setThickness(2);
             griLa3.setHorizontalAxisTitle("              minutes");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
@@ -5552,16 +7610,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute3<10)
-            {
+            //if(arraysizeglobalminute3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalminute3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalminute3);
-            }
+                graph3.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalminute3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalminute3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -5574,10 +7632,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesghour3.setSize(2);
             graph3.addSeries(seriesghour3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesghour3;
-            lil3.setThickness(2);
+            //LineGraphSeries lil3 = seriesghour3;
+            //lil3.setThickness(2);
             griLa3.setHorizontalAxisTitle("              hours");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
@@ -5589,16 +7648,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour3<10)
-            {
+            //if(arraysizeglobalhour3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalhour3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalhour3);
-            }
+                graph3.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalhour3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalhour3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -5611,10 +7670,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgday3.setSize(2);
             graph3.addSeries(seriesgday3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgday3;
-            lil3.setThickness(2);
+            //LineGraphSeries lil3 = seriesgday3;
+            //lil3.setThickness(2);
             griLa3.setHorizontalAxisTitle("              days");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
@@ -5626,16 +7686,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday3<10)
-            {
+            //if(arraysizeglobalday3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalday3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalday3);
-            }
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalday3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalday3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -5648,11 +7708,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgweek3.setSize(2);
             graph3.addSeries(seriesgweek3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgweek3;
-            lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil3 = seriesgweek3;
+            //lil3.setThickness(2);
+            griLa3.setHorizontalAxisTitle("              months");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
             griLa3.setLabelVerticalWidth(43);
@@ -5663,16 +7724,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek3<10)
-            {
+            //if(arraysizeglobalweek3<10)
+            //{
                 graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalweek3-10);
-                graph3.getViewport().setMaxX(arraysizeglobalweek3);
-            }
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalweek3-10);
+            //    graph3.getViewport().setMaxX(arraysizeglobalweek3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -5685,11 +7746,12 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.setTitle("         T/H Sensor 3");
             graph3.setTitleTextSize(25);
             graph3.removeAllSeries();
+            seriesgyear3.setSize(2);
             graph3.addSeries(seriesgyear3);
             GridLabelRenderer griLa3 = graph3.getGridLabelRenderer();
-            LineGraphSeries lil3 = seriesgyear3;
-            lil3.setThickness(2);
-            griLa3.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil3 = seriesgyear3;
+            //lil3.setThickness(2);
+            griLa3.setHorizontalAxisTitle("              years");
             griLa3.setHorizontalAxisTitleTextSize(20);
             griLa3.setVerticalAxisTitle("C");
             griLa3.setLabelVerticalWidth(43);
@@ -5700,16 +7762,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph3.getViewport().setXAxisBoundsManual(true);
             graph3.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear3<3)
-            {
-                graph3.getViewport().setMinX(0);
-                graph3.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph3.getViewport().setMinX(arraysizeglobalyear3-3);
-                graph3.getViewport().setMaxX(arraysizeglobalyear3);
-            }
+            //if(arraysizeglobalyear3<3)
+            //{
+                graph3.getViewport().setMinX(21);
+                graph3.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph3.getViewport().setMinX(arraysizeglobalyear3-3);
+            //    graph3.getViewport().setMaxX(arraysizeglobalyear3);
+            //}
             graph3.getViewport().setMinY(0);
             graph3.getViewport().setMaxY(max + .2*max);
 
@@ -5728,10 +7790,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgsecond4.setSize(2);
             graph4.addSeries(seriesgsecond4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgsecond4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesgsecond4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              second");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -5745,16 +7808,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setMaxX(arraysizeglobalsecond4 + 1);
             //graph3.getViewport().setMaxX(arraysizeglobalsecond3 + 1);
 
-            if(arraysizeglobalsecond4<60)
-            {
+            //if(arraysizeglobalsecond4<60)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalsecond4-60);
-                graph4.getViewport().setMaxX(arraysizeglobalsecond4);
-            }
+                graph4.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalsecond4-60);
+            //    graph4.getViewport().setMaxX(arraysizeglobalsecond4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -5771,10 +7834,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgsuperminute4.setSize(2);
             graph4.addSeries(seriesgsuperminute4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgsuperminute4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesgsuperminute4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              minutes");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -5786,16 +7850,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalminute4<10)
-            {
+            //if(arraysizeglobalminute4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalminute4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalminute4);
-            }
+                graph4.getViewport().setMaxX(60);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalminute4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalminute4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -5808,10 +7872,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesghour4.setSize(2);
             graph4.addSeries(seriesghour4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesghour4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesghour4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              hours");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -5823,16 +7888,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalhour4<10)
-            {
+            //if(arraysizeglobalhour4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalhour4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalhour4);
-            }
+                graph4.getViewport().setMaxX(24);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalhour4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalhour4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -5845,10 +7910,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgday4.setSize(2);
             graph4.addSeries(seriesgday4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgday4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesgday4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              days");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -5860,16 +7926,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalday4<10)
-            {
+            //if(arraysizeglobalday4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalday4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalday4);
-            }
+                graph4.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalday4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalday4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -5883,10 +7949,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
             graph4.addSeries(seriesgweek4);
+            seriesgweek4.setSize(2);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgweek4;
-            lil4.setThickness(2);
-            griLa4.setHorizontalAxisTitle("              weeks");
+            //LineGraphSeries lil4 = seriesgweek4;
+            //lil4.setThickness(2);
+            griLa4.setHorizontalAxisTitle("              months");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
             griLa4.setLabelVerticalWidth(43);
@@ -5897,16 +7964,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalweek4<10)
-            {
+            //if(arraysizeglobalweek4<10)
+            //{
                 graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(10);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalweek4-10);
-                graph4.getViewport().setMaxX(arraysizeglobalweek4);
-            }
+                graph4.getViewport().setMaxX(12);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalweek4-10);
+            //    graph4.getViewport().setMaxX(arraysizeglobalweek4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 
@@ -5919,10 +7986,11 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.setTitle("         T/H Sensor 4");
             graph4.setTitleTextSize(25);
             graph4.removeAllSeries();
+            seriesgyear4.setSize(2);
             graph4.addSeries(seriesgyear4);
             GridLabelRenderer griLa4 = graph4.getGridLabelRenderer();
-            LineGraphSeries lil4 = seriesgyear4;
-            lil4.setThickness(2);
+            //LineGraphSeries lil4 = seriesgyear4;
+            //lil4.setThickness(2);
             griLa4.setHorizontalAxisTitle("              years");
             griLa4.setHorizontalAxisTitleTextSize(20);
             griLa4.setVerticalAxisTitle("C");
@@ -5934,16 +8002,16 @@ public class mcu1temphumidgraph extends AppCompatActivity implements AdapterView
             graph4.getViewport().setXAxisBoundsManual(true);
             graph4.getViewport().setYAxisBoundsManual(true);
             //graph.getViewport().setMaxX(10);
-            if(arraysizeglobalyear4<3)
-            {
-                graph4.getViewport().setMinX(0);
-                graph4.getViewport().setMaxX(3);
-            }
-            else
-            {
-                graph4.getViewport().setMinX(arraysizeglobalyear4-3);
-                graph4.getViewport().setMaxX(arraysizeglobalyear4);
-            }
+            //if(arraysizeglobalyear4<3)
+            //{
+                graph4.getViewport().setMinX(21);
+                graph4.getViewport().setMaxX(31);
+            //}
+            //else
+            //{
+            //    graph4.getViewport().setMinX(arraysizeglobalyear4-3);
+            //    graph4.getViewport().setMaxX(arraysizeglobalyear4);
+            //}
             graph4.getViewport().setMinY(0);
             graph4.getViewport().setMaxY(max + .2*max);
 

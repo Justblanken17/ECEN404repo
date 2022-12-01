@@ -6,6 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".mcu1flowv">
 
+    <TextView
+        android:id="@+id/sens283"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="Level:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/flowv10"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens284"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="Expected Range:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/range160"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="240dp"
+        android:background="#FBBABA"
+        android:text="NA"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens281"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="Flow:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/flowv9"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sens282"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="Expected Range:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/range159"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="212dp"
+        android:background="#FBBABA"
+        android:text="NA"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/homebutton6"
         android:layout_width="115dp"
