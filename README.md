@@ -1,7 +1,7 @@
 # ECEN404repo
 reposit
 
-Below Will detail what the Growable Space Habitat is, where to find files in this repo, as well as the deliverables at the end of 404:
+Below Will detail what the Growable Space Habitat is, where to find files in this repo, as well as the deliverables at the end of 404 as well as hw to setup the project to run:
 
 What is the Growable Space Habitat and our part in it? 
 
@@ -47,6 +47,9 @@ How to navigate through our repo:
 
 In our Repo, the 4 of us have our own folders that have specific titles to make it easy to navigate. 
 All datasheets, test scripts, altium designs and everything else related to the project is in this repo.
+
+How to setup the project: 
+1. The battery needs to first be connected to the terminal block on the BMS (positive on top most, negative on bottom most). The output of the BMS is to be connected to the MPPT controller. Any buck converters that are used need to be plugged into the mppt controller on the load termnals. These buck converters are sending power through wires to the MCU boards and the pi through a USB-A to USB-C cable. A solar panel, or or power supply can be plugged into the PV portion of the MPPT. The MCUs have already had the memory flashed, so the only setup there is connecting the sensors to it which will already be connected. Powering the MCUs come from the output of the buck converters to the terminal block on the MCU board. There is no setup for the User Interface side since it updates the data automatically as it is received. For the AI/Data Processing system the setup consists of running the scripts and then letting the programs do what they are told to do. Our projectwas meant to be autonomous, so that very little, to no human interference is necessary. 
 
 Thanks!
 
