@@ -1,0 +1,22 @@
+NO2/CO Sensor:
+Does not function
+
+For future team:
+Add sensor footprint so sensor can be plugged directly into board.
+
+
+Ethylene Sensor:
+Partial Functionality, board has no shorts but continuously outputs 3V with and without the sensor plugged in.
+Rev 2 had the wrong opamp power supply polarity, Rev 3 fixed this issue.
+A rev 2 board was soldered and jumper wire patched the power supply polarity issue.
+
+For future team:
+Add sensor footprint so sensor can be plugged directly into board.
+Double check the schematic again with the reference design.
+
+Methane Sensor:
+Partial Functionality, the lamp works but the output signal is noisy and does not respond.
+
+For future team:
+Check opamp circuit and compare schematic to reference design.
+
