@@ -45,5 +45,9 @@ Our Deliverables for 404:
 
 How to navigate through our repo: 
 
+In our Repo, the 4 of us have our own folders that have specific titles to make it easy to navigate. 
+All datasheets, test scripts, altium designs and everything else related to the project is in this repo.
+
+Thanks!
 
 
