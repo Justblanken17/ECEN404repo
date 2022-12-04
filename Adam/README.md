@@ -38,5 +38,5 @@ cd Demo
 Run the main.py script so that it will constantly classify, retrieve data, and send data:
 python main.py
 
-NOTE:
+## NOTE: ##
 If a different database is used, you must change the db.ini file so that it can push data to the correct database. This was abstracted for ease of use in future changes of the database.
