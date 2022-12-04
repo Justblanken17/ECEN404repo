@@ -9,7 +9,7 @@ Each of the folders in the Firmware directory corresponds to the source and head
 
 The folders store the jupyter nnotebooks that creates the data augmentation, train dataset, train csv, test dataset, model training.
 
-## Test_SCRIPTS ##
+## Test_Scripts ##
 
 The python scripts here test the individual functionlity for of the system process to request i2c data, send data to database, classify, control cameras. etc.
 
