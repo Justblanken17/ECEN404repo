@@ -15,7 +15,7 @@ the different MCU boards, and for each of the boards, sensor data can be seen on
 taken as well as if the plant is in a healthy state or not. 
 
 
-Our Deliverables for 404: 
+## Our Deliverables for 404: ## 
 1. User Interface:
     a. Be able to update real time photos and any of the sensor data on to graphs and display images through the app on the phone from 2 MCU boards
     b. firebase database communication with pi to receive data then send to the app for viewing.
@@ -43,7 +43,7 @@ Our Deliverables for 404:
    d. Shared with Rohith, Dr. Lusher and Dr. Rising
 
 
-How to navigate through our repo: 
+## How to navigate through our repo: ## 
 
 In our Repo, the 4 of us have our own folders that have specific titles to make it easy to navigate. 
 All datasheets, test scripts, altium designs and everything else related to the project is in this repo.
